@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-import useNavigate from "react-router-dom";
+import { useNavigate } from 'react-router';
 import UserBodyInfoCard from "./UserBodyInfoCard";
 import UserActivityInfoCard from "./UserActivityInfoCard";
 import DietCustomInfoCard from "./DietCustomInfoCard";
@@ -16,11 +16,11 @@ const Wrapper = styled.div`
 `;
 
 function UserInputCard(props) {
-    const {} = props;
+    const { } = props;
     const navigate = useNavigate();
 
     const [currentIndex, setCurrentIndex] = React.useState(0);
-
+    //유저 정보
     const [age, setAge] = React.useState("");
     const [height, setHeight] = React.useState("");
     const [weight, setWeight] = React.useState("");
@@ -28,17 +28,9 @@ function UserInputCard(props) {
     const [generalActivities, setGeneralActivities] = React.useState("");
     const [exciseActivity, setExciseActivity] = React.useState("");
 
+    //옵션값
     const [mealsCount, setMealsCount] = React.useState("");
 
-    const data = {
-        age: age,
-        height: height,
-        weight: weight,
-        gender : gender,
-        general_activities: generalActivities,
-        excise_activities: exciseActivity,
-        meals_count: mealsCount
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,7 +40,7 @@ function UserInputCard(props) {
         }
         setCurrentIndex(currentIndex + 1)
     };
-    
+
     const handleActivitySubmit = (e) => {
         e.preventDefault();
         if (generalActivities === "" || exciseActivity === "") {
@@ -64,26 +56,34 @@ function UserInputCard(props) {
             alert("모든 항목을 입력해주세요.");
             return;
         }
-        axios.post("http://localhost:8000/api/diet-custom/", {
-            data : data})
+        const data = {
+            age: age,
+            height: height,
+            weight: weight,
+            gender: gender,
+            general_activities: generalActivities,
+            excise_activities: exciseActivity,
+            meals_count: mealsCount
+        }
+        axios.post("http://localhost:8000/api/diets/", data)
             .then((res) => {
-                navigate("/diet",res.data);
-            })
-            .catch((err) => {
-                alert(err)
-                navigate("/",);
-            })
-    }
+            navigate("/diets", { state: res.data });
+        })
+        .catch((err) => {
+            alert(err)
+            navigate("/");
+        })
+}
 
 
-    const handleBackSubmit = (e) => {
-        e.preventDefault();
-        setCurrentIndex(currentIndex - 1)
-    }
+const handleBackSubmit = (e) => {
+    e.preventDefault();
+    setCurrentIndex(currentIndex - 1)
+}
 
-        return (
-        <Wrapper>
-            {currentIndex === 0 
+return (
+    <Wrapper>
+        {currentIndex === 0
             ?
             <UserBodyInfoCard
                 handleSubmit={handleSubmit}
@@ -100,16 +100,16 @@ function UserInputCard(props) {
                     handleBackSubmit={handleBackSubmit}
                     setExciseActivity={setExciseActivity}
                     setGeneralActivities={setGeneralActivities}
-                    />
-                    :
-                    <DietCustomInfoCard 
+                />
+                :
+                <DietCustomInfoCard
                     handleSubmit={handleDietSubmit}
                     setMealsCount={setMealsCount}
                     handleBackSubmit={handleBackSubmit}
                 />
-            }
-        </Wrapper>
-    );
+        }
+    </Wrapper>
+);
 }
 
 export default UserInputCard;
