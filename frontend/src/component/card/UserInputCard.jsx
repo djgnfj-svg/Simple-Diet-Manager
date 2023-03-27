@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
+import useNavigate from "react-router-dom";
 import UserBodyInfoCard from "./UserBodyInfoCard";
 import UserActivityInfoCard from "./UserActivityInfoCard";
 import DietCustomInfoCard from "./DietCustomInfoCard";
@@ -15,6 +17,8 @@ const Wrapper = styled.div`
 
 function UserInputCard(props) {
     const {} = props;
+    const navigate = useNavigate();
+
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
     const [age, setAge] = React.useState("");
@@ -25,6 +29,17 @@ function UserInputCard(props) {
     const [exciseActivity, setExciseActivity] = React.useState("");
 
     const [mealsCount, setMealsCount] = React.useState("");
+
+    const data = {
+        age: age,
+        height: height,
+        weight: weight,
+        gender : gender,
+        general_activities: generalActivities,
+        excise_activities: exciseActivity,
+        meals_count: mealsCount
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (age === "" || height === "" || weight === "" || gender === "") {
@@ -49,8 +64,18 @@ function UserInputCard(props) {
             alert("모든 항목을 입력해주세요.");
             return;
         }
-        //axios로 데이터 전송 로직
+        axios.post("http://localhost:8000/api/diet-custom/", {
+            data : data})
+            .then((res) => {
+                navigate("/diet",res.data);
+            })
+            .catch((err) => {
+                alert(err)
+                navigate("/",);
+            })
     }
+
+
     const handleBackSubmit = (e) => {
         e.preventDefault();
         setCurrentIndex(currentIndex - 1)
