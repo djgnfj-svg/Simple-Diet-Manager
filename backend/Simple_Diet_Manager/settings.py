@@ -49,6 +49,11 @@ INSTALLED_APPS = [
     # library
 	'rest_framework',
 	'corsheaders',
+    # app
+    'accounts',
+    'diet',
+    'meal',
+    'food',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +72,9 @@ ROOT_URLCONF = 'Simple_Diet_Manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -15,7 +15,7 @@ class WeekDiet(models.Model):
     BodyInfo = models.ForeignKey( BodyInfoRecord, on_delete=models.CASCADE, related_name="weeks")
     created_at = models.DateTimeField(auto_now_add=True)
 
-class DayDiet(models.Model):
+class Diet(models.Model):
     diet_option = models.ForeignKey(DietOption, on_delete=models.CASCADE, related_name="days")
     week_diet = models.ForeignKey(WeekDiet, on_delete=models.CASCADE, related_name="days")
 
