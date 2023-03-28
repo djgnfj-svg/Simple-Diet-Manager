@@ -16,10 +16,10 @@ class DietMakeSerializer(serializers.Serializer):
     excise_activity = serializers.FloatField(min_value=0, max_value=0.3)
 
     meal_count = serializers.IntegerField(min_value=1, max_value=3)
+    diet_status = serializers.IntegerField(min_value=0, max_value=2)
     
     def create(self, validated_data):
-        dietmanager = Diet_Manager()
-        dietmanager.assign_data(validated_data)
+        dietmanager = Diet_Manager(validated_data)
         temp = dietmanager.get_data()
         return temp
     

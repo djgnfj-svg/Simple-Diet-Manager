@@ -8,17 +8,6 @@ class Metabolic_Assigner(AssignerBase):
         super().__init__()
 
     def assign_data(self, data):
-        '''
-            {
-                'age': 20,
-                'weight': 80.0,
-                'height': 170.0,
-                'gender': 'M',
-                'general_activities': 1.2,
-                'excise_activity': 0.2,
-                'meal_count': 3
-            }
-        '''
         self.total_kcal = Metabolic_Carculater.calculate_kcal(data)
         self.total_protein = Metabolic_Carculater.calculate_protein(data,self.protein_range)
         self.total_fat = Metabolic_Carculater.calculate_fat(self.total_kcal,self.fat_range)

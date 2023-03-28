@@ -1,14 +1,9 @@
 from abc import *
 
 class ManagerBase(metaclass=ABCMeta):
-    def __init__(self):
-        pass
-    
-
-    @abstractmethod
-    def assign_data(self, data):
-        pass
+    def __init__(self, data):
+        self.data = data
 
     @abstractmethod
     def get_data(self):
-        pass
+        return self.data

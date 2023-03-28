@@ -3,13 +3,10 @@ from diet.DietAssigner import Diet_Assigner
 
 
 class Diet_Manager(ManagerBase):
-    def __init__(self):
-        super().__init__()
-
-    def assign_data(self, data):
+    def __init__(self, data):
         _Diet = Diet_Assigner()
         _Diet.assign_data(data)
         self.data = _Diet.get_data()
-    
+
     def get_data(self):
         return self.data
