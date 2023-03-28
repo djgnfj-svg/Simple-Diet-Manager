@@ -1,0 +1,44 @@
+[
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "냉동식품"
+        }
+    },
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "냉장식품"
+        }
+    },
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "간편식"
+        }
+    },
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "조리식"
+        }
+    },
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "전자레인지"
+        }
+    },
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "에어프라이어"
+        }
+    },
+    {
+        "model": "foods.CookingOption",
+        "fields": {
+            "name": "후라이팬"
+        }
+    }
+]
