@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from diet.DietManager import Diet_Manager
+
 
 class DietMakeSerializer(serializers.Serializer):
     GENDER_CHOICES = (
@@ -17,9 +19,8 @@ class DietMakeSerializer(serializers.Serializer):
     
     def create(self, validated_data):
         print(validated_data)
-        # 영양소 계산
-        # 식사 탐색
-        # 식사 저장
-        # 리턴
+        dietmanager = Diet_Manager()
+        dietmanager.assign_data(validated_data)
+        dietmanager.get_data()
         return validated_data
     
