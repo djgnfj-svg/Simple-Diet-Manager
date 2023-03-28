@@ -1,6 +1,5 @@
-
-
 from Utils.common.ManagerBase import ManagerBase
+from diet.DietAssigner import Diet_Assigner
 
 
 class Diet_Manager(ManagerBase):
@@ -8,8 +7,9 @@ class Diet_Manager(ManagerBase):
         super().__init__()
 
     def assign_data(self, data):
-        Diet_Assigner.assign_data(data)
-        return
+        _Diet = Diet_Assigner()
+        _Diet.assign_data(data)
+        self.data = _Diet.get_data()
     
     def get_data(self):
-        return super().get_data()
+        return self.data

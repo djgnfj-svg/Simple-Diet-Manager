@@ -18,9 +18,8 @@ class DietMakeSerializer(serializers.Serializer):
     meal_count = serializers.IntegerField(min_value=1, max_value=3)
     
     def create(self, validated_data):
-        print(validated_data)
         dietmanager = Diet_Manager()
         dietmanager.assign_data(validated_data)
-        dietmanager.get_data()
-        return validated_data
+        temp = dietmanager.get_data()
+        return temp
     
