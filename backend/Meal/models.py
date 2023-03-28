@@ -1,9 +1,13 @@
 from django.db import models
 
+from food.models import Food
+
 # Create your models here.
 
 class Meal(models.Model):
     name = models.CharField(max_length=50)
+
+    foods = models.ManyToManyField(Food, related_name="meals")
     total_kcal = models.IntegerField()
     tital_protein = models.IntegerField()
     total_fat = models.IntegerField()

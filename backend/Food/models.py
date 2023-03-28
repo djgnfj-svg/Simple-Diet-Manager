@@ -5,6 +5,7 @@ class FoodCategory(models.Model):
     name = models.CharField(max_length=50)
 
 
+
 class Food(models.Model):
     name = models.CharField(max_length=50)
     kcal = models.IntegerField()
@@ -15,4 +16,6 @@ class Food(models.Model):
     food_count = models.IntegerField()
     food_link = models.URLField(max_length=100)
     food_img = models.ImageField(upload_to='food_img')
+
+    food_category = models.ManyToManyField(FoodCategory, related_name="foods")
     created_at = models.DateTimeField(auto_now_add=True)
