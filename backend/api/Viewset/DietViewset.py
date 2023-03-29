@@ -1,10 +1,15 @@
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from api.Serializer.Diet_Serializer import DietMakeSerializer
+from api.Serializer.DietSerializer import DietMakeSerializer, DietSerializer
 from api.Utils.MsgUtils import error_msg
+from diet.models import Diet
 
-class Diet_Make_Viewset(viewsets.ViewSet):
+class DietViewset(viewsets.ModelViewSet):
+    serializer_class = DietSerializer
+    queryset = Diet.objects.order_by("-id")
+    
+class DietMakeViewset(viewsets.ViewSet):
     serializer_class = DietMakeSerializer
     def create(self, request):
         serializer = DietMakeSerializer(data=request.data)

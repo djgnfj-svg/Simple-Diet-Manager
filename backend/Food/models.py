@@ -9,7 +9,6 @@ class FoodCategory(TimeStampedModel):
 class CookingOption(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
 
-
 class Food(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
     kcal = models.IntegerField(null=False, default=0)
