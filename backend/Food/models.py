@@ -6,8 +6,16 @@ from Utils.model.Timestemp import TimeStampedModel
 class FoodCategory(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 class CookingOption(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+    
+
 
 class Food(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
@@ -18,8 +26,12 @@ class Food(TimeStampedModel):
 
     number = models.IntegerField(null=False, default=0)
     gram = models.IntegerField(null=False, default=0)
+    iscoupangfresh = models.BooleanField(default=False)
     link = models.URLField(max_length=100, null=True)
     img = models.ImageField(upload_to='food_img')
 
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, related_name="foods")
-    cooking = models.ForeignKey(CookingOption, on_delete=models.CASCADE, related_name="foods")
+    cookingoption = models.ForeignKey(CookingOption, on_delete=models.CASCADE, related_name="foods")
+
+    def __str__(self) -> str:
+        return self.name

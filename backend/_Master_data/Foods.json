@@ -1,0 +1,380 @@
+[
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "한끼통살 통살 닭가슴살 허니소이",
+            "kcal": 135,
+            "protein": 21,
+            "fat": 1.5,
+            "carbs": 9,
+            "number": 10,
+            "gram": 100,
+            "iscoupangfresh" : true,
+            "category" : 1,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/6081081115?itemId=11273250763",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "햇살닭 저염훈제닭가슴살 플러스 (냉동)",
+            "kcal": 121,
+            "carbs": 2,
+            "protein": 23.3,
+            "fat": 1.5,
+            "number": 10,
+            "gram": 100,
+            "iscoupangfresh" : true,
+            "category" : 1,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/1519330646?itemId=5810607566",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "햇살닭 흑마늘 수비드 닭가슴살 (냉동)",
+            "kcal": 172.5,
+            "carbs": 9,
+            "protein": 31.5,
+            "fat": 2,
+            "number": 8,
+            "gram": 150,
+            "iscoupangfresh" : true,
+            "category" : 1,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/4656203901?itemId=5810700340",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "라이틀리 곤약즉석밥 현미퀴노아",
+            "kcal": 90,
+            "carbs": 21,
+            "protein": 2,
+            "fat": 0,
+            "number": 10,
+            "gram": 150,
+            "iscoupangfresh" : true,
+            "category" : 5,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/1391921882?itemId=2427315006",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "목우촌 닭가슴살 스테이크 구운갈릭 (냉동)",
+            "kcal": 142,
+            "carbs": 10,
+            "protein": 19,
+            "fat": 2,
+            "number": 10,
+            "gram": 100,
+            "iscoupangfresh" : true,
+            "category" : 1,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/2171896373",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "곰곰 흑미 닭가슴살 스테이크",
+            "kcal": 155,
+            "carbs": 10,
+            "protein": 17,
+            "fat": 5,
+            "number": 10,
+            "gram": 100,
+            "iscoupangfresh" : true,
+            "category" : 1,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/4926123653",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "곰곰 프랑크 닭가슴살 소시지 꼬치형 (냉동)",
+            "kcal": 122,
+            "carbs": 7,
+            "protein": 12,
+            "fat": 5,
+            "number": 5,
+            "gram": 70,
+            "iscoupangfresh" : true,
+            "category" : 1,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/1915681699",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "곰곰 새우 볶음밥 (냉동)",
+            "kcal": 492,
+            "carbs": 86,
+            "protein": 10,
+            "fat": 12,
+            "number": 6,
+            "gram": 300,
+            "iscoupangfresh" : true,
+            "category" : 6,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/1915681699",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "곰곰 닭갈비볶음밥 (냉동)",
+            "kcal": 520,
+            "carbs": 91,
+            "protein": 12,
+            "fat": 12,
+            "number": 6,
+            "gram": 300,
+            "iscoupangfresh" : true,
+            "category" : 6,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/1310396687",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "풀무원 고슬고슬 계란코팅 황금밥알 포크 스크램블 볶음밥 (냉동)",
+            "kcal": 435,
+            "carbs": 66,
+            "protein": 12,
+            "fat": 14,
+            "number": 4,
+            "gram": 210,
+            "iscoupangfresh" : true,
+            "category" : 6,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/343228726",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "한우물 김치치즈 구운주먹밥 10개입 (냉동)",
+            "kcal": 165,
+            "carbs": 31,
+            "protein": 4,
+            "fat": 2.6,
+            "number": 10,
+            "gram": 100,
+            "iscoupangfresh" : true,
+            "category" : 7,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/6382513128",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "하림 닭가슴살 핫도그 8개입 (냉동)",
+            "kcal": 235,
+            "carbs": 27,
+            "protein": 9,
+            "fat": 10,
+            "number": 8,
+            "gram": 90,
+            "iscoupangfresh" : true,
+            "category" : 9,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/242350474",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "롯데제과 퀘이커 마시는오트밀 오트&그레인",
+            "kcal": 222,
+            "carbs": 29,
+            "protein": 9,
+            "fat": 8,
+            "number": 20,
+            "gram": 50,
+            "iscoupangfresh" : true,
+            "category" : 12,
+            "cookingoption" : 3,
+            "link": "https://www.coupang.com/vp/products/4971916592",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "동원 고추 참치",
+            "kcal": 110,
+            "carbs": 10,
+            "protein": 9,
+            "fat": 3.9,
+            "number": 12,
+            "gram": 85,
+            "iscoupangfresh" : true,
+            "category" : 13,
+            "cookingoption" : 3,
+            "link": "https://www.coupang.com/vp/products/1145100301",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "동원 라이트 스탠다드 참치",
+            "kcal": 180,
+            "carbs": 0,
+            "protein": 16,
+            "fat": 13,
+            "number": 12,
+            "gram": 85,
+            "iscoupangfresh" : true,
+            "category" : 13,
+            "cookingoption" : 8,
+            "link": "https://www.coupang.com/vp/products/2042132",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "농심 신라면 건면 사발 77g",
+            "kcal": 285,
+            "carbs": 54,
+            "protein": 7,
+            "fat": 4.4,
+            "number": 8,
+            "gram": 77,
+            "iscoupangfresh" : true,
+            "category" : 8,
+            "cookingoption" : 3,
+            "link": "https://www.coupang.com/vp/products/1568884328",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "그릭데이 시그니처 떠먹는 요구르트",
+            "kcal": 160,
+            "carbs": 4.8,
+            "protein": 11.4,
+            "fat": 10.7,
+            "number": 3,
+            "gram": 100,
+            "iscoupangfresh" : true,
+            "category" : 11,
+            "cookingoption" : 8,
+            "link": "https://www.coupang.com/vp/products/5463245022",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "덴마크 인포켓치즈 오리지널",
+            "kcal": 60,
+            "carbs": 0,
+            "protein": 4,
+            "fat": 4.8,
+            "number": 10,
+            "gram": 20,
+            "iscoupangfresh" : true,
+            "category" : 11,
+            "cookingoption" : 8,
+            "link": "https://www.coupang.com/vp/products/1395521967",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "토마토",
+            "kcal": 16,
+            "carbs": 4,
+            "protein": 1,
+            "fat": 0,
+            "number": 10,
+            "gram": 20,
+            "iscoupangfresh" : true,
+            "category" : 10,
+            "cookingoption" : 8,
+            "link": "https://www.coupang.com/vp/products/4697181000",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "아보카도",
+            "kcal": 322,
+            "carbs": 17,
+            "protein": 4,
+            "fat": 29,
+            "number": 1,
+            "gram": 1000,
+            "iscoupangfresh" : true,
+            "category" : 10,
+            "cookingoption" : 8,
+            "link": "https://www.coupang.com/vp/products/1173326805",
+            "created_at": "2023-02-15", 
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.Food",
+        "fields": {
+            "name": "햇반 백미밥",
+            "kcal": 315,
+            "carbs": 70,
+            "protein": 5,
+            "fat": 1.5,
+            "number": 10,
+            "gram": 210,
+            "iscoupangfresh" : true,
+            "category" : 5,
+            "cookingoption" : 5,
+            "link": "https://www.coupang.com/vp/products/2792667",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    }
+]

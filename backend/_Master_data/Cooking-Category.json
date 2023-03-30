@@ -1,0 +1,66 @@
+[
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "냉동식품",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "냉장식품",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "간편식",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "조리식",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "전자레인지",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "에어프라이어",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "후라이팬",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "food.CookingOption",
+        "fields": {
+            "name": "일반식",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    }
+]

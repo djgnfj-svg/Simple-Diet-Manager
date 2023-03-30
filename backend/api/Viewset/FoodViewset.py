@@ -17,3 +17,7 @@ class FoodCategoryViewset(viewsets.ModelViewSet):
 class FoodViewset(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     queryset = Food.objects.order_by("-id")
+
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        return super().create(request, *args, **kwargs)
