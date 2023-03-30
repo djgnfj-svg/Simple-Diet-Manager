@@ -34,4 +34,4 @@ class Food(TimeStampedModel):
     cookingoption = models.ForeignKey(CookingOption, on_delete=models.CASCADE, related_name="foods")
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.name} : kcal : {self.kcal}, protein : {self.protein}, fat : {self.fat}, carbs : {self.carbs}"

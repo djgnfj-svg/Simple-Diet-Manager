@@ -17,7 +17,7 @@ class MealManager(models.Manager):
         return meal
     
 class Meal(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
 
     foods = models.ManyToManyField(Food,related_name="meals")
     meal_kcal = models.IntegerField(null=False, default=0)
@@ -32,15 +32,24 @@ class Meal(models.Model):
         db_table = "meal"
 
     def save(self, isupdate=False, foods=None) -> None:
-        
         if isupdate:
             self.meal_kcal = 0
             self.meal_protein = 0
             self.meal_fat = 0
             self.meal_carbs = 0
+
         for food in foods:
             self.meal_kcal += food.kcal
             self.meal_protein += food.protein
             self.meal_fat += food.fat
             self.meal_carbs += food.carbs
+
+        if len(foods.all()) > 1:
+            self.name = f"{foods[0].name}  외 {len(foods.all())-1}개"
+        else:
+            self.name = f"{foods[0].name}"
+
         return super().save()
+    
+    def __str__(self) -> str:
+        return self.name
