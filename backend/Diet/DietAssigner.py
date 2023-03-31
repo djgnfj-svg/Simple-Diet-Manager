@@ -6,32 +6,35 @@ from meal.MealManager import Meal_Manager
 
 class Diet_Assigner(AssignerBase):
     def __init__(self):
+        self.data = {}
         super().__init__()
 
-    def assign_data(self, data):
-        #1. 기초대사량 계산하기
-        self.data = None
-        metabolic_manager = Metabolic_Manager(data)
-        metabolic_data = metabolic_manager.get_data()
-
-        #2. 섭취 영양소 만들기
-        meal_count = data['meal_count']
-        diet_status = data['diet_status']
-
-        # diet_status 0: 유지 1: 감량 2: 증량(미구현)
-        min_range = 0.8 if diet_status == 1 else 0.9
-        max_range = 0.9 if diet_status == 1 else 1.0
-
+    # 기초대사량 + 옵션 + 다이어트 유무 + 식단 개수 +min_range + max_range + 이미들어가있는 음식의 데이터
+    def assign_data(self, metabolic_data, meal_option, meal_count, min_range, max_range):
         #3. 식단 만들기
         #3.1 식사 가져오기
         # meal_option = data['meal_option']
-        meal_option = [1]
+        if meal_count == 1:
+            meals = ["breakfast"]
+            meals_nutrient = [1]
+        elif meal_count == 2:
+            meals = ["breakfast", "lunch"]
+            meals_nutrient = [0.6, 0.4]
+        elif meal_count == 3:
+            meals = ["breakfast", "lunch", "dinner"]
+            meals_nutrient = [0.4, 0.3, 0.3]
 
-        mael_manager = Meal_Manager(metabolic_data, meal_option, meal_count, min_range, max_range)
-        mael_manager.get_data()
-        
+        meal_manager = Meal_Manager()
+        # 1.끼니별로 기초대사량 나누기
+        # get_data에 끼니영양소 + 
+        for meal, nutrient_range in zip(meals, meals_nutrient):
+            need_nutrient = {}
+            need_nutrient["kcal"] = metabolic_data["total_kcal"] * nutrient_range
+            need_nutrient["protein"] = metabolic_data["total_protein"] * nutrient_range
+            need_nutrient["fat"] = metabolic_data["total_fat"] * nutrient_range
+            need_nutrient["carbs"] = metabolic_data["total_carbs"] * nutrient_range
+            self.data[meal] = meal_manager.get_data(need_nutrient, meal_option, min_range, max_range)
+            self.data[meal+"_need_nutrient"] = need_nutrient
         #4. 식단 검증하기
-
-    
     def get_data(self):
         return self.data

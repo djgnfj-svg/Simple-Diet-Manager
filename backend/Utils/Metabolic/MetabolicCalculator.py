@@ -14,10 +14,10 @@ class Metabolic_Carculater():
 
         # 기초대사량
         if gender == "M":
-            basal_metabolic_rate = (88.4 + 13.4 * weight) + \
+            basal_metabolic_rate = 88.4 + (13.4 * weight) + \
                 (4.8 * height) - (5.68 * age)
         else:
-            basal_metabolic_rate = (447.6 + 9.25 * weight) + \
+            basal_metabolic_rate = 447.6 + (9.25 * weight) + \
                 (3.1 * height) - (4.33 * age)
         activity_coefficient = general_activities + excise_activity
 

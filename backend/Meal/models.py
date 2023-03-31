@@ -3,18 +3,22 @@ from django.db import models
 from food.models import Food
 
 # Create your models here.
-class MealManager(models.Manager):
-    def create(self, name, foods, meal_kcal, meal_protein, meal_fat, meal_carbs, meal_video):
-        meal = self.model(
-            name = name, 
-            foods = foods, 
-            meal_kcal = meal_kcal, 
-            meal_protein = meal_protein, 
-            meal_fat = meal_fat, 
-            meal_carbs = meal_carbs, 
-            meal_video = meal_video)
-        print("실행되나요?")
-        return meal
+# class MealManager(models.Manager):
+#     def create(self, foods, meal_kcal, meal_protein, meal_fat, meal_carbs, meal_video=None, name=None):
+#         if name is None:
+#             name = "임시로 만든 식단입니다."
+#         print(foods)
+#         meal = self.model(
+#             name = name, 
+#             meal_kcal = meal_kcal, 
+#             meal_protein = meal_protein, 
+#             meal_fat = meal_fat, 
+#             meal_carbs = meal_carbs, 
+#             meal_video = meal_video)
+#         print(meal)
+#         meal.foods.add(foods)
+#         print("실행되나요?")
+#         return meal
     
 class Meal(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)
@@ -27,7 +31,6 @@ class Meal(models.Model):
     meal_video = models.URLField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    objects = MealManager()
     class meta:
         db_table = "meal"
 
