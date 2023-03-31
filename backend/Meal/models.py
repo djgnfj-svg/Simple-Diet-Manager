@@ -1,24 +1,6 @@
 from django.db import models
 
 from food.models import Food
-
-# Create your models here.
-# class MealManager(models.Manager):
-#     def create(self, foods, meal_kcal, meal_protein, meal_fat, meal_carbs, meal_video=None, name=None):
-#         if name is None:
-#             name = "임시로 만든 식단입니다."
-#         print(foods)
-#         meal = self.model(
-#             name = name, 
-#             meal_kcal = meal_kcal, 
-#             meal_protein = meal_protein, 
-#             meal_fat = meal_fat, 
-#             meal_carbs = meal_carbs, 
-#             meal_video = meal_video)
-#         print(meal)
-#         meal.foods.add(foods)
-#         print("실행되나요?")
-#         return meal
     
 class Meal(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)

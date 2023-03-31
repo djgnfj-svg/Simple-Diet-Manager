@@ -3,11 +3,10 @@ from meal.MealManager import Meal_Manager
 
 
 class DietManager(ManagerBase):
-    def __init__(self, metabolic_data, meal_option, meal_count, min_range, max_range):
+    def __init__(self):
         self.data = {}
-        #3. 식단 만들기
-        #3.1 식사 가져오기
-        # meal_option = data['meal_option']
+
+    def get_data(self, metabolic_data, meal_option, meal_count, min_range, max_range):
         if meal_count == 1:
             meals = ["breakfast"]
             meals_nutrient = [1]
@@ -27,6 +26,4 @@ class DietManager(ManagerBase):
             need_nutrient["carbs"] = metabolic_data["total_carbs"] * nutrient_range
             self.data[meal] = meal_manager.get_data(need_nutrient, meal_option, min_range, max_range)
             self.data[meal+"_need_nutrient"] = need_nutrient
-
-    def get_data(self):
         return self.data

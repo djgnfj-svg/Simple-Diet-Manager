@@ -29,7 +29,7 @@ class DietMakeSerializer(serializers.Serializer):
 
     
     def create(self, validated_data):
-        dietmanager = WeekDietManager(validated_data)
-        temp = dietmanager.get_data()
+        dietmanager = WeekDietManager()
+        temp = dietmanager.get_data(validated_data)
         return temp
      

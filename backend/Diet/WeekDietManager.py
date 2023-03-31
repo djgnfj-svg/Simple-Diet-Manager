@@ -4,12 +4,14 @@ from diet.DietManager import DietManager
 
 
 class WeekDietManager(ManagerBase):
-    def __init__(self, data):
+    def __init__(self):
+        self.data = {}
+    def get_data(self, data):
         day_of_week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
         self.data = {}
         #1. 기초대사량 계산하기
-        metabolic_manager = Metabolic_Manager(data)
-        metabolic_data = metabolic_manager.get_data()
+        metabolic_manager = Metabolic_Manager()
+        metabolic_data = metabolic_manager.get_data(data)
 
         #2. 섭취 영양소 만들기
         meal_count = data['meal_count']
@@ -22,8 +24,7 @@ class WeekDietManager(ManagerBase):
         max_range = 0.9 if diet_status == 1 else 1.0
 
         for day in day_of_week:
-            _Diet = DietManager(metabolic_data, meal_option, meal_count, min_range, max_range)
-            self.data[day] = _Diet.get_data()
+            _Diet = DietManager()
+            self.data[day] = _Diet.get_data(metabolic_data, meal_option, meal_count, min_range, max_range)
 
-    def get_data(self):
         return self.data

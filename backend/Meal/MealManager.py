@@ -22,7 +22,6 @@ class Meal_Manager(ManagerBase):
             return meal[0]
         else :
             meal = self.make_meal(meal_nutrient, meal_option, min_range, max_range)
-            print(meal)
             return meal
 
     def make_meal(self, meal_nutrient, meal_option, min_range, max_range):

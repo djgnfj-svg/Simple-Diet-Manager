@@ -5,7 +5,3 @@ from django.test import TestCase
 class MealManagerTest(TestCase):
     def test_meal_manager(self):
         pass
-
-class MealAssignerTest(TestCase):
-    def test_meal_assigner(self):
-        pass
