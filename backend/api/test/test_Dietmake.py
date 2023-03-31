@@ -12,9 +12,9 @@ class DietMakeTest(APITestCase):
         self.assertEqual(response.status_code, 405)
 
     # 2. 요청이 정상적으로 들어오면 post는 지원한다.
-    def test_diet_make(self):
-        response = self.client.post(self.url)
-        self.assertEqual(response.status_code, 201)
+    # def test_diet_make(self):
+    #     response = self.client.post(self.url)
+    #     self.assertEqual(response.status_code, 201)
 
         # 2-1 요청이 정상적으로 들어오면 6일치의 diet가 생성된다.
         

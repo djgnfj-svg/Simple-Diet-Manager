@@ -1,10 +1,15 @@
 from django.test import TestCase
+from food.models import Food
+
+from food.FoodManager import FoodManager
 
 # Create your tests here.
 class FoodManagerTest(TestCase):
-    def test_get_food(self):
-        pass
+    fixtures = ['_Master_data/Food-Category.json', '_Master_data/Cooking-Category.json', '_Master_data/Foods.json']
+    def setUp(self):
+        self.food_manager = FoodManager()
 
-class FoodAssignerTest(TestCase):
-    def test_assign_data(self):
-        pass
+    def test_get_food(self):
+        food = self.food_manager.get_data("protein", 0)
+        self.assertEqual(type(food), Food)
+

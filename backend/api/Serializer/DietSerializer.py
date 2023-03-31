@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from diet.models import Diet
 
-from diet.DietManager import WeekDietManager
+from diet.WeekDietManager import WeekDietManager
 
 class DietSerializer(serializers.ModelSerializer):
     class Meta:

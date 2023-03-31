@@ -1,30 +1,32 @@
 from Utils.common.ManagerBase import ManagerBase
-from Utils.Metabolic.MetabolicManager import Metabolic_Manager
-from diet.DietAssigner import Diet_Assigner
+from meal.MealManager import Meal_Manager
 
 
-class WeekDietManager(ManagerBase):
-    def __init__(self, data):
-        day_of_week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+class DietManager(ManagerBase):
+    def __init__(self, metabolic_data, meal_option, meal_count, min_range, max_range):
         self.data = {}
-        #1. 기초대사량 계산하기
-        metabolic_manager = Metabolic_Manager(data)
-        metabolic_data = metabolic_manager.get_data()
-
-        #2. 섭취 영양소 만들기
-        meal_count = data['meal_count']
-        diet_status = data['diet_status']
+        #3. 식단 만들기
+        #3.1 식사 가져오기
         # meal_option = data['meal_option']
-        meal_option = 0
+        if meal_count == 1:
+            meals = ["breakfast"]
+            meals_nutrient = [1]
+        elif meal_count == 2:
+            meals = ["breakfast", "lunch"]
+            meals_nutrient = [0.6, 0.4]
+        elif meal_count == 3:
+            meals = ["breakfast", "lunch", "dinner"]
+            meals_nutrient = [0.4, 0.3, 0.3]
 
-        # diet_status 0: 유지 1: 감량 2: 증량(미구현)
-        min_range = 0.8 if diet_status == 1 else 0.9
-        max_range = 0.9 if diet_status == 1 else 1.0
-
-        for day in day_of_week:
-            _Diet = Diet_Assigner()
-            _Diet.assign_data(metabolic_data, meal_option, meal_count, min_range, max_range)
-            self.data[day] = _Diet.get_data()
+        meal_manager = Meal_Manager()
+        for meal, nutrient_range in zip(meals, meals_nutrient):
+            need_nutrient = {}
+            need_nutrient["kcal"] = metabolic_data["total_kcal"] * nutrient_range
+            need_nutrient["protein"] = metabolic_data["total_protein"] * nutrient_range
+            need_nutrient["fat"] = metabolic_data["total_fat"] * nutrient_range
+            need_nutrient["carbs"] = metabolic_data["total_carbs"] * nutrient_range
+            self.data[meal] = meal_manager.get_data(need_nutrient, meal_option, min_range, max_range)
+            self.data[meal+"_need_nutrient"] = need_nutrient
 
     def get_data(self):
         return self.data

@@ -3,11 +3,9 @@ from food.models import Food
 from meal.models import Meal
 from food.FoodManager import FoodManager
 from django.db.models import Q
+
 class Meal_Manager(ManagerBase):
     def __init__(self):
-        # _meal = Meal_Assigner()
-        # _meal.assign_data()
-        # self.data = _meal.get_data()
         self.data = None
 
     def get_data(self, meal_nutrient, meal_option, min_range, max_range):
