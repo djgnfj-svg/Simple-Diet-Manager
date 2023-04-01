@@ -19,7 +19,7 @@ class DietMakeSerializer(serializers.Serializer):
     weight = serializers.FloatField(min_value=50, max_value=150)
     height = serializers.FloatField(min_value=145, max_value=230)
     gender = serializers.ChoiceField(GENDER_CHOICES)
-    general_activities = serializers.FloatField(min_value=1.2, max_value=1.6)
+    general_activity = serializers.FloatField(min_value=1.2, max_value=1.6)
     excise_activity = serializers.FloatField(min_value=0, max_value=0.3)
 
     # DietInfo

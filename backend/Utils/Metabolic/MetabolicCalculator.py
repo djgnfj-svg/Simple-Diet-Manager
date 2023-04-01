@@ -9,7 +9,7 @@ class Metabolic_Carculater():
         gender = data["gender"]
         weight = data["weight"]
         height = data["height"]
-        general_activities = data["general_activities"]
+        general_activity = data["general_activity"]
         excise_activity = data["excise_activity"]
 
         # 기초대사량
@@ -19,7 +19,7 @@ class Metabolic_Carculater():
         else:
             basal_metabolic_rate = 447.6 + (9.25 * weight) + \
                 (3.1 * height) - (4.33 * age)
-        activity_coefficient = general_activities + excise_activity
+        activity_coefficient = general_activity + excise_activity
 
         total_kcalorie = round(basal_metabolic_rate * activity_coefficient)
         return total_kcalorie

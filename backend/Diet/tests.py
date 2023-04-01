@@ -15,7 +15,7 @@ class WeekDietMakeTest(TestCase):
             'weight': 100, 
             'height': 173, 
             'gender': 'M', 
-            'general_activities': 1.2, 
+            'general_activity': 1.2, 
             'excise_activity': 0.2, 
             'iscoupangfresh': True, 
             'meal_count': 3, 

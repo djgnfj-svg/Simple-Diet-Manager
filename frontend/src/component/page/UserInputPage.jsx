@@ -1,5 +1,4 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import UserInputCard from "../card/UserInputCard";
 
@@ -31,8 +30,6 @@ const Container = styled.div`
 
 function UserInputpage(props) {
     const {} = props;
-
-    const navigate = useNavigate();
 
     return (
         <Wrapper>

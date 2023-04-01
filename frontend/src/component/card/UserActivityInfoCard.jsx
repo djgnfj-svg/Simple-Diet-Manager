@@ -36,10 +36,10 @@ const ButtonWrapper = styled.div`
 `;
 
 function UserActivityInfoCard(props) {
-    const { handleSubmit, handleBackSubmit, setExciseActivity, setGeneralActivities } = props;
+    const { handleSubmit, handleBackSubmit, setExciseActivity, setGeneralActivity } = props;
 
-    const onChangeGeneralActivities = (e) => {
-        setGeneralActivities(e.target.value);
+    const onChangeGeneralActivity = (e) => {
+        setGeneralActivity(e.target.value);
     };
     const onChangeActivitynextSubmit = (e) => {
         setExciseActivity(e.target.value);
@@ -50,9 +50,9 @@ function UserActivityInfoCard(props) {
                 <label>활동량</label>
                 <StyleCard>
                     <StyleRadioWrapper>
-                        <RadioButton placeholder="집이최고다" name="general_activities" value={1.2} onChange={onChangeGeneralActivities} />
-                        <RadioButton placeholder="평범하다" name="general_activities" value={1.4} onChange={onChangeGeneralActivities} />
-                        <RadioButton placeholder="활동적이다" name="general_activities" value={1.6} onChange={onChangeGeneralActivities} />
+                        <RadioButton placeholder="집이최고다" name="general_activity" value={1.2} onChange={onChangeGeneralActivity} />
+                        <RadioButton placeholder="평범하다" name="general_activity" value={1.4} onChange={onChangeGeneralActivity} />
+                        <RadioButton placeholder="활동적이다" name="general_activity" value={1.6} onChange={onChangeGeneralActivity} />
                     </StyleRadioWrapper>
                 </StyleCard>
                 <label>운동량(주)</label>

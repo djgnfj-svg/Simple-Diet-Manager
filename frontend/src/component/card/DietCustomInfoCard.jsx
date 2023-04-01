@@ -34,19 +34,29 @@ const ButtonWrapper = styled.div`
     align-items: center;
 `;
 function DietCustomInfoCard(props) {
-    const { handleSubmit, handleBackSubmit, setMealsCount } = props;
+    const { handleSubmit, handleBackSubmit, setMealCount, setDietStatus } = props;
     const onChangeMealsCount = (e) => {
-        setMealsCount(e.target.value);
+        setMealCount(e.target.value);
+    };
+    const onChangeDietStatus = (e) => {
+        setDietStatus(e.target.value);
     };
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
-                <label>활동량</label>
+                <label>끼니</label>
                 <StyleCard>
                     <StyleRadioWrapper>
-                        <RadioButton placeholder="1끼" name="DietCustom" value={1.2} onChange={onChangeMealsCount} />
-                        <RadioButton placeholder="2끼" name="DietCustom" value={1.4} onChange={onChangeMealsCount} />
-                        <RadioButton placeholder="3끼" name="DietCustom" value={1.6} onChange={onChangeMealsCount} />
+                        <RadioButton placeholder="1끼" name="MealCount" value={1} onChange={onChangeMealsCount} />
+                        <RadioButton placeholder="2끼" name="MealCount" value={2} onChange={onChangeMealsCount} />
+                        <RadioButton placeholder="3끼" name="MealCount" value={3} onChange={onChangeMealsCount} />
+                    </StyleRadioWrapper>
+                </StyleCard>
+                <label>다이어트 여부</label>
+                <StyleCard>
+                    <StyleRadioWrapper>
+                        <RadioButton placeholder="다이어트" name="DietStatus" value={1} onChange={onChangeDietStatus} />
+                        <RadioButton placeholder="유지" name="DietStatus" value={0} onChange={onChangeDietStatus} />
                     </StyleRadioWrapper>
                 </StyleCard>
                 <ButtonWrapper>

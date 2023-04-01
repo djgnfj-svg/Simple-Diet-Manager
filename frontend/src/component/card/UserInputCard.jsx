@@ -25,11 +25,12 @@ function UserInputCard(props) {
     const [height, setHeight] = React.useState("");
     const [weight, setWeight] = React.useState("");
     const [gender, setGender] = React.useState("");
-    const [generalActivities, setGeneralActivities] = React.useState("");
+    const [generalActivity, setGeneralActivity] = React.useState("");
     const [exciseActivity, setExciseActivity] = React.useState("");
 
     //옵션값
-    const [mealsCount, setMealsCount] = React.useState("");
+    const [mealCount, setMealCount] = React.useState("");
+    const [dietstatus, setDietStatus] = React.useState("");
 
 
     const handleSubmit = (e) => {
@@ -43,7 +44,7 @@ function UserInputCard(props) {
 
     const handleActivitySubmit = (e) => {
         e.preventDefault();
-        if (generalActivities === "" || exciseActivity === "") {
+        if (generalActivity === "" || exciseActivity === "") {
             alert("모든 항목을 입력해주세요.");
             return;
         }
@@ -52,7 +53,7 @@ function UserInputCard(props) {
 
     const handleDietSubmit = (e) => {
         e.preventDefault();
-        if (mealsCount === "") {
+        if (mealCount === "") {
             alert("모든 항목을 입력해주세요.");
             return;
         }
@@ -61,17 +62,18 @@ function UserInputCard(props) {
             height: height,
             weight: weight,
             gender: gender,
-            general_activities: generalActivities,
-            excise_activities: exciseActivity,
-            meals_count: mealsCount
+            general_activity: generalActivity,
+            excise_activity: exciseActivity,
+            meal_count: mealCount,
+            diet_status : dietstatus
         }
-        axios.post("http://localhost:8000/api/diets/", data)
+        axios.post("http://localhost:8000/api/week-diets/", data)
             .then((res) => {
             navigate("/diets", { state: res.data });
         })
         .catch((err) => {
+            console.log(err)
             alert(err)
-            navigate("/");
         })
 }
 
@@ -99,13 +101,14 @@ return (
                     handleSubmit={handleActivitySubmit}
                     handleBackSubmit={handleBackSubmit}
                     setExciseActivity={setExciseActivity}
-                    setGeneralActivities={setGeneralActivities}
+                    setGeneralActivity={setGeneralActivity}
                 />
                 :
                 <DietCustomInfoCard
                     handleSubmit={handleDietSubmit}
-                    setMealsCount={setMealsCount}
                     handleBackSubmit={handleBackSubmit}
+                    setMealCount={setMealCount}
+                    setDietStatus={setDietStatus}
                 />
         }
     </Wrapper>
