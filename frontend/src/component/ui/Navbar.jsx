@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
     height: 70px;
-    background: #090b13;
+    background: #4BBDDC;
     display: flex;
     align-items: center;
     padding: 0 36px;
@@ -24,7 +24,6 @@ const Logo = styled.a`
         width: 70%;
     }
 `;
-
 
 
 function Navbar() {

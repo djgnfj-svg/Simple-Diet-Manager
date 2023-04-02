@@ -25,6 +25,10 @@ const ButtonWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    // 오른쪽 정렬
+    & > * {
+        margin-left: auto;
+    }
 `;
 const StyleRadioWrapper = styled.div`
     display: flex;
@@ -56,6 +60,7 @@ function UserBodyInfoCard(props) {
 
     return (
         <Wrapper>
+            <h1>신체정보</h1>
             <form onSubmit={handleSubmit}>
                 <Card>
                     <Input
@@ -80,14 +85,12 @@ function UserBodyInfoCard(props) {
                 </Card>
                 <Card>
                     <StyleRadioWrapper>
-
                         <RadioButton id="M" placeholder="남자" name="gender" value="M" onChange={handleGender}/>
                         <RadioButton id="G" placeholder="여자" name="gender" value="W" onChange={handleGender}/>
                     </StyleRadioWrapper>
                 </Card>
                 <ButtonWrapper>
-                    <Button title="<-" />
-                    <Button title="->" />
+                    <Button title="활동정보" />
                 </ButtonWrapper>
             </form>
         </Wrapper>

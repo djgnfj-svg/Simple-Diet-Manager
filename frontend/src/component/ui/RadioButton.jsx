@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 const StyleGroup = styled.div`
   display: inline-flex;
-  // 가로 정렬
-  
   height: 100px;
   width: 100%;
   border-radius: 5px;
@@ -12,8 +10,9 @@ const StyleGroup = styled.div`
 
 const StyleRadio = styled.input`
     display: none;
+    text-align: center;
     &:checked + label {
-        background: #ff5722;
+        background: #4BBDDC;
     }
   `;
 
@@ -27,9 +26,13 @@ const StyleLabel = styled.label`
     margin: 0 10px;
     border-radius: 5px;
     cursor: pointer;
-    padding: 0 10px;
     border: 2px solid lightgrey;
     transition: all 0.3s ease;
+
+    & > span {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
 `;
 
 function RadioButton(props) {

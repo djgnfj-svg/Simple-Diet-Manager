@@ -17,12 +17,10 @@ const StyleCard = styled.div`
 `;
 
 const StyleRadioWrapper = styled.div`
-    display: inline-flex;
+    display: flex;
     background: #fff;
-    height: 100px;
-    width: 400px;
     align-items: center;
-    justify-content: space-evenly;
+    
     border-radius: 5px;
     padding: 20px 15px;
     box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
@@ -33,6 +31,10 @@ const ButtonWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    // 오른쪽 정렬
+    & > * {
+        margin-left: auto;
+    }
 `;
 
 function UserActivityInfoCard(props) {
@@ -46,6 +48,7 @@ function UserActivityInfoCard(props) {
     };
     return (
         <Wrapper>
+            <h1>활동정보</h1>
             <form onSubmit={handleSubmit}>
                 <label>활동량</label>
                 <StyleCard>
@@ -65,8 +68,7 @@ function UserActivityInfoCard(props) {
                     </StyleRadioWrapper>
                 </StyleCard>
                 <ButtonWrapper>
-                    <Button title="<-" onClick={handleBackSubmit}/>
-                    <Button title="->" />
+                    <Button title="식단정보" />
                 </ButtonWrapper>
             </form>
         </Wrapper>

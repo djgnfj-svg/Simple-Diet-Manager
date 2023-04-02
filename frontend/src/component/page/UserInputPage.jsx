@@ -31,6 +31,7 @@ function UserInputpage(props) {
 
     return (
         <Wrapper>
+            <h1>간단식단입니다</h1>
             <Container>
                 <UserInputCard />
             </Container>

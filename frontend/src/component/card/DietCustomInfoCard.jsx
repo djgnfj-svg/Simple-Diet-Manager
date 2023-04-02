@@ -16,22 +16,25 @@ const StyleCard = styled.div`
 `;
 
 const StyleRadioWrapper = styled.div`
-    display: inline-flex;
+    display: flex;
     background: #fff;
-    height: 100px;
-    width: 400px;
     align-items: center;
-    justify-content: space-evenly;
+    
     border-radius: 5px;
     padding: 20px 15px;
     box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
 `;
+
 const ButtonWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    // 오른쪽 정렬
+    & > * {
+        margin-left: auto;
+    }
 `;
 function DietCustomInfoCard(props) {
     const { handleSubmit, handleBackSubmit, setMealCount, setDietStatus } = props;
@@ -43,6 +46,7 @@ function DietCustomInfoCard(props) {
     };
     return (
         <Wrapper>
+            <h1>식단정보</h1>
             <form onSubmit={handleSubmit}>
                 <label>끼니</label>
                 <StyleCard>
@@ -60,8 +64,7 @@ function DietCustomInfoCard(props) {
                     </StyleRadioWrapper>
                 </StyleCard>
                 <ButtonWrapper>
-                    <Button title="<-" onClick={handleBackSubmit}/>
-                    <Button title="->"/>
+                    <Button title="finish"/>
                 </ButtonWrapper>
             </form>
         </Wrapper>
