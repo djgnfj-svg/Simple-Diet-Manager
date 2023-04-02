@@ -4,9 +4,8 @@ import UserInputCard from "../card/UserInputCard";
 
 const Wrapper = styled.div`
     padding: 16px;
-    widht: calc(100% - 32px);
+    widht: 100%;
     height: 100%;
-    max-height: 720px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +17,6 @@ const Container = styled.div`
     width: 100%;
     max-width: 720px;
     height: 100%;
-    max-height: 420px;
     border: 1px solid red;
 
     & > * {

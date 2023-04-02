@@ -50,18 +50,18 @@ function UserActivityInfoCard(props) {
                 <label>활동량</label>
                 <StyleCard>
                     <StyleRadioWrapper>
-                        <RadioButton placeholder="집이최고다" name="general_activity" value={1.2} onChange={onChangeGeneralActivity} />
-                        <RadioButton placeholder="평범하다" name="general_activity" value={1.4} onChange={onChangeGeneralActivity} />
-                        <RadioButton placeholder="활동적이다" name="general_activity" value={1.6} onChange={onChangeGeneralActivity} />
+                        <RadioButton id="low" placeholder="집이최고다" name="general_activity" value={1.2} onChange={onChangeGeneralActivity} />
+                        <RadioButton id="medium" placeholder="평범하다" name="general_activity" value={1.4} onChange={onChangeGeneralActivity} />
+                        <RadioButton id="high" placeholder="활동적이다" name="general_activity" value={1.6} onChange={onChangeGeneralActivity} />
                     </StyleRadioWrapper>
                 </StyleCard>
                 <label>운동량(주)</label>
                 <StyleCard>
                     <StyleRadioWrapper>
-                        <RadioButton placeholder="0회" name="excise_activity" value={0} onChange={onChangeActivitynextSubmit} />
-                        <RadioButton placeholder="1~3회" name="excise_activity" value={0.1} onChange={onChangeActivitynextSubmit} />
-                        <RadioButton placeholder="3~6회" name="excise_activity" value={0.2} onChange={onChangeActivitynextSubmit} />
-                        <RadioButton placeholder="7+회" name="excise_activity" value={0.3} onChange={onChangeActivitynextSubmit} />
+                        <RadioButton id="0" placeholder="0회" name="excise_activity" value={0} onChange={onChangeActivitynextSubmit} />
+                        <RadioButton id="3" placeholder="1~3회" name="excise_activity" value={0.1} onChange={onChangeActivitynextSubmit} />
+                        <RadioButton id="6" placeholder="3~6회" name="excise_activity" value={0.2} onChange={onChangeActivitynextSubmit} />
+                        <RadioButton id="7" placeholder="7+회" name="excise_activity" value={0.3} onChange={onChangeActivitynextSubmit} />
                     </StyleRadioWrapper>
                 </StyleCard>
                 <ButtonWrapper>

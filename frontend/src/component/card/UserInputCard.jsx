@@ -8,7 +8,7 @@ import DietCustomInfoCard from "./DietCustomInfoCard";
 
 const Wrapper = styled.div`
     padding: 16px;
-    widht: calc(100% - 32px);
+    widht: 100%;
     height: 100%;
     border: 1px solid blue;
     display: flex;

@@ -6,15 +6,17 @@ import RadioButton from "../ui/RadioButton";
 
 const Wrapper = styled.div`
     padding: 16px;
-    widht: calc(100% - 32px);
+    widht: 100%;
     height: 100%;
-    border: 1px solid blue;
+    border: 1px solid red;
     display: flex;
     flex-direction: column;
+    background: #fff;
 `;
 
 const Card = styled.div`
-    padding: 16px;    
+    padding: 8px;
+    
 `;
 
 const ButtonWrapper = styled.div`
@@ -25,12 +27,10 @@ const ButtonWrapper = styled.div`
     align-items: center;
 `;
 const StyleRadioWrapper = styled.div`
-    display: inline-flex;
+    display: flex;
     background: #fff;
-    height: 100px;
-    width: 400px;
     align-items: center;
-    justify-content: space-evenly;
+    
     border-radius: 5px;
     padding: 20px 15px;
     box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
@@ -57,15 +57,13 @@ function UserBodyInfoCard(props) {
     return (
         <Wrapper>
             <form onSubmit={handleSubmit}>
-                <label>나이</label>
                 <Card>
                     <Input
                         type="text"
-                        placeholder="나이(단위:만)"
+                        placeholder="나이(만)"
                         onChange={onChangeAge}
                     />
                 </Card>
-                <label>키</label>
                 <Card>
                     <Input
                         type="text"
@@ -73,7 +71,6 @@ function UserBodyInfoCard(props) {
                         onChange={onChangeHeight}
                     />
                 </Card>
-                <label>몸무게</label>
                 <Card>
                     <Input
                         type="text"
@@ -81,11 +78,11 @@ function UserBodyInfoCard(props) {
                         onChange={onChangeWeight} 
                     />
                 </Card>
-                <label>성별</label>
                 <Card>
                     <StyleRadioWrapper>
-                        <RadioButton placeholder="남자" name="gender" value="M" onChange={handleGender}/>
-                        <RadioButton placeholder="여자" name="gender" value="W" onChange={handleGender}/>
+
+                        <RadioButton id="M" placeholder="남자" name="gender" value="M" onChange={handleGender}/>
+                        <RadioButton id="G" placeholder="여자" name="gender" value="W" onChange={handleGender}/>
                     </StyleRadioWrapper>
                 </Card>
                 <ButtonWrapper>
