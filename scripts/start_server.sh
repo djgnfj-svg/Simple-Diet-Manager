@@ -18,15 +18,15 @@ cp $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
 # requirements.txt 설치
 pip install -r $PROJECT_BACKEND_PATH/requirements.txt
 #static file
-python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
+# python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
 #migrate
 python3 $PROJECT_BACKEND_PATH/manage.py makemigrations
 python3 $PROJECT_BACKEND_PATH/manage.py migrate
 
 # load data RDS일 경우 조금 거시기해짐...
-python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_master_data/Food-Category.json
-python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_master_data/Cooking-Category.json
-python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_master_data/Foods.json
+python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Food-Category.json
+python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Cooking-Category.json
+python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Foods.json
 
 
 # npm 설치
@@ -47,7 +47,7 @@ sudo npm run build
 # 구니콘 설정 이동
 #  TODO : 너무 하드 코딩이다. 나중에 수정해야함
 cd ..
-cp web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
+sudo cp web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # 구니콘 실행
 sudo mkdir /logs
@@ -56,12 +56,12 @@ sudo supervisorctl update
 sudo supervisorctl restart gunicorn
 
 # robots.txt sitemap.xml
-cp web/robots.txt /etc/nginx/sites-available/robots.txt
-cp web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
+sudo cp web/robots.txt /etc/nginx/sites-available/robots.txt
+sudo cp web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
 
 # nginx 설정 이동
 #  TODO : 너무 하드 코딩이다. 나중에 수정해야함
-cp web/nginx.conf /etc/nginx/sites-available/nginx.conf
+sudo cp web/nginx.conf /etc/nginx/sites-available/nginx.conf
 
 # nginx 링크
 sudo ln /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/

@@ -5,10 +5,10 @@ DEPLOY_PATH=/home/ubuntu
 PROJECT_PATH=$DEPLOY_PATH/$PROJECT_NAME
 
 # 구니콘 루트
-GUNICORN_FILE="/etc/supervisor/conf.d/django_gunicorn.conf"
+GUNICORN_FILE="/etc/supervisor/conf.d/gunicorn.conf"
 # nginx 루트
-NGINX_DJANGO_FILE="/etc/nginx/sites-available/gunicorn.conf"
-NGINX_DJANGO_FILE_ENABLE="/etc/nginx/sites-enabled/gunicorn.conf"
+NGINX_DJANGO_FILE="/etc/nginx/sites-available/nginx.conf"
+NGINX_DJANGO_FILE_ENABLE="/etc/nginx/sites-enabled/nginx.conf"
 
 SERVICE_GUNICONR=$(pgrep gunicorn)
 SERVICE_NIGNX=$(pgrep nginx)
