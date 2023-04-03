@@ -46,3 +46,4 @@ if [ -z "$SERVICE_NIGNX" ]; then
 fi
 
 sudo apt autoremove
+sudo npm cache clean -f

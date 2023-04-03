@@ -18,7 +18,7 @@ cp $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
 # requirements.txt 설치
 pip install -r $PROJECT_BACKEND_PATH/requirements.txt
 #static file
-# python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
+python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
 #migrate
 python3 $PROJECT_BACKEND_PATH/manage.py makemigrations
 python3 $PROJECT_BACKEND_PATH/manage.py migrate
@@ -37,8 +37,10 @@ sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo apt-get install nodejs
 
+
 # npm install
 sudo npm i
+sudo chown -R $USER:$USER /home/ubuntu/Simple-Diet-Manager/frontend/node_modules
 
 # npm build
 sudo npm run build
