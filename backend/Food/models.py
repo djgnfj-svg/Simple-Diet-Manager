@@ -28,7 +28,7 @@ class Food(TimeStampedModel):
     gram = models.IntegerField(null=False, default=0)
     iscoupangfresh = models.BooleanField(default=False)
     link = models.URLField(max_length=100, null=True)
-    img = models.ImageField(upload_to='food_img')
+    img = models.ImageField(upload_to='backend/food_img')
 
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, related_name="foods")
     cookingoption = models.ForeignKey(CookingOption, on_delete=models.CASCADE, related_name="foods")

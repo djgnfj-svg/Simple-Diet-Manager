@@ -22,8 +22,8 @@ class Diet(models.Model):
     meals = models.ManyToManyField(Meal, related_name="days")
 
     day_of_week = models.CharField(max_length=50)
-    total_kcal = models.IntegerField()
-    tital_protein = models.IntegerField()
-    total_fat = models.IntegerField()
-    total_carbs = models.IntegerField()
+    total_kcal = models.IntegerField(default=0)
+    tital_protein = models.IntegerField(default=0)
+    total_fat = models.IntegerField(default=0)
+    total_carbs = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
