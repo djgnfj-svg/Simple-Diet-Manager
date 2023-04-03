@@ -1,8 +1,8 @@
 from django.test import TestCase
 from Utils.Metabolic.MetabolicManager import Metabolic_Manager
-from diet.DietManager import DietManager
+from diets.DietManager import DietManager
 
-from diet.WeekDietManager import WeekDietManager
+from diets.WeekDietManager import WeekDietManager
 
 # Create your tests here.
 

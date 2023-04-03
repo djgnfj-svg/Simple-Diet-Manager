@@ -1,7 +1,7 @@
 from Utils.common.ManagerBase import ManagerBase
-from food.models import Food
-from meal.models import Meal
-from food.FoodManager import FoodManager
+from foods.models import Food
+from meals.models import Meal
+from foods.FoodManager import FoodManager
 from django.db.models import Q
 
 class Meal_Manager(ManagerBase):

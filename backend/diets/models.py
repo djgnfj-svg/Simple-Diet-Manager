@@ -2,7 +2,7 @@ from django.db import models
 
 from accounts.models import BodyInfoRecord
 
-from meal.models import Meal
+from meals.models import Meal
 
 # Create your models here.
 

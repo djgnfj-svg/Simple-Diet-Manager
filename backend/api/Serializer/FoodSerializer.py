@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from food.models import CookingOption, Food, FoodCategory
+from foods.models import CookingOption, Food, FoodCategory
 
 #TODO : 관리자 권한 추가
 class CookingOptionSerializer(serializers.ModelSerializer):

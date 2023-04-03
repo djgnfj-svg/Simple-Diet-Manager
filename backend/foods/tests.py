@@ -1,7 +1,7 @@
 from django.test import TestCase
-from food.models import Food
+from foods.models import Food
 
-from food.FoodManager import FoodManager
+from foods.FoodManager import FoodManager
 
 # Create your tests here.
 class FoodManagerTest(TestCase):

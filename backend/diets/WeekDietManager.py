@@ -1,6 +1,6 @@
 from Utils.common.ManagerBase import ManagerBase
 from Utils.Metabolic.MetabolicManager import Metabolic_Manager
-from diet.DietManager import DietManager
+from diets.DietManager import DietManager
 
 
 class WeekDietManager(ManagerBase):

@@ -2,7 +2,7 @@ import random
 from django.db.models import Q
 from Utils.common.ManagerBase import ManagerBase
 
-from food.models import Food
+from foods.models import Food
 
 class FoodManager(ManagerBase):
     def __init__(self):

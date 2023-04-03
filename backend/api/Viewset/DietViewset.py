@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 from api.Serializer.DietSerializer import DietMakeSerializer, DietSerializer
 from api.Utils.MsgUtils import error_msg
-from diet.models import Diet
+from diets.models import Diet
 
 class DietViewset(viewsets.ModelViewSet):
     serializer_class = DietSerializer

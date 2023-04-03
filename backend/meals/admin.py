@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from meal.models import Meal
+from meals.models import Meal
 # Register your models here.
 
 

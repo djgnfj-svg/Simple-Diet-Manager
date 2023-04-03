@@ -1,6 +1,6 @@
 from django.db import models
 
-from food.models import Food
+from foods.models import Food
     
 class Meal(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True)

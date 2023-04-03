@@ -51,9 +51,9 @@ INSTALLED_APPS = [
 	'rest_framework',
 	'corsheaders',
 
-    'food',
-    'meal',
-    'diet',
+    'foods',
+    'meals',
+    'diets',
     'accounts',
     
 ]

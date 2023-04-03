@@ -1,5 +1,5 @@
 from Utils.common.ManagerBase import ManagerBase
-from meal.MealManager import Meal_Manager
+from meals.MealManager import Meal_Manager
 
 
 class DietManager(ManagerBase):
