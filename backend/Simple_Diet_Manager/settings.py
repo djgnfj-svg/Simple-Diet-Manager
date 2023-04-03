@@ -46,14 +46,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # library
 	'rest_framework',
 	'corsheaders',
+
     # app
-    'accounts',
-    'meal',
     'food',
+    'meal',
     'diet',
+    'accounts',
+    
 ]
 
 MIDDLEWARE = [

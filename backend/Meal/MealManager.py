@@ -13,11 +13,8 @@ class Meal_Manager(ManagerBase):
         q = Q()
 
         q &= Q(meal_protein__gte=meal_nutrient["protein"]*min_range, meal_protein__lte=meal_nutrient["protein"]*max_range)
-        print(Meal.objects.filter(q))
         q &= Q(meal_fat__gte=meal_nutrient["fat"]*min_range, meal_fat__lte=meal_nutrient["fat"]*max_range)
-        print(Meal.objects.filter(q))
         q &= Q(meal_carbs__gte=meal_nutrient["carbs"]*min_range, meal_carbs__lte=meal_nutrient["carbs"]*max_range)
-        print(Meal.objects.filter(q))
         q &= Q(meal_kcal__gte=meal_nutrient["kcal"]*min_range, meal_kcal__lte=meal_nutrient["kcal"]*max_range)
 
         meal = Meal.objects.filter(q)
