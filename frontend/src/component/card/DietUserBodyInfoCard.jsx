@@ -34,16 +34,18 @@ const StyleInfo = styled.div`
 
 
 function DietUserBodyInfoCard(props) {
+    const {metabolic} = props
     return (
         <Wrapper>
             <Card>
+                {/* 다이어트 부분은 추후 유저의 입력으로 수정 */}
                 <StyleInfo>다이어트를 위해서 먹어야 하는 양입니다.</StyleInfo>
                 <StyleInfo>일요일은 드시고 싶은거 드시면 됩니다.</StyleInfo>
-                <StyleInfo>주간 영양소</StyleInfo>
-                <StyleInfo>칼로리</StyleInfo>
-                <StyleInfo>탄수화물</StyleInfo>
-                <StyleInfo>지방</StyleInfo>
-                <StyleInfo>단백질</StyleInfo>
+                <StyleInfo>일일 영양소</StyleInfo>
+                <StyleInfo>칼로리 : {metabolic.total_kcal}kcal</StyleInfo>
+                <StyleInfo>탄수화물 : {metabolic.total_carbs}g</StyleInfo>
+                <StyleInfo>지방 : {metabolic.total_fat}g</StyleInfo>
+                <StyleInfo>단백질 : {metabolic.total_protein}g</StyleInfo>
             </Card>
         </Wrapper>
     )

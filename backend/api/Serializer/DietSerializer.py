@@ -9,6 +9,7 @@ class DietSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+# TODO : POST 만 받도록 변경
 class DietMakeSerializer(serializers.Serializer):
     GENDER_CHOICES = (
         ('M', 'M'),

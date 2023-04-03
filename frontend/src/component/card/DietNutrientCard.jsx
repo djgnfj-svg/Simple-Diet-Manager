@@ -18,10 +18,10 @@ const Wrapper = styled.div`
 `;
 
 function DietNutrientCard(props) {
-    const {} = props;
+    const {DietMaledata} = props;
     return (
         <Wrapper>
-            <div> 칼로리 : 9999kcal, 단백질 : 000g, 지방 : 00g, 탄수화물 000g </div>
+            <div> 칼로리 : {DietMaledata.DietKcal}kcal, 단백질 : {DietMaledata.DietProtein}g, 지방 : {DietMaledata.DietFat}g, 탄수화물 {DietMaledata.DietCarbs}g </div>
         </Wrapper>
     );
 }

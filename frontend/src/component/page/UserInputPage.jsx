@@ -31,7 +31,8 @@ function UserInputpage(props) {
 
     return (
         <Wrapper>
-            <h1>간단식단입니다</h1>
+            <h1>간단식단</h1>
+            <h3 style={{color:"gray"}}>당신에게 맞는 식단을 구성해 보세요</h3>
             <Container>
                 <UserInputCard />
             </Container>

@@ -72,4 +72,5 @@ class Meal_Manager(ManagerBase):
         )
         foods = Food.objects.filter(id__in=[food.id for food in food_list])
         meal.save(foods=foods)
+        meal_data["meal_name"] = meal.name
         return meal_data

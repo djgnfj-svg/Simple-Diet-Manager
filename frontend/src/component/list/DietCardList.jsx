@@ -6,6 +6,7 @@ import DietMealCard from "../card/DietMealCard";
 const Wrapper = styled.div`
     outline: 0px;
     display: inline-block;
+    min-width: 80%;
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
     color: rgb(0, 0, 0);
@@ -19,29 +20,21 @@ const Wrapper = styled.div`
 `;
 
 function DietCardList(props) {
-    const {} = props;
+    const {DietMaledata, DietList} = props;
+    const days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
     return (
         <>
-        <Wrapper>
-            <h1>월요일</h1>
-            <DietNutrientCard></DietNutrientCard>
-            <DietMealCard></DietMealCard>
-            <h1>화요일</h1>
-            <DietNutrientCard></DietNutrientCard>
-            <DietMealCard></DietMealCard>
-            <h1>수요일</h1>
-            <DietNutrientCard></DietNutrientCard>
-            <DietMealCard></DietMealCard>
-            <h1>목요일</h1>
-            <DietNutrientCard></DietNutrientCard>
-            <DietMealCard></DietMealCard>
-            <h1>금요일</h1>
-            <DietNutrientCard></DietNutrientCard>
-            <DietMealCard></DietMealCard>
-            <h1>토요일</h1>
-            <DietNutrientCard></DietNutrientCard>
-            <DietMealCard></DietMealCard>
-        </Wrapper>
+            <Wrapper>
+                {days.map((day, index) => {
+                    return(
+                    <>
+                        <h1>{day}</h1>
+                        <DietNutrientCard DietMaledata={DietMaledata[index]}/>
+                        <DietMealCard DietList={DietList[index]}/>
+                    </>
+                    )
+            })}
+            </Wrapper>
         </>
     );
 }

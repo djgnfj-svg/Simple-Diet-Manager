@@ -19,18 +19,16 @@ const Wrapper = styled.div`
 `;
 
 
-const test = styled.div`
-    display: inline-block;
-`;
-
 function DietMealCard(props) {
-    const { } = props;
-
+    const { DietList } = props;
     return (
         <Wrapper>
-            <MealCard />
-            <MealCard />
-            <MealCard />
+            {DietList.map((meal, index) => {
+                return (
+                    <MealCard meal={meal} meal_name_index={index} />
+                )
+            })
+            }
         </Wrapper>
     );
 }

@@ -39,6 +39,23 @@ function UserInputCard(props) {
             alert("모든 항목을 입력해주세요.");
             return;
         }
+        if (age < 0 || height < 0 || weight < 0) {
+            alert("0보다 작은 수는 입력할 수 없습니다.");
+            return;
+        }
+        if (age >100 || age < 20){
+            alert("20세 이상, 100세 이하만 입력 가능합니다.");
+            return;
+        }
+        if (height > 230 || height < 145){
+            alert("145cm 이상, 230cm 이하만 입력 가능합니다.");
+            return;
+        }
+        if (weight > 230 || weight < 50){
+            alert("50kg 이상, 230kg 이하만 입력 가능합니다.");
+            return;
+        }
+
         setCurrentIndex(currentIndex + 1)
     };
 
@@ -69,10 +86,10 @@ function UserInputCard(props) {
         }
         axios.post("http://localhost:8000/api/week-diets/", data)
             .then((res) => {
-            navigate("/diets", { state: res.data });
+                alert("성공")
+                navigate("/diets", { state: res.data });
         })
         .catch((err) => {
-            console.log(err)
             alert(err)
         })
 }
