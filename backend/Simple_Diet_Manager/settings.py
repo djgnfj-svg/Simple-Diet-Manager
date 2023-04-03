@@ -51,9 +51,9 @@ INSTALLED_APPS = [
 	'corsheaders',
     # app
     'accounts',
-    'diet',
     'meal',
     'food',
+    'diet',
 ]
 
 MIDDLEWARE = [
