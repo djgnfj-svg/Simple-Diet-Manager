@@ -45,8 +45,9 @@ sudo npm run build
 
 
 # 구니콘 설정 이동
+#  TODO : 너무 하드 코딩이다. 나중에 수정해야함
 cd ..
-cp web/gunicorn/django_gunicorn.conf /etc/supervisor/conf.d/django_gunicorn.conf
+cp web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # 구니콘 실행
 sudo mkdir /logs
@@ -59,12 +60,11 @@ cp web/robots.txt /etc/nginx/sites-available/robots.txt
 cp web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
 
 # nginx 설정 이동
-cp web/nginx/django_nginx.conf /etc/nginx/sites-available/django_nginx.conf
-cp web/nginx/react_nginx.conf /etc/nginx/sites-available/react_nginx.conf
+#  TODO : 너무 하드 코딩이다. 나중에 수정해야함
+cp web/nginx.conf /etc/nginx/sites-available/nginx.conf
 
 # nginx 링크
-sudo ln /etc/nginx/sites-available/django_nginx.conf /etc/nginx/sites-enabled/
-sudo ln /etc/nginx/sites-available/react_nginx.conf /etc/nginx/sites-enabled/
+sudo ln /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
 # nginx 실행
 sudo service nginx restart

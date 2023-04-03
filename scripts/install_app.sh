@@ -16,6 +16,9 @@ chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent start
 
-# 구니콘 설정 설치
+# 구니콘 설치
 sudo pip3 install gunicorn django
 sudo apt-get install supervisor
+
+# nginx 설치
+sudo apt-get install nginx
