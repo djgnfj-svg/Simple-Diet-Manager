@@ -30,6 +30,7 @@ python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_d
 
 
 # npm 설치
+sudo apt-get update
 cd $PROJECT_NAME/frontend
 
 # node update
