@@ -55,7 +55,7 @@ sudo npm run build
 # 구니콘 설정 이동
 #  TODO : 너무 하드 코딩이다. 나중에 수정해야함
 cd ..
-sudo cp web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
+sudo cp $PROJECT_PATH/web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # 구니콘 실행
 sudo mkdir /logs
@@ -64,12 +64,12 @@ sudo supervisorctl update
 sudo supervisorctl restart gunicorn
 
 # robots.txt sitemap.xml
-sudo cp web/robots.txt /etc/nginx/sites-available/robots.txt
-sudo cp web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
+sudo cp $PROJECT_PATH/web/robots.txt /etc/nginx/sites-available/robots.txt
+sudo cp $PROJECT_PATH/web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
 
 # nginx 설정 이동
 #  TODO : 너무 하드 코딩이다. 나중에 수정해야함
-sudo cp web/nginx.conf /etc/nginx/sites-available/nginx.conf
+sudo cp $PROJECT_PATH/web/nginx.conf /etc/nginx/sites-available/nginx.conf
 
 # nginx 링크
 sudo ln /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
