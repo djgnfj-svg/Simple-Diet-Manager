@@ -35,6 +35,7 @@ cd $PROJECT_NAME/frontend
 # node update
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
+export NODE_OPTIONS="--max-old-space-size=8192"
 # npm install
 sudo npm i
 
