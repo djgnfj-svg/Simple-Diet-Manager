@@ -33,9 +33,16 @@ python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_d
 cd $PROJECT_NAME/frontend
 
 # node update
+set NODE_OPTIONS=--max_old_space_size=4096
+
+sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=2048
+sudo mkswap /mnt/swapfile
+sudo swapon /mnt/swapfile
+sudo chmod 600 /mnt/swapfile
+sudo swapon --show
+
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-export NODE_OPTIONS="--max-old-space-size=8192"
 # npm install
 sudo npm i
 
