@@ -34,15 +34,12 @@ cd $PROJECT_NAME/frontend
 
 # node update
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo apt-get install nodejs
-
 
 # npm install
 sudo npm i
-sudo chown -R $USER:$USER /home/ubuntu/Simple-Diet-Manager/frontend/node_modules
 
 # npm build
+sudo chown -R $USER:$USER /home/ubuntu/Simple-Diet-Manager/frontend/node_modules
 sudo npm run build
 
 
