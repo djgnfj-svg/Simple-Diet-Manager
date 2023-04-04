@@ -47,3 +47,6 @@ fi
 
 sudo apt autoremove
 sudo npm cache clean -f
+
+sudo swapoff -v /swapfile
+sudo rm /swapfile

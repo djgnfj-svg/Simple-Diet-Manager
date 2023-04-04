@@ -52,13 +52,41 @@ jobs:
   CD :
     needs : build_test
     runs-on: ubuntu-latest
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        node-version: [16.x]
     steps : 
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install modules
+        run: npm install
       - name: Git clone on our repo
         uses: actions/checkout@v2
+      - name : react build
+        run : |
+          cd frontend/
+          npm install
+          npm run build
+
+      - name : secrests.key setting
+          run : |
+          touch backend/.secrets.json
+          echo { >> backend/.secrets.json
+          echo "SECRET_KEY" = "temp", >> backend/.secrets.json
+          sed -i '2s/.*/"SECRET_KEY" : "${{env.SECRET_KEY}}",/g' backend/.secrets.json
+          echo \"ENV\" : \"PRO\" >>  backend/.secrets.json
+          echo } >> backend/.secrets.json
 
       - name: Make zip file
         run: |
           zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./*
+          
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

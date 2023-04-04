@@ -36,11 +36,10 @@ cd $PROJECT_NAME/frontend
 # node update
 set NODE_OPTIONS=--max_old_space_size=4096
 
-sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=2048
-sudo mkswap /mnt/swapfile
-sudo swapon /mnt/swapfile
-sudo chmod 600 /mnt/swapfile
-sudo swapon --show
+sudo dd if=/dev/zero of=/swapfile bs=128M count=16
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
 
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
@@ -49,11 +48,10 @@ sudo npm i
 
 # npm build
 sudo chown -R $USER:$USER /home/ubuntu/Simple-Diet-Manager/frontend/node_modules
-sudo npm run build
+# sudo npm run build
 
 
 # 구니콘 설정 이동
-#  TODO : 너무 하드 코딩이다. 나중에 수정해야함
 cd ..
 sudo cp $PROJECT_PATH/web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
