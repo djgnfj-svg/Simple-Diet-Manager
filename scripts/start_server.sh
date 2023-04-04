@@ -45,6 +45,7 @@ sudo swapon --show
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 # npm install
+npm i --max-old-space-size=4096
 sudo npm i
 
 # npm build
