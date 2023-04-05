@@ -1,5 +1,5 @@
 
-class Metabolic_Carculater():
+class MetabolicCarculater():
     def __init__(self):
         pass
 

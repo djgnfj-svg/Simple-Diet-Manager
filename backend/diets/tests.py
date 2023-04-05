@@ -1,5 +1,5 @@
 from django.test import TestCase
-from Utils.Metabolic.MetabolicManager import Metabolic_Manager
+from Utils.Metabolic.MetabolicManager import MetabolicManager
 from diets.DietManager import DietManager
 
 from diets.WeekDietManager import WeekDietManager
@@ -22,7 +22,7 @@ class WeekDietMakeTest(TestCase):
             'diet_status': 1
         }
         self.week_diet_manager = WeekDietManager()
-        self.diet_manager = DietManager()
+        self.diet_manager = DietManager(self.data['meal_count'])
         pass
 
     def test_week_diet(self):
@@ -37,14 +37,14 @@ class WeekDietMakeTest(TestCase):
         pass
 
     def test_diet_make(self):
-        metabolic_manager = Metabolic_Manager()
+        metabolic_manager = MetabolicManager()
         metabolic_data = metabolic_manager.get_data(self.data)
         meal_option = 1 # TODO : 추후 수정
         meal_count = self.data['meal_count']
         min_range = 0.5 if self.data['diet_status'] else 0.9
         max_range = 0.9 if self.data['diet_status'] else 1
 
-        diet_data = self.diet_manager.get_data(metabolic_data, meal_option, meal_count, min_range, max_range)
+        diet_data = self.diet_manager.get_data(metabolic_data, meal_option, min_range, max_range)
         self.assertIn('breakfast', diet_data)
         self.assertIn('lunch', diet_data)
         self.assertIn('dinner', diet_data)
