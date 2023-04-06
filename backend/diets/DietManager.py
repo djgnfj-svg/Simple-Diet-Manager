@@ -29,6 +29,7 @@ class DietManager(ManagerBase):
             need_nutrient["need_carbs"] = metabolic_data["metabolism_carbs"] * nutrient_range
             
             self.data[meal] = meal_manager.get_data(need_nutrient, meal_option, min_range, max_range)
+
             self.data["total_kcal"] += self.data[meal]["meal_kcal"]
             self.data["total_protein"] += self.data[meal]["meal_protein"]
             self.data["total_fat"] += self.data[meal]["meal_fat"]

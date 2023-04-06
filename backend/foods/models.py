@@ -5,7 +5,7 @@ from Utils.model.Timestemp import TimeStampedModel
 # Create your models here.
 class FoodCategory(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
-    img = models.ImageField(upload_to='backend/foodcategory_img', null=False, blank=False)
+    img = models.ImageField(upload_to='food-category/%Y/%m/%d/', null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name
@@ -29,7 +29,7 @@ class Food(TimeStampedModel):
     gram = models.IntegerField(null=False, default=0)
     iscoupangfresh = models.BooleanField(default=False)
     link = models.URLField(max_length=100, null=True)
-    img = models.ImageField(upload_to='backend/food_img')
+    img = models.ImageField(upload_to='food-img/%Y/%m/%d/', null=True, blank=True)
 
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, related_name="foods")
     cookingoption = models.ForeignKey(CookingOption, on_delete=models.CASCADE, related_name="foods")
@@ -38,4 +38,7 @@ class Food(TimeStampedModel):
         return f"{self.name} : kcal : {self.kcal}, protein : {self.protein}, fat : {self.fat}, carbs : {self.carbs}"
     
     def save(self, *args, **kwargs):
-        return super().save(*args, **kwargs)
+        print(self.img)
+        if not self.img:
+            self.img = self.category.img
+        super().save(*args, **kwargs)

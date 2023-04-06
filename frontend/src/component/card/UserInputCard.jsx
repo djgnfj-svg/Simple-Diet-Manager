@@ -84,7 +84,7 @@ function UserInputCard(props) {
             meal_count: mealCount,
             diet_status : dietstatus
         }
-        axios.post("http://localhost:8000/api/week-diets/", data)
+        axios.post(process.env.REACT_APP_API + "/api/week-diets/", data)
             .then((res) => {
                 alert("성공")
                 navigate("/diets", { state: res.data });
