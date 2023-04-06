@@ -24,6 +24,8 @@ python3 $PROJECT_BACKEND_PATH/manage.py makemigrations
 python3 $PROJECT_BACKEND_PATH/manage.py migrate
 
 # load data RDS일 경우 조금 거시기해짐...
+mkdir -p $PROJECT_BACKEND_PATH/media/master_img
+cp $PROJECT_BACKEND_PATH/_Master_data/master_img $PROJECT_BACKEND_PATH/media/master_img
 python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Food-Category.json
 python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Cooking-Category.json
 python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Foods.json

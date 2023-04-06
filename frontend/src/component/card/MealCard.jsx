@@ -37,7 +37,7 @@ const StyleMealInfo = styled.div`
 
 const test = styled.div`
     display: flex;
-`;  
+`;
 function MealCard(props) {
     const { meal, meal_name_index } = props;
     const meal_name = ["아침", "점심", "저녁"];
@@ -45,28 +45,28 @@ function MealCard(props) {
         <Wrapper>
             {
                 meal === null
-                ?
-                <test>
-                <h1>{meal_name[meal_name_index]}</h1>
-                <StyleMealCard>
-                <Styleimg></Styleimg>
-                </StyleMealCard>
-                </test>
+                    ?
+                    <test>
+                        <h1>{meal_name[meal_name_index]}</h1>
+                        <StyleMealCard>
+                            <Styleimg />
+                        </StyleMealCard>
+                    </test>
 
-                :
-            <test>
-            <h1>{meal_name[meal_name_index]}</h1>
-            <StyleMealCard>
-            <Styleimg></Styleimg>
-                <StyleMealInfo>
-                    <div>{meal.meal_name}</div>
-                    <div>칼로리  : {meal.meal_kcal}kcal</div>
-                    <div>탄수화물 : {meal.meal_carbs}g</div>
-                    <div>단백질 : {meal.meal_protein}g</div>
-                    <div>지방 : {meal.meal_fat}g</div>
-                </StyleMealInfo>
-            </StyleMealCard>
-            </test>
+                    :
+                    <test>
+                        <h1>{meal_name[meal_name_index]}</h1>
+                        <StyleMealCard>
+                            <Styleimg src={process.env.REACT_APP_API + meal.meal_img} />
+                            <StyleMealInfo>
+                                <div>{meal.meal_name}</div>
+                                <div>칼로리  : {meal.meal_kcal}kcal</div>
+                                <div>탄수화물 : {meal.meal_carbs}g</div>
+                                <div>단백질 : {meal.meal_protein}g</div>
+                                <div>지방 : {meal.meal_fat}g</div>
+                            </StyleMealInfo>
+                        </StyleMealCard>
+                    </test>
             }
         </Wrapper>
     );

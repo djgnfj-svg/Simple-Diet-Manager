@@ -1,4 +1,5 @@
 from django.db.models import Q
+from api.Serializer.MealSerializer import MealViewSerializer
 
 from foods.models import Food
 from foods.FoodManager import FoodManager
@@ -79,7 +80,6 @@ class MealMakeManager(ManagerBase):
             else :
                 food_focus += 1
 
-        print(food_list)
         # meal.save()
 
 
@@ -124,7 +124,6 @@ class MealMakeManager(ManagerBase):
                 self.carbs_full = True
                 break
             food_number += 1
-
         meal = Meal(
             meal_kcal= meal_data["meal_kcal"],
             meal_protein= meal_data["meal_protein"],
@@ -132,16 +131,24 @@ class MealMakeManager(ManagerBase):
             meal_carbs= meal_data["meal_carbs"],
         )
         foods = Food.objects.filter(id__in=[food.id for food in food_list])
-        meal.save(foods=foods)
-        meal_data["meal_name"] = meal.name
-        return meal_data
+        meal.save()
+        meal.foods.set(foods)
+        if len(meal.foods.order_by('-protein')[0].name) < 5:
+            name = meal.foods.order_by('-protein')[0].name
+        else :
+            name = meal.foods.order_by('-protein')[0].name[:5]
+        meal.name = f"{name} 외 {meal.foods.count() - 1}개"
+        if not meal.meal_img:
+            meal.meal_img = meal.foods.order_by('-protein')[0].img
+        meal.save()
+        return meal
     
 class MealManager(ManagerBase):
     def __init__(self):
         self.data = {}
 
     def get_data(self, need_nutrient, meal_option, min_range, max_range):
-        # min_range -= 0.2
+        min_range -= 0.2
         q = Q()
 
         q &= Q(meal_protein__gte=need_nutrient["need_protein"]*min_range, meal_protein__lte=need_nutrient["need_protein"]*max_range)
@@ -151,10 +158,10 @@ class MealManager(ManagerBase):
 
         meal = Meal.objects.filter(q)
         if meal:
-            # serializer 만들어서 리턴하기
-            # ver01에는 랜덤을 사용하고 추후 수저
-            return meal[0]
+            return MealViewSerializer(meal).data
+        # TODO : ver0.2
         else :
             makemanager = MealMakeManager()
             meal = makemanager.get_data(need_nutrient, meal_option, min_range, max_range)
-            return meal
+            print(MealViewSerializer(meal).data)
+            return MealViewSerializer(meal).data
