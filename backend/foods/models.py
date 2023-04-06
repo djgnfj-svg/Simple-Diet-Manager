@@ -5,6 +5,7 @@ from Utils.model.Timestemp import TimeStampedModel
 # Create your models here.
 class FoodCategory(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
+    img = models.ImageField(upload_to='backend/foodcategory_img', null=False, blank=False)
 
     def __str__(self) -> str:
         return self.name
@@ -35,3 +36,6 @@ class Food(TimeStampedModel):
 
     def __str__(self) -> str:
         return f"{self.name} : kcal : {self.kcal}, protein : {self.protein}, fat : {self.fat}, carbs : {self.carbs}"
+    
+    def save(self, *args, **kwargs):
+        return super().save(*args, **kwargs)
