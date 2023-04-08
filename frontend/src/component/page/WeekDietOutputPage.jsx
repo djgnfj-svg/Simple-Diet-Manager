@@ -24,40 +24,40 @@ function WeekDietOutputPage(props) {
     const {state} = location;
     const DietMaledata = [
         {
-          DietKcal: state.mon.total_kcal,
-          DietProtein: state.mon.total_protein,
-          DietFat: state.mon.total_fat,
-          DietCarbs: state.mon.total_carbs,
+          DietKcal: state.mon.diet_kcal,
+          DietProtein: state.mon.diet_protein,
+          DietFat: state.mon.diet_fat,
+          DietCarbs: state.mon.diet_carbs,
         },
         {
-          DietKcal: state.tue.total_kcal,
-          DietProtein: state.tue.total_protein,
-          DietFat: state.tue.total_fat,
-          DietCarbs: state.tue.total_carbs,
+          DietKcal: state.tue.diet_kcal,
+          DietProtein: state.tue.diet_protein,
+          DietFat: state.tue.diet_fat,
+          DietCarbs: state.tue.diet_carbs,
         },
         {
-            DietKcal : state.wed.total_kcal,
-            DietProtein : state.wed.total_protein,
-            DietFat : state.wed.total_fat,
-            DietCarbs : state.wed.total_carbs,
+            DietKcal : state.wed.diet_kcal,
+            DietProtein : state.wed.diet_protein,
+            DietFat : state.wed.diet_fat,
+            DietCarbs : state.wed.diet_carbs,
         },
         {
-            DietKcal : state.thu.total_kcal,
-            DietProtein : state.thu.total_protein,
-            DietFat : state.thu.total_fat,
-            DietCarbs : state.thu.total_carbs,
+            DietKcal : state.thu.diet_kcal,
+            DietProtein : state.thu.diet_protein,
+            DietFat : state.thu.diet_fat,
+            DietCarbs : state.thu.diet_carbs,
         },
         {
-            DietKcal : state.fri.total_kcal,
-            DietProtein : state.fri.total_protein,
-            DietFat : state.fri.total_fat,
-            DietCarbs : state.fri.total_carbs,
+            DietKcal : state.fri.diet_kcal,
+            DietProtein : state.fri.diet_protein,
+            DietFat : state.fri.diet_fat,
+            DietCarbs : state.fri.diet_carbs,
         },
         {
-            DietKcal : state.sat.total_kcal,
-            DietProtein : state.sat.total_protein,
-            DietFat : state.sat.total_fat,
-            DietCarbs : state.sat.total_carbs,
+            DietKcal : state.sat.diet_kcal,
+            DietProtein : state.sat.diet_protein,
+            DietFat : state.sat.diet_fat,
+            DietCarbs : state.sat.diet_carbs,
         },
     ];
     const DietList = [
@@ -95,7 +95,7 @@ function WeekDietOutputPage(props) {
       
     return (
         <Wrapper>
-            <DietUserBodyInfoCard metabolic={state.metabolic} />
+            <DietUserBodyInfoCard diet_status={state.diet_status} min_nutrient={state.min_nutrient} max_nutrient={state.max_nutrient} />
             <DietCardList DietMaledata={DietMaledata} DietList={DietList}/>
         </Wrapper>
     );

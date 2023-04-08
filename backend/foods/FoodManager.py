@@ -5,20 +5,14 @@ from Utils.common.ManagerBase import ManagerBase
 from foods.models import Food
 
 
-# TODO : 영양소 full로직을 밖으로 가져가는 것은 좋지 않다.
-# 352 비율로 식단을 만들어버리자
-
 class FoodManager(ManagerBase):
     def __init__(self):
         pass
     
+    # TODO : ver0.2 에서 식품의 옵션을 넣을 수 있다
     def get_data(self, nutrient, food_number):
-        # TODO : 예외처리를 해야합니다.
         q = Q()
-        len = Food.objects.count()
-        # 랜덤 숫자만들기
-        food_number = random.randrange(0, len)
-            
-        food = Food.objects.filter().order_by("-" + nutrient)[food_number]
+
+        food = Food.objects.filter(q).order_by("-" + nutrient)[food_number]
         return food
     

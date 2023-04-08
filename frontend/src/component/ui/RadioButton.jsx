@@ -33,6 +33,7 @@ const StyleLabel = styled.label`
         font-size: 1.5rem;
         font-weight: 600;
     }
+
 `;
 
 function RadioButton(props) {

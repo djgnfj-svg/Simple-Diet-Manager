@@ -38,7 +38,6 @@ class Food(TimeStampedModel):
         return f"{self.name} : kcal : {self.kcal}, protein : {self.protein}, fat : {self.fat}, carbs : {self.carbs}"
     
     def save(self, *args, **kwargs):
-        print(self.img)
         if not self.img:
             self.img = self.category.img
         super().save(*args, **kwargs)

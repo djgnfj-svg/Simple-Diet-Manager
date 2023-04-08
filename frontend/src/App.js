@@ -7,7 +7,6 @@ import Navbar from './component/ui/Navbar';
 function App() {
   return (
     <BrowserRouter>
-      {/* TODO : navbar 만들기 */}
       <Navbar/>
       <Routes>
         <Route path="/" element={<UserInputpage />} />

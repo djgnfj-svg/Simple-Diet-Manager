@@ -21,8 +21,8 @@ class MetabolicCarculater():
                 (3.1 * height) - (4.33 * age)
         activity_coefficient = general_activity + excise_activity
 
-        total_kcalorie = round(basal_metabolic_rate * activity_coefficient)
-        return total_kcalorie
+        total_kcal = round(basal_metabolic_rate * activity_coefficient)
+        return total_kcal
 
     @staticmethod
     def calculate_protein(data, protein_range=1.6):

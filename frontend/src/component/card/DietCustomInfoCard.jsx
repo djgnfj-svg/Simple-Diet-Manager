@@ -51,8 +51,8 @@ function DietCustomInfoCard(props) {
                 <label>끼니</label>
                 <StyleCard>
                     <StyleRadioWrapper>
-                        <RadioButton placeholder="1끼" id="meal_1" name="MealCount" value={1} onChange={onChangeMealsCount} />
-                        <RadioButton placeholder="2끼" id="meal_2" name="MealCount" value={2} onChange={onChangeMealsCount} />
+                        {/* <RadioButton placeholder="1끼" id="meal_1" name="MealCount" value={1} onChange={onChangeMealsCount} disabled={true} /> */}
+                        {/* <RadioButton placeholder="2끼" id="meal_2" name="MealCount" value={2} onChange={onChangeMealsCount} /> */}
                         <RadioButton placeholder="3끼" id="meal_3" name="MealCount" value={3} onChange={onChangeMealsCount} />
                     </StyleRadioWrapper>
                 </StyleCard>

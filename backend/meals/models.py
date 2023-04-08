@@ -1,4 +1,5 @@
 from django.db import models
+from foods.models import FoodCategory
 
 from foods.models import Food
     
@@ -19,5 +20,10 @@ class Meal(models.Model):
     class meta:
         db_table = "meal"
 
+    def save(self, *args, **kwargs):
+        if self.id :
+            name = FoodCategory.objects.get(id = self.foods.order_by("-protein").first().category_id).name
+            self.name = f'{name} 외 {self.foods.count() - 1}개'
+        super().save(*args, **kwargs)
     def __str__(self) -> str:
         return self.name
