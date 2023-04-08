@@ -18,9 +18,9 @@ class DietManager(ManagerBase):
             self.__meals_nutrient = [0.4, 0.3, 0.3]
 
 
-    def get_data(self, metabolic_data, meal_option, min_range, max_range):
+    def get_data(self, metabolic_data, min_range, max_range):
         meal_manager = MealManager()
-        init_nutrient(self.data, prefix="total_")
+        init_nutrient(self.data, prefix="diet_")
         for meal, nutrient_range in zip(self.__meals, self.__meals_nutrient):
             need_nutrient = {}
             need_nutrient["need_kcal"] = metabolic_data["metabolism_kcal"] * nutrient_range
@@ -28,10 +28,10 @@ class DietManager(ManagerBase):
             need_nutrient["need_fat"] = metabolic_data["metabolism_fat"] * nutrient_range
             need_nutrient["need_carbs"] = metabolic_data["metabolism_carbs"] * nutrient_range
             
-            self.data[meal] = meal_manager.get_data(need_nutrient, meal_option, min_range, max_range)
+            self.data[meal] = meal_manager.get_data(need_nutrient, min_range, max_range)
 
-            self.data["total_kcal"] += self.data[meal]["meal_kcal"]
-            self.data["total_protein"] += self.data[meal]["meal_protein"]
-            self.data["total_fat"] += self.data[meal]["meal_fat"]
-            self.data["total_carbs"] += self.data[meal]["meal_carbs"]
+            self.data["diet_kcal"] += self.data[meal]["meal_kcal"]
+            self.data["diet_protein"] += self.data[meal]["meal_protein"]
+            self.data["diet_fat"] += self.data[meal]["meal_fat"]
+            self.data["diet_carbs"] += self.data[meal]["meal_carbs"]
         return self.data

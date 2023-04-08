@@ -46,14 +46,14 @@ def make_nutrient(kcal):
     min_nutrient["kcal"] = kcal
     max_nutrient["kcal"] = kcal + 100
     
-    min_nutrient["carbs"] = (min_nutrient["kcal"] * 0.45) / 4
-    max_nutrient["carbs"] = (max_nutrient["kcal"] * 0.45) / 4
+    min_nutrient["carbs"] = round((min_nutrient["kcal"] * 0.45) / 4)
+    max_nutrient["carbs"] = round((max_nutrient["kcal"] * 0.45) / 4)
 
-    min_nutrient["protein"] = (min_nutrient["kcal"] * 0.4) / 4
-    max_nutrient["protein"] = (max_nutrient["kcal"] * 0.4) / 4
+    min_nutrient["protein"] = round((min_nutrient["kcal"] * 0.4) / 4)
+    max_nutrient["protein"] = round((max_nutrient["kcal"] * 0.4) / 4)
 
-    min_nutrient["fat"] = (min_nutrient["kcal"] * 0.15) / 9
-    max_nutrient["fat"] = (max_nutrient["kcal"] * 0.15) / 9
+    min_nutrient["fat"] = round((min_nutrient["kcal"] * 0.15) / 9)
+    max_nutrient["fat"] = round((max_nutrient["kcal"] * 0.15) / 9)
 
     
 

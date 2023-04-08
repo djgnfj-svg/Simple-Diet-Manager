@@ -68,7 +68,6 @@ sudo cp $PROJECT_PATH/web/robots.txt /etc/nginx/sites-available/robots.txt
 sudo cp $PROJECT_PATH/web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
 
 # nginx 설정 이동
-#  TODO : 너무 하드 코딩이다. 나중에 수정해야함
 sudo cp $PROJECT_PATH/web/nginx.conf /etc/nginx/sites-available/nginx.conf
 
 # nginx 링크

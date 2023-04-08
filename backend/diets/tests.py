@@ -1,5 +1,10 @@
+import itertools
 from django.test import TestCase
 from Utils.Metabolic.MetabolicManager import MetabolicManager
+from Utils.functions.nutrient_utils import make_nutrient
+from foods.models import Food
+from meals.MealManager import MealMakeManager
+from meals.models import Meal
 from diets.DietManager import DietManager
 
 from diets.WeekDietManager import WeekDietManager
@@ -12,7 +17,7 @@ class WeekDietMakeTest(TestCase):
     def setUp(self):
         self.data = {
             'age': 25, 
-            'weight': 100, 
+            'weight': 80, 
             'height': 173, 
             'gender': 'M', 
             'general_activity': 1.2, 
@@ -21,6 +26,10 @@ class WeekDietMakeTest(TestCase):
             'meal_count': 3, 
             'diet_status': 1
         }
+
+        if Meal.objects.count() == 0:
+            makemanager = MealMakeManager()
+            makemanager.meke_meal_range(300, 1200, 100,)
         self.week_diet_manager = WeekDietManager()
         self.diet_manager = DietManager(self.data['meal_count'])
         pass
@@ -39,12 +48,10 @@ class WeekDietMakeTest(TestCase):
     def test_diet_make(self):
         metabolic_manager = MetabolicManager()
         metabolic_data = metabolic_manager.get_data(self.data)
-        meal_option = 1 # TODO : 추후 수정
-        meal_count = self.data['meal_count']
         min_range = 0.5 if self.data['diet_status'] else 0.9
         max_range = 0.9 if self.data['diet_status'] else 1
 
-        diet_data = self.diet_manager.get_data(metabolic_data, meal_option, min_range, max_range)
+        diet_data = self.diet_manager.get_data(metabolic_data, min_range, max_range)
         self.assertIn('breakfast', diet_data)
         self.assertIn('lunch', diet_data)
         self.assertIn('dinner', diet_data)

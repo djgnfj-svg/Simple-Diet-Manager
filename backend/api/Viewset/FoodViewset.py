@@ -1,5 +1,7 @@
 from rest_framework import status, viewsets
 from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAdminUser
 from Utils.functions.nutrient_utils import make_nutrient
 from meals.MealManager import MealMakeManager
 
@@ -11,24 +13,31 @@ from api.Serializer.FoodSerializer import FoodSerializer, CookingOptionSerialize
 class CookingOptionViewset(viewsets.ModelViewSet):
     serializer_class = CookingOptionSerializer
     queryset = CookingOption.objects.order_by("-id")
+    # authentication_classes = [BasicAuthentication, SessionAuthentication]
+    # permission_classes = [IsAdminUser]
 
+# 
 class FoodCategoryViewset(viewsets.ModelViewSet):
     serializer_class = FoodCategorySerializer
     queryset = FoodCategory.objects.order_by("-id")
+    # authentication_classes = [BasicAuthentication, SessionAuthentication]
+    # permission_classes = [IsAdminUser]
+
 
 class FoodViewset(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     queryset = Food.objects.order_by("-id")
+    # authentication_classes = [BasicAuthentication, SessionAuthentication]
+    # permission_classes = [IsAdminUser]
+    
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        _food = Food.objects.get(id=serializer.data.get("id"))
-        for kcal in range(400, 1500, 100):
-            min, max = make_nutrient(kcal)
-            makemanager = MealMakeManager()
-            makemanager.make_meal(min, max, _food)
+        _food = Food.objects.get(id = serializer.data.get("id"))
+        makemanager = MealMakeManager()
+        makemanager.meke_meal_range(300, 1200, 100, _food)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
