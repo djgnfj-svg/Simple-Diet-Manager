@@ -36,8 +36,9 @@ class FoodViewset(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         _food = Food.objects.get(id = serializer.data.get("id"))
-        makemanager = MealMakeManager()
-        makemanager.meke_meal_range(300, 1200, 100, _food)
+        if Food.objects.count() > 20:
+            makemanager = MealMakeManager()
+            makemanager.meke_meal_range(300, 1200, 100, _food)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     

@@ -20,7 +20,6 @@ pip install -r $PROJECT_BACKEND_PATH/requirements.txt
 #static file
 python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
 #migrate
-python3 $PROJECT_BACKEND_PATH/manage.py makemigrations
 python3 $PROJECT_BACKEND_PATH/manage.py migrate
 
 # load data RDS일 경우 조금 거시기해짐...

@@ -55,7 +55,6 @@ class MealMakeManager():
     def make_meal(self, min_nutrient, max_nutrient, _food:Food=None):
         current_nutrient = {}
 
-        print(min_nutrient)
         food_list = []
         init_nutrient(current_nutrient, prefix="current_")
 
@@ -127,5 +126,6 @@ class MealManager(ManagerBase):
             return MealViewSerializer(meal[num]).data
         else :
             makemanager = MealMakeManager()
+            print("이래도 들어가?")
             meal = makemanager.make_meal(min_nutrient, max_nutrient)
             return MealViewSerializer(meal).data
