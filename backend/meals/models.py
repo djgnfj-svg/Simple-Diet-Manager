@@ -22,6 +22,7 @@ class Meal(models.Model):
 
     def save(self, *args, **kwargs):
         if self.id :
+            self.meal_img = self.foods.order_by("-protein").first().img
             name = FoodCategory.objects.get(id = self.foods.order_by("-protein").first().category_id).name
             self.name = f'{name} 외 {self.foods.count() - 1}개'
         super().save(*args, **kwargs)
