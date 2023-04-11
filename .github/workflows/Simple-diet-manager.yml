@@ -65,8 +65,8 @@ jobs:
       - name : build test
         run : |
           cd frontend/
-          npm install
-          touch testfile.txt
+          npm install 
+
       - name: Make zip file
         run: |
           zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./*

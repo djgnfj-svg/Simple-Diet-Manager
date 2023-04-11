@@ -15,8 +15,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-function UserInputCard(props) {
-    const { } = props;
+function UserInputCard() {
     const navigate = useNavigate();
 
     const [currentIndex, setCurrentIndex] = React.useState(0);

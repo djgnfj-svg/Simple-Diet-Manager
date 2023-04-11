@@ -37,7 +37,7 @@ const ButtonWrapper = styled.div`
     }
 `;
 function DietCustomInfoCard(props) {
-    const { handleSubmit, handleBackSubmit, setMealCount, setDietStatus } = props;
+    const { handleSubmit, setMealCount, setDietStatus } = props;
     const onChangeMealsCount = (e) => {
         setMealCount(e.target.value);
     };

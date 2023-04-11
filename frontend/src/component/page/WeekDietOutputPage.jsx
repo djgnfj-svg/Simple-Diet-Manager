@@ -16,9 +16,6 @@ const Wrapper = styled.div`
     border: 1px solid red;
 `;
 
-const test = styled.div`
-    display: flex;
-`;
 function WeekDietOutputPage(props) {
     const location = useLocation();
     const {state} = location;

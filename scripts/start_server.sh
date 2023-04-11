@@ -12,7 +12,7 @@ cd $DEPLOY_PATH/
 git clone https://github.com/djgnfj-svg/Simple-Diet-Manager.git
 
 # 시크릿 파일 이동
-cp $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
+cp -r $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
 
 
 # requirements.txt 설치
@@ -31,27 +31,22 @@ python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_d
 
 
 # npm 설치
-sudo apt-get update
 cd $PROJECT_NAME/frontend
 
 # node update
+sudo apt-get update
+sudo apt-get install -y nodejs
 set NODE_OPTIONS=--max_old_space_size=4096
-
-sudo dd if=/dev/zero of=/swapfile bs=128M count=16
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
+
 # npm install
-npm i --max-old-space-size=4096
+npm update
+sudo rm -rf node_modules
+sudo rm -f package-lock.json
+sudo npm cache verify
+export NODE_OPTIONS=--max_old_space_size=800
 sudo npm i
-
-# npm build
-sudo chown -R $USER:$USER /home/ubuntu/Simple-Diet-Manager/frontend/node_modules
-# sudo npm run build
-
 
 # 구니콘 설정 이동
 cd ..
@@ -61,14 +56,14 @@ sudo cp $PROJECT_PATH/web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 sudo mkdir /logs
 sudo supervisorctl reread
 sudo supervisorctl update
-sudo supervisorctl restart gunicorn
+sudo supervisorctl start gunicorn
 
 # robots.txt sitemap.xml
-sudo cp $PROJECT_PATH/web/robots.txt /etc/nginx/sites-available/robots.txt
-sudo cp $PROJECT_PATH/web/sitemap.xml /etc/nginx/sites-available/sitemap.xml
+sudo cp $PROJECT_PATH/web/robots.txt /etc/nginx/sites-available/
+sudo cp $PROJECT_PATH/web/sitemap.xml /etc/nginx/sites-available/
 
 # nginx 설정 이동
-sudo cp $PROJECT_PATH/web/nginx.conf /etc/nginx/sites-available/nginx.conf
+sudo cp $PROJECT_PATH/web/nginx.conf /etc/nginx/sites-available/
 
 # nginx 링크
 sudo ln /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/

@@ -38,7 +38,7 @@ const ButtonWrapper = styled.div`
 `;
 
 function UserActivityInfoCard(props) {
-    const { handleSubmit, handleBackSubmit, setExciseActivity, setGeneralActivity } = props;
+    const { handleSubmit, setExciseActivity, setGeneralActivity } = props;
 
     const onChangeGeneralActivity = (e) => {
         setGeneralActivity(e.target.value);

@@ -38,7 +38,7 @@ function DietUserBodyInfoCard(props) {
     return (
         <Wrapper>
             <Card>
-                <StyleInfo>{diet_status == 1 ? "다이어트" : "유지"}를 위해서 먹어야 하는 양</StyleInfo>
+                <StyleInfo>{diet_status === 1 ? "다이어트" : "유지"}를 위해서 먹어야 하는 양</StyleInfo>
                 <StyleInfo>일요일은 드시고 싶은거 드세요</StyleInfo>
                 <StyleInfo>일일 영양소</StyleInfo>
                 <StyleInfo>칼로리 : {min_nutrient.kcal} ~ {max_nutrient.kcal}kcal</StyleInfo>

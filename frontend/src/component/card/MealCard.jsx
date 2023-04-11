@@ -35,9 +35,6 @@ const StyleMealInfo = styled.div`
     color: #000000;
 `;
 
-const test = styled.div`
-    display: flex;
-`;
 function MealCard(props) {
     const { meal, meal_name_index } = props;
     const meal_name = ["아침", "점심", "저녁"];

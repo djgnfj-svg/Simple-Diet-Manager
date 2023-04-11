@@ -27,8 +27,6 @@ const Container = styled.div`
 `;
 
 function UserInputpage(props) {
-    const {} = props;
-
     return (
         <Wrapper>
             <h1>간단식단</h1>
