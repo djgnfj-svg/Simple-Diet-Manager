@@ -10,12 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import sys
 import os
 import json
 
 from pathlib import Path
-
+from django.core.exceptions import ImproperlyConfigured
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,17 +25,31 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_BASE_FILE = os.path.join(BASE_DIR, '.secrets.json')
-secrets = json.loads(open(SECRET_BASE_FILE).read())
 
-for key, value in secrets.items():
-    setattr(sys.modules[__name__], key, value)
-
+with open(SECRET_BASE_FILE, encoding="UTF-8") as f:
+    secrets = json.loads(f.read())
+def get_secret(setting):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = get_secret("SECRET_KEY")
 
-ALLOWED_HOSTS = ["*"]
+if get_secret("ENV") == "DEV":
+    DEV = True
+else :
+    DEV = False
 
-URL = "http://127.0.0.1:8000/"
+if DEV:
+    ALLOWED_HOSTS = ["*"]
+    DEBUG = True
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ["simple-diet-manager.link"]
+
 
 # Application definition
 
@@ -170,9 +183,14 @@ REST_FRAMEWORK = {
 
 
 #CORS setting
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
-]
-
-CORS_ALLOW_CREDENTIALS = True
+if DEV:
+    CORS_ORIGIN_WHITELIST = [
+        'http://localhost:3000',
+        'http://127.0.0.1:8000',
+    ]
+    CORS_ALLOW_CREDENTIALS = True
+else :
+    CORS_ORIGIN_WHITELIST = [
+        'http://simple-diet-manager.link',
+        'http://simple-diet-manager.link:8000',
+    ]
