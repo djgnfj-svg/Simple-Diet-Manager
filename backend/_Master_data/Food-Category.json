@@ -3,7 +3,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "닭가슴살",
-            "img" : "/master_img/category/chicken-breast.jpg",
+            "img" : "/master_img/chicken-breast.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -12,7 +12,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "소고기",
-            "img" : "/master_img/category/beef.jpg",
+            "img" : "/master_img/beef.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -21,7 +21,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "돼지",
-            "img" : "/master_img/category/pork-belly.jpg",
+            "img" : "/master_img/pork-belly.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -30,7 +30,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "빵",
-            "img" : "/master_img/category/bread.jpg",
+            "img" : "/master_img/bread.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -39,7 +39,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "밥",
-            "img" : "/master_img/category/bob.jpg",
+            "img" : "/master_img/bob.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -104,7 +104,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "참치",
-            "img" : "/master_img/category/can.jpg",
+            "img" : "/master_img/can.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
