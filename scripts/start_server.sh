@@ -34,19 +34,18 @@ python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_d
 cd $PROJECT_NAME/frontend
 
 # node update
-sudo apt-get update
 sudo apt-get install -y nodejs
 set NODE_OPTIONS=--max_old_space_size=4096
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 
 # npm install
-npm update
-sudo rm -rf node_modules
-sudo rm -f package-lock.json
-sudo npm cache verify
-export NODE_OPTIONS=--max_old_space_size=800
-sudo npm i
+# npm update
+# sudo rm -rf node_modules
+# sudo rm -f package-lock.json
+# sudo npm cache verify
+# export NODE_OPTIONS=--max_old_space_size=800
+# sudo npm i
 
 # 구니콘 설정 이동
 cd ..
