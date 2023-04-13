@@ -20,10 +20,10 @@ const Wrapper = styled.div`
 
 
 function DietMealCard(props) {
-    const { DietList } = props;
+    const { MealList } = props;
     return (
         <Wrapper>
-            {DietList.map((meal, index) => {
+            {MealList.map((meal, index) => {
                 return (
                     <MealCard meal={meal} meal_name_index={index} />
                 )

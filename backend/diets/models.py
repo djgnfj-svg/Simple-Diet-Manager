@@ -1,29 +1,25 @@
 from django.db import models
 
-from accounts.models import BodyInfoRecord
+from accounts.models import UserBodyInfo
 
 from meals.models import Meal
 
 # Create your models here.
 
-class DietOption(models.Model):
-    options = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class WeekDiet(models.Model):
-    diet_option = models.ForeignKey(DietOption, on_delete=models.CASCADE, related_name="weeks")
-    BodyInfo = models.ForeignKey( BodyInfoRecord, on_delete=models.CASCADE, related_name="weeks")
-    created_at = models.DateTimeField(auto_now_add=True)
-
 class Diet(models.Model):
-    diet_option = models.ForeignKey(DietOption, on_delete=models.CASCADE, related_name="days")
-    week_diet = models.ForeignKey(WeekDiet, on_delete=models.CASCADE, related_name="days")
-
     meals = models.ManyToManyField(Meal, related_name="days")
 
-    day_of_week = models.CharField(max_length=50)
     diet_kcal = models.IntegerField(default=0)
     diet_protein = models.IntegerField(default=0)
     diet_fat = models.IntegerField(default=0)
     diet_carbs = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+class WeekDiet(models.Model):
+    bodyinfo = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE, related_name="weeks")
+
+    diets = models.ManyToManyField(Diet, related_name="weeks")
+
+    week_kcal = models.IntegerField(default=0)
+    week_protein = models.IntegerField(default=0)
+    week_fat = models.IntegerField(default=0)
+    week_carbs = models.IntegerField(default=0)

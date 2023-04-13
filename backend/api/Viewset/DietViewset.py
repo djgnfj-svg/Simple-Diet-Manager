@@ -8,6 +8,9 @@ from diets.models import Diet
 class DietViewset(viewsets.ModelViewSet):
     serializer_class = DietSerializer
     queryset = Diet.objects.order_by("-id")
+
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
     
 class DietMakeViewset(viewsets.ViewSet):
     serializer_class = DietMakeSerializer

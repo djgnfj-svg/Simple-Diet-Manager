@@ -27,7 +27,6 @@ class Food(TimeStampedModel):
 
     number = models.IntegerField(null=False, default=0)
     gram = models.IntegerField(null=False, default=0)
-    iscoupangfresh = models.BooleanField(default=False)
     link = models.URLField(max_length=100, null=True)
     img = models.ImageField(upload_to='food-img/%Y/%m/%d/', null=True, blank=True)
 

@@ -14,6 +14,7 @@ class Meal(models.Model):
     meal_carbs = models.IntegerField(null=False, default=0)
     meal_video = models.URLField(max_length=100, null=True, blank=True)
     meal_img = models.ImageField(upload_to='meal/%Y/%m/%d/', null=True, blank=True)
+    
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

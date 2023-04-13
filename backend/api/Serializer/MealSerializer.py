@@ -1,22 +1,21 @@
 from rest_framework import serializers
+
+from api.Serializer.FoodSerializer import FoodSerializer
+
 from foods.models import FoodCategory
 
 from meals.models import Meal
 
-class MealViewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Meal
-        fields = "__all__"
 
 class MealSerializer(serializers.ModelSerializer):
     meal_kcal = serializers.IntegerField(read_only=True, default=0)
     meal_protein = serializers.IntegerField(read_only=True, default=0)
     meal_fat = serializers.IntegerField(read_only=True, default=0)
     meal_carbs = serializers.IntegerField(read_only=True, default=0)
-    meal_video = serializers.CharField(required=False, allow_blank=True, allow_null=True)
     class Meta:
         model = Meal
-        fields = "__all__"
+        exclude = ('created_at', 'updated_at', 'foods')
+
 
     def create(self, validated_data):
         instance = super().create(validated_data)

@@ -1,8 +1,4 @@
-import random
-
 from django.db.models import Q
-
-from api.Serializer.MealSerializer import MealViewSerializer
 
 from foods.models import Food
 
@@ -38,6 +34,7 @@ class MealChecker:
             return True
         else:
             return False
+        
 # TODO : 이딴게 코드니... 조져야한다.
 class MealMakeManager():
     def __init__(self):
@@ -118,13 +115,9 @@ class MealManager(ManagerBase):
 
         meal = Meal.objects.filter(q)
         
-        num = 0
         if meal.count() > 2:
-            # num = random.randrange(0)
-            # TODO : 주후 요일별로 식단 추출
-            num = 0
-            return MealViewSerializer(meal[num]).data
+            return meal[0]
         else :
             makemanager = MealMakeManager()
             meal = makemanager.make_meal(min_nutrient, max_nutrient)
-            return MealViewSerializer(meal).data
+            return meal

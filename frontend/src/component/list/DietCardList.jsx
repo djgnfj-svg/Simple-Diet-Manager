@@ -20,8 +20,9 @@ const Wrapper = styled.div`
 `;
 
 function DietCardList(props) {
-    const {DietMaledata, DietList} = props;
+    const {DietMealdata, MealList} = props;
     const days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    const meals = ["breakfast", "lunch", "dinner"]
     return (
         <>
             <Wrapper>
@@ -29,8 +30,8 @@ function DietCardList(props) {
                     return(
                     <>
                         <h1>{day}</h1>
-                        <DietNutrientCard DietMaledata={DietMaledata[index]}/>
-                        <DietMealCard DietList={DietList[index]}/>
+                        <DietNutrientCard DietMealdata={DietMealdata[index]}/>
+                        <DietMealCard MealList={MealList[index]}/>
                     </>
                     )
             })}

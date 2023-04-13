@@ -13,7 +13,6 @@ class FoodAddTest(APITestCase):
             "carbs": 9,
             "number": 10,
             "gram": 100,
-            "iscoupangfresh" : True,
             "link": "https://www.coupang.com/vp/products/6081081115?itemId=11273250763",
             "category" : 1,
             "cookingoption" : 5,

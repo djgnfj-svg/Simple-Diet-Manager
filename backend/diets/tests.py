@@ -22,7 +22,6 @@ class WeekDietMakeTest(TestCase):
             'gender': 'M', 
             'general_activity': 1.2, 
             'excise_activity': 0.2, 
-            'iscoupangfresh': True, 
             'meal_count': 3, 
             'diet_status': 1
         }
