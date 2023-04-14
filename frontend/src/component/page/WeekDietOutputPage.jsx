@@ -21,36 +21,42 @@ function WeekDietOutputPage(props) {
   const { state } = location;
   const DietMealdata = [
     {
+      Id : state.diets.mon.id,
       DietKcal: state.diets.mon.diet_kcal,
       DietProtein: state.diets.mon.diet_protein,
       DietFat: state.diets.mon.diet_fat,
       DietCarbs: state.diets.mon.diet_carbs,
     },
     {
+      Id : state.diets.tue.id,
       DietKcal: state.diets.tue.diet_kcal,
       DietProtein: state.diets.tue.diet_protein,
       DietFat: state.diets.tue.diet_fat,
       DietCarbs: state.diets.tue.diet_carbs,
     },
     {
+      Id : state.diets.wed.id,
       DietKcal: state.diets.wed.diet_kcal,
       DietProtein: state.diets.wed.diet_protein,
       DietFat: state.diets.wed.diet_fat,
       DietCarbs: state.diets.wed.diet_carbs,
     },
     {
+      Id : state.diets.thu.id,
       DietKcal: state.diets.thu.diet_kcal,
       DietProtein: state.diets.thu.diet_protein,
       DietFat: state.diets.thu.diet_fat,
       DietCarbs: state.diets.thu.diet_carbs,
     },
     {
+      Id : state.diets.fri.id,
       DietKcal: state.diets.fri.diet_kcal,
       DietProtein: state.diets.fri.diet_protein,
       DietFat: state.diets.fri.diet_fat,
       DietCarbs: state.diets.fri.diet_carbs,
     },
     {
+      Id : state.diets.sat.id,
       DietKcal: state.diets.sat.diet_kcal,
       DietProtein: state.diets.sat.diet_protein,
       DietFat: state.diets.sat.diet_fat,
@@ -89,7 +95,6 @@ function WeekDietOutputPage(props) {
       state.diets.sat.meals.dinner || null,
     ],
   ];
-  console.log(MealList);
 
   return (
     <Wrapper>

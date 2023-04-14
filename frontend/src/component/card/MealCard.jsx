@@ -53,9 +53,9 @@ function MealCard(props) {
                                 <StyleMealInfo>
                                     <div>{meal.name}</div>
                                     <div>칼로리  : {meal.meal_kcal}kcal</div>
-                                    <div>탄수화물 : {meal.meal_carbs}g</div>
                                     <div>단백질 : {meal.meal_protein}g</div>
                                     <div>지방 : {meal.meal_fat}g</div>
+                                    <div>탄수화물 : {meal.meal_carbs}g</div>
                                 </StyleMealInfo>
                             </StyleMealCard>
                         </test>

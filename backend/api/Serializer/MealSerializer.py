@@ -7,14 +7,16 @@ from foods.models import FoodCategory
 from meals.models import Meal
 
 
+#TODO : 추후 foods를 보여주는 sz랑 분리해야함
 class MealSerializer(serializers.ModelSerializer):
+    foods = FoodSerializer(many=True, read_only=True)
     meal_kcal = serializers.IntegerField(read_only=True, default=0)
     meal_protein = serializers.IntegerField(read_only=True, default=0)
     meal_fat = serializers.IntegerField(read_only=True, default=0)
     meal_carbs = serializers.IntegerField(read_only=True, default=0)
     class Meta:
         model = Meal
-        exclude = ('created_at', 'updated_at', 'foods')
+        exclude = ('created_at', 'updated_at')
 
 
     def create(self, validated_data):

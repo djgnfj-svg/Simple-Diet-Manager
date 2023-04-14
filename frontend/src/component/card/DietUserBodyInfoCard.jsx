@@ -42,9 +42,9 @@ function DietUserBodyInfoCard(props) {
                 <StyleInfo>일요일은 드시고 싶은거 드세요</StyleInfo>
                 <StyleInfo>일일 영양소</StyleInfo>
                 <StyleInfo>칼로리 : {min_nutrient.kcal} ~ {max_nutrient.kcal}kcal</StyleInfo>
-                <StyleInfo>탄수화물 : {min_nutrient.carbs} ~ {max_nutrient.carbs}g</StyleInfo>
-                <StyleInfo>지방 : {min_nutrient.fat} ~ {max_nutrient.fat}g</StyleInfo>
                 <StyleInfo>단백질 : {min_nutrient.protein} ~ {max_nutrient.protein}g</StyleInfo>
+                <StyleInfo>지방 : {min_nutrient.fat} ~ {max_nutrient.fat}g</StyleInfo>
+                <StyleInfo>탄수화물 : {min_nutrient.carbs} ~ {max_nutrient.carbs}g</StyleInfo>
             </Card>
         </Wrapper>
     )
