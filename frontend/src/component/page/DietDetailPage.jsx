@@ -18,7 +18,7 @@ function DietDetailPage() {
     const { id } = useParams();
     const [mealData, setMealData] = useState([]);
     useEffect(() => {
-        axios.get(`${process.env.PUBLIC_URL}/api/diets/${id}/`)
+        axios.get(`${process.env.REACT_APP_API}/api/diets/${id}/`)
         .then(res => {
             const data = res.data;
             setMealData([data.meals]);
