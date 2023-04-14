@@ -1,17 +1,18 @@
-import itertools
 from django.test import TestCase
+
 from Utils.Metabolic.MetabolicManager import MetabolicManager
-from Utils.functions.nutrient_utils import make_nutrient
-from foods.models import Food
+
+from accounts.models import UserBodyInfo
+
 from meals.MealManager import MealMakeManager
 from meals.models import Meal
-from diets.DietManager import DietManager
 
+from diets.models import WeekDiet, Diet
+from diets.DietManager import DietManager
 from diets.WeekDietManager import WeekDietManager
 
+
 # Create your tests here.
-
-
 class WeekDietMakeTest(TestCase):
     fixtures = ['_Master_data/Foods.json', '_Master_data/Food-Category.json', '_Master_data/Cooking-Category.json']
     def setUp(self):
@@ -34,14 +35,20 @@ class WeekDietMakeTest(TestCase):
         pass
 
     def test_week_diet(self):
-        week_diet_data = self.week_diet_manager.get_data(self.data)
-        self.assertIn('mon', week_diet_data)
-        self.assertIn('tue', week_diet_data)
-        self.assertIn('wed', week_diet_data)
-        self.assertIn('thu', week_diet_data)
-        self.assertIn('fri', week_diet_data)
-        self.assertIn('sat', week_diet_data)
-        self.assertIn('sun', week_diet_data)
+        userbodyinfo = UserBodyInfo.objects.create(
+            age=self.data['age'],
+            weight=self.data['weight'],
+            height=self.data['height'],
+            gender = self.data['gender'],
+            general = self.data['general_activity'],
+            activity = self.data['excise_activity'],
+        )
+        metabolic_manager = MetabolicManager()
+        metabolic = metabolic_manager.get_data(self.data)
+        week_diet_data = self.week_diet_manager.get_data(self.data["meal_count"]\
+            , userbodyinfo, metabolic=metabolic,min_range=0.8, max_range=0.9)
+        
+        self.assertEqual(type(week_diet_data), WeekDiet)
         pass
 
     def test_diet_make(self):
@@ -51,6 +58,4 @@ class WeekDietMakeTest(TestCase):
         max_range = 0.9 if self.data['diet_status'] else 1
 
         diet_data = self.diet_manager.get_data(metabolic_data, min_range, max_range)
-        self.assertIn('breakfast', diet_data)
-        self.assertIn('lunch', diet_data)
-        self.assertIn('dinner', diet_data)
+        self.assertEqual(type(diet_data), Diet)
