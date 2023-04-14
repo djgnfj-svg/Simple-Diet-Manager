@@ -24,14 +24,12 @@ const Wrapper = styled.div`
 function DietDetailCard(props) {
     const { meals } = props;
     const meal_name = ["아침", "점심", "저녁"]
-    console.log(meals);
     return (
         <>
             {Object.entries(meals).map((meal, index) => {
                 return (
                     <Wrapper>
                         <div>
-                            {console.log(meal)}
                             <h1>{meal_name[index]}</h1>
                             <div>이름 : {meal[1].name}</div>
                             <div>칼 : {meal[1].meal_kcal}kcal</div>

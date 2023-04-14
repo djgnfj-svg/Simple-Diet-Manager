@@ -17,7 +17,6 @@ const Wrapper = styled.div`
 function DietDetailPage() {
     const { id } = useParams();
     const [mealData, setMealData] = useState([]);
-    const [foodData, setFoodData] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:8000/api/diets/${id}/`)
         .then(res => {

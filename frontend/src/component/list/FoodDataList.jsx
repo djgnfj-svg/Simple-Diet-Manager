@@ -39,7 +39,6 @@ function FoodDataList(props) {
     return (
         <>
             {foods.map((food, index) => {
-                console.log(food);
                 return (
                     <Wrapper>
                         <Styleimg src={process.env.REACT_APP_API + food.img} />
