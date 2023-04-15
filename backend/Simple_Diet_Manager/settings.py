@@ -15,6 +15,10 @@ import json
 
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
+
+import pymysql
+pymysql.install_as_MySQLdb()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -109,13 +113,28 @@ WSGI_APPLICATION = 'Simple_Diet_Manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if get_secret("ENV") == "DEV":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
+else :
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', # engine: mysql
+            'NAME' : get_secret("DB_NAME"), # DB Nameget_secret("ENV")
+            'USER' : get_secret("DB_USER"), # DB User
+            'PASSWORD' : get_secret("DB_PASSWORD"), # Password
+            'HOST': get_secret("DB_HOST"), # 생성한 데이터베이스 엔드포인트
+            'PORT': get_secret("DB_PORT"), # 데이터베이스 포트
+            'OPTIONS':{
+                'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
+        }
+    }
+    
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

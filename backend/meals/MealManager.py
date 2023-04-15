@@ -86,14 +86,13 @@ class MealMakeManager():
             food_list.append(food)
             food_focus += 1
                 
-        foods = Food.objects.filter(food_list)
         meal = Meal.objects.create(
             meal_kcal= current_nutrient["current_kcal"],
             meal_protein= current_nutrient["current_protein"],
             meal_fat= current_nutrient["current_fat"],
             meal_carbs= current_nutrient["current_carbs"],
         )
-        meal.foods.set(foods)
+        meal.foods.set(food_list)
         meal.save()
         return meal
     
