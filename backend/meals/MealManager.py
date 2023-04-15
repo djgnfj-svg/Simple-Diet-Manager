@@ -7,6 +7,7 @@ from meals.models import Meal
 from Utils.common.ManagerBase import ManagerBase
 from Utils.functions.nutrient_utils import init_nutrient, add_nutrietn, make_nutrient
 
+
 class MealChecker:
     def __init__(self) -> None:
         pass
@@ -35,7 +36,6 @@ class MealChecker:
         else:
             return False
         
-# TODO : 이딴게 코드니... 조져야한다.
 class MealMakeManager():
     def __init__(self):
         self.data = {}
@@ -51,7 +51,6 @@ class MealMakeManager():
 
     def make_meal(self, min_nutrient, max_nutrient, _food:Food=None):
         current_nutrient = {}
-
         food_list = []
         init_nutrient(current_nutrient, prefix="current_")
 
@@ -87,13 +86,13 @@ class MealMakeManager():
             food_list.append(food)
             food_focus += 1
                 
+        foods = Food.objects.filter(food_list)
         meal = Meal.objects.create(
             meal_kcal= current_nutrient["current_kcal"],
             meal_protein= current_nutrient["current_protein"],
             meal_fat= current_nutrient["current_fat"],
             meal_carbs= current_nutrient["current_carbs"],
         )
-        foods = Food.objects.filter(id__in=[food.id for food in food_list])
         meal.foods.set(foods)
         meal.save()
         return meal

@@ -1,9 +1,13 @@
+from django.db.models import Q
+
+from diets.models import Diet
+
+from meals.MealManager import MealManager
+
 from Utils.common.ManagerBase import ManagerBase
 from Utils.functions.nutrient_utils import init_nutrient
 from Utils.nutrient.Nutrient import NutrientCalculator as nc
-from diets.models import Diet
-from meals.MealManager import MealManager
-from django.db.models import Q
+
 
 class DietManager(ManagerBase):
     def __init__(self, meal_count):
@@ -19,7 +23,7 @@ class DietManager(ManagerBase):
             self.__meals = ["breakfast", "lunch", "dinner"]
             self.__meals_nutrient = [0.4, 0.3, 0.3]
 
-
+    # TODO : Make 함수를 만들어서 if 부분을 읽기 쉽게
     def get_data(self, metabolic_data, min_range, max_range):
         init_nutrient(self.data, prefix="diet_")
         min_nutrient, max_nutrient =  self._cal_nutirient(metabolic_data, min_range, max_range)
@@ -35,12 +39,11 @@ class DietManager(ManagerBase):
         if diet.count() > 0:
             return diet[0]
         else :
-            #  식단이 없을 경우 식단을 생성
             meal_list = []
             meal_data = {}
             init_nutrient(meal_data, prefix="diet_")
 
-            for meal, nutrient_range in zip(self.__meals, self.__meals_nutrient):
+            for _, nutrient_range in zip(self.__meals, self.__meals_nutrient):
                 need_nutrient = {}
                 need_nutrient["need_kcal"] = metabolic_data["metabolism_kcal"] * nutrient_range
                 need_nutrient["need_protein"] = metabolic_data["metabolism_protein"] * nutrient_range
@@ -55,6 +58,7 @@ class DietManager(ManagerBase):
                 meal_data["diet_protein"] += _meal.meal_protein
                 meal_data["diet_fat"] += _meal.meal_fat
                 meal_data["diet_carbs"] += _meal.meal_carbs
+
         diet = Diet.objects.create(
             diet_kcal=meal_data["diet_kcal"],
             diet_protein=meal_data["diet_protein"],

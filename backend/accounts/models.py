@@ -1,8 +1,6 @@
 from django.db import models
 
-# Create your models here.
-
-    
+# Create your models here.    
 class UserBodyInfo(models.Model):
     height = models.IntegerField()
     weight = models.IntegerField()

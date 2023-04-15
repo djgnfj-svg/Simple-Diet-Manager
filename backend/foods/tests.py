@@ -1,9 +1,9 @@
 from django.test import TestCase
-from foods.models import Food
 
+from foods.models import Food
 from foods.FoodManager import FoodManager
 
-# Create your tests here.
+
 class FoodManagerTest(TestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Cooking-Category.json', '_Master_data/Foods.json']
     def setUp(self):

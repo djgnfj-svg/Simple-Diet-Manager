@@ -1,18 +1,19 @@
+from django.db.models import Q
+
+from accounts.models import UserBodyInfo
+
+from diets.models import WeekDiet
+from diets.DietManager import DietManager as DM
+
 from Utils.common.ManagerBase import ManagerBase
-from Utils.Metabolic.MetabolicManager import MetabolicManager
 from Utils.nutrient.Nutrient import NutrientCalculator as nc
 from Utils.functions.nutrient_utils import init_nutrient
-from accounts.models import UserBodyInfo
-from diets.models import WeekDiet
-from diets.DietManager import DietManager
-from django.db.models import Q
 
 class WeekDietManager(ManagerBase):
     def __init__(self):
         self.data = {}
         self.day_of_week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 
-    # TODO : 일단 instance하고 data를 따로만들자
     def get_data(self, meal_count, userbody: UserBodyInfo, metabolic, min_range, max_range):
         week_min_nuturent, week_max_nutrient = self._cal_week_nutirient(metabolic, min_range, max_range)
 
@@ -27,13 +28,12 @@ class WeekDietManager(ManagerBase):
         if week_diet.count() > 0:
             return week_diet[0] # 0번쨰 인지는 아직 미정이다.
         else :
-            # 주간 식단 생성
             diet_list = []
             week_data = {}
             init_nutrient(week_data)
 
-            for day in self.day_of_week:
-                diet_manger = DietManager(meal_count)
+            for _ in self.day_of_week:
+                diet_manger = DM(meal_count)
                 
                 _diet = diet_manger.get_data(metabolic, min_range, max_range)
 

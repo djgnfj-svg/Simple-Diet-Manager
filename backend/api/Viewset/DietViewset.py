@@ -3,7 +3,9 @@ from rest_framework.response import Response
 
 from api.Serializer.DietSerializer import DietMakeSerializer, DietSerializer
 from api.Utils.MsgUtils import error_msg
+
 from diets.models import Diet
+
 
 class DietViewset(viewsets.ModelViewSet):
     serializer_class = DietSerializer
@@ -11,9 +13,11 @@ class DietViewset(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
-    
+
+
 class DietMakeViewset(viewsets.ViewSet):
     serializer_class = DietMakeSerializer
+
     def create(self, request):
         serializer = DietMakeSerializer(data=request.data)
         if serializer.is_valid():

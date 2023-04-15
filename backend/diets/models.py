@@ -4,7 +4,6 @@ from accounts.models import UserBodyInfo
 
 from meals.models import Meal
 
-# Create your models here.
 
 class Diet(models.Model):
     meals = models.ManyToManyField(Meal, related_name="days")
@@ -15,10 +14,9 @@ class Diet(models.Model):
     diet_carbs = models.IntegerField(default=0)
 
 class WeekDiet(models.Model):
-    bodyinfo = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE, related_name="weeks")
-
     diets = models.ManyToManyField(Diet, related_name="weeks")
-
+    
+    bodyinfo = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE, related_name="weeks")
     week_kcal = models.IntegerField(default=0)
     week_protein = models.IntegerField(default=0)
     week_fat = models.IntegerField(default=0)
