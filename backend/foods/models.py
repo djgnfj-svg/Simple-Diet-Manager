@@ -1,6 +1,7 @@
 from django.db import models
 
-from Utils.model.Timestemp import TimeStampedModel
+from common.models import TimeStampedModel
+
 
 # Create your models here.
 class FoodCategory(TimeStampedModel):

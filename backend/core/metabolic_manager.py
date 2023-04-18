@@ -1,5 +1,6 @@
-from Utils.common.ManagerBase import ManagerBase
-from Utils.Metabolic.MetabolicCalculator import MetabolicCarculater
+from common.manager import ManagerBase
+from core.metabolic_calculator import MetabolicCarculater
+
 
 class MetabolicManager(ManagerBase):
     def __init__(self):

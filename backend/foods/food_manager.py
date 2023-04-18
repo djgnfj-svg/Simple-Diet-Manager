@@ -1,7 +1,8 @@
 import random
-from django.db.models import Q
-from Utils.common.ManagerBase import ManagerBase
 
+from django.db.models import Q
+
+from common.manager import ManagerBase
 from foods.models import Food
 
 

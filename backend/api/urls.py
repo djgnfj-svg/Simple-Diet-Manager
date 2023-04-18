@@ -1,8 +1,9 @@
 from rest_framework import routers
 
-from api.Viewset.DietViewset import DietMakeViewset, DietViewset
-from api.Viewset.FoodViewset import CookingOptionViewset, FoodCategoryViewset, FoodViewset
-from api.Viewset.MealViewset import MealViewset
+from api.viewset.diet_viewset import DietMakeViewset, DietViewset
+from api.viewset.food_viewset import (CookingOptionViewset,
+                                      FoodCategoryViewset, FoodViewset)
+from api.viewset.meal_viewset import MealViewset
 
 router = routers.DefaultRouter()
 router.register(r'diets', DietViewset, basename="diets")

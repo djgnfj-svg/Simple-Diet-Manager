@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from foods.models import CookingOption, Food, FoodCategory
 
+
 class CookingOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CookingOption
@@ -15,6 +16,6 @@ class FoodCategorySerializer(serializers.ModelSerializer):
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
-        fields = "__all__"
+        exclude = ('created_at', 'updated_at')
 
     

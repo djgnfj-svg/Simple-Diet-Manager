@@ -1,7 +1,6 @@
 from django.db import models
 
 from accounts.models import UserBodyInfo
-
 from meals.models import Meal
 
 

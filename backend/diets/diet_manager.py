@@ -1,12 +1,10 @@
 from django.db.models import Q
 
+from common.manager import ManagerBase
+from core.nutrient import NutrientCalculator as nc
+from core.nutrient_utils import init_nutrient
 from diets.models import Diet
-
-from meals.MealManager import MealManager
-
-from Utils.common.ManagerBase import ManagerBase
-from Utils.functions.nutrient_utils import init_nutrient
-from Utils.nutrient.Nutrient import NutrientCalculator as nc
+from meals.meal_manager import MealManager
 
 
 class DietManager(ManagerBase):

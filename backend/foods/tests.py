@@ -1,7 +1,7 @@
 from django.test import TestCase
 
+from foods.food_manager import FoodManager
 from foods.models import Food
-from foods.FoodManager import FoodManager
 
 
 class FoodManagerTest(TestCase):

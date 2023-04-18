@@ -1,13 +1,14 @@
 from rest_framework import status, viewsets
-from rest_framework.response import Response
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authentication import (BasicAuthentication,
+                                           SessionAuthentication)
 from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
 
-from meals.MealManager import MealMakeManager
-
-from foods.models import CookingOption, FoodCategory, Food
-
-from api.Serializer.FoodSerializer import FoodSerializer, CookingOptionSerializer, FoodCategorySerializer
+from api.serializer.food_serializer import (CookingOptionSerializer,
+                                            FoodCategorySerializer,
+                                            FoodSerializer)
+from foods.models import CookingOption, Food, FoodCategory
+from meals.meal_manager import MealMakeManager
 
 
 class CookingOptionViewset(viewsets.ModelViewSet):
@@ -15,8 +16,6 @@ class CookingOptionViewset(viewsets.ModelViewSet):
     queryset = CookingOption.objects.order_by("-id")
     # authentication_classes = [BasicAuthentication, SessionAuthentication]
     # permission_classes = [IsAdminUser]
-
-#
 
 
 class FoodCategoryViewset(viewsets.ModelViewSet):

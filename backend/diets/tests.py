@@ -1,15 +1,12 @@
 from django.test import TestCase
 
-from Utils.Metabolic.MetabolicManager import MetabolicManager
-
 from accounts.models import UserBodyInfo
-
-from meals.MealManager import MealMakeManager
+from core.metabolic_manager import MetabolicManager
+from diets.diet_manager import DietManager
+from diets.models import Diet, WeekDiet
+from diets.weekdiet_manager import WeekDietManager
+from meals.meal_manager import MealMakeManager
 from meals.models import Meal
-
-from diets.models import WeekDiet, Diet
-from diets.DietManager import DietManager
-from diets.WeekDietManager import WeekDietManager
 
 
 # Create your tests here.

@@ -12,8 +12,8 @@ class MealsConfig(AppConfig):
 
         if Food.objects.count() > 20:
         
+            from meals.meal_manager import MealMakeManager
             from meals.models import Meal
-            from meals.MealManager import MealMakeManager
         
             if Meal.objects.count() == 0:
                 for food in Food.objects.all():

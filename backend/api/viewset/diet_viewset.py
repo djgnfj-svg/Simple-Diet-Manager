@@ -1,9 +1,8 @@
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from api.Serializer.DietSerializer import DietMakeSerializer, DietSerializer
-from api.Utils.MsgUtils import error_msg
-
+from api.serializer.diet_serializer import DietMakeSerializer, DietSerializer
+from common.message import error_msg
 from diets.models import Diet
 
 

@@ -1,11 +1,9 @@
 from django.db.models import Q
 
+from common.manager import ManagerBase
+from core.nutrient_utils import add_nutrietn, init_nutrient, make_nutrient
 from foods.models import Food
-
 from meals.models import Meal
-
-from Utils.common.ManagerBase import ManagerBase
-from Utils.functions.nutrient_utils import init_nutrient, add_nutrietn, make_nutrient
 
 
 class MealChecker:

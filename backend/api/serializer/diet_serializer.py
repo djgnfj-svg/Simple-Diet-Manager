@@ -1,14 +1,11 @@
 from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
-
-from api.Serializer.MealSerializer import MealSerializer
-
-from Utils.Metabolic.MetabolicManager import MetabolicManager
-
+from api.serializer.meal_serializer import MealSerializer
+from core.metabolic_manager import MetabolicManager
+from diets.diet_manager import DietManager
 from diets.models import Diet
-from diets.DietManager import DietManager
-from diets.WeekDietManager import WeekDietManager
+from diets.weekdiet_manager import WeekDietManager
 
 
 class DietSerializer(serializers.ModelSerializer):

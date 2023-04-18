@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import os
 import json
-
+import os
 from pathlib import Path
-from django.core.exceptions import ImproperlyConfigured
 
 import pymysql
+from django.core.exceptions import ImproperlyConfigured
+
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 
-from api.Serializer.MealSerializer import MealSerializer
-
+from api.serializer.meal_serializer import MealSerializer
 from meals.models import Meal
 
 

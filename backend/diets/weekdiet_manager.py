@@ -1,13 +1,12 @@
 from django.db.models import Q
 
 from accounts.models import UserBodyInfo
-
+from common.manager import ManagerBase
+from core.nutrient import NutrientCalculator as nc
+from core.nutrient_utils import init_nutrient
+from diets.diet_manager import DietManager as DM
 from diets.models import WeekDiet
-from diets.DietManager import DietManager as DM
 
-from Utils.common.ManagerBase import ManagerBase
-from Utils.nutrient.Nutrient import NutrientCalculator as nc
-from Utils.functions.nutrient_utils import init_nutrient
 
 class WeekDietManager(ManagerBase):
     def __init__(self):
