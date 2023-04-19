@@ -51,7 +51,7 @@ class WeekDietManager(ManagerBase):
                 bodyinfo=userbody,
             )
             week_diet.diets.set(diet_list)
-
+            # TODO : 여기에 week_diet에 구매로직이 들어갈 듯 하다.
         return week_diet
     
     def _cal_week_nutirient(self, metabolic_data, min_range, max_range):

@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
+from diets.models import WeekDiet
 from core.metabolic_manager import MetabolicManager
 from diets.diet_manager import DietManager
 from diets.models import Diet
@@ -30,11 +31,12 @@ class DietSerializer(serializers.ModelSerializer):
         return meals
 
 
-class WeekDietSerializer(serializers.Serializer):
+class WeekDietSerializer(serializers.ModelSerializer):
     diets = serializers.SerializerMethodField()
 
     class Meta:
-        fields = ("diets", "diet_status")
+        model = WeekDiet
+        fields = ("id", "diets")
 
     def get_diets(self, obj) -> list:
         diets = {}
@@ -43,6 +45,7 @@ class WeekDietSerializer(serializers.Serializer):
             diets[day] = DietSerializer(diet).data
 
         return diets
+    
 
 
 class DietMakeSerializer(serializers.Serializer):

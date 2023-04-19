@@ -98,7 +98,7 @@ function WeekDietOutputPage(props) {
 
   return (
     <Wrapper>
-      <DietUserBodyInfoCard diet_status={state.diet_status} min_nutrient={state.min_nutrient} max_nutrient={state.max_nutrient} />
+      <DietUserBodyInfoCard id={state.id} diet_status={state.diet_status} min_nutrient={state.min_nutrient} max_nutrient={state.max_nutrient} />
       <DietCardList DietMealdata={DietMealdata} MealList={MealList} />
     </Wrapper>
   );
