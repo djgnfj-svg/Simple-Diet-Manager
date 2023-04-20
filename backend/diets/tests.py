@@ -5,11 +5,50 @@ from core.metabolic_manager import MetabolicManager
 from diets.diet_manager import DietManager
 from diets.models import Diet, WeekDiet
 from diets.weekdiet_manager import WeekDietManager
-from meals.meal_manager import MealMakeManager
+from meals.meal_manager import MealManager
 from meals.models import Meal
 
 
 # Create your tests here.
+class DietTest(TestCase):
+    fixtures = ['_Master_data/Foods.json', '_Master_data/Food-Category.json', '_Master_data/Cooking-Category.json']
+    def setUp(self) -> None:
+        self.data = {
+            'age': 25, 
+            'weight': 80, 
+            'height': 173, 
+            'gender': 'M', 
+            'general_activity': 1.2, 
+            'excise_activity': 0.2, 
+            'meal_count': 3, 
+            'diet_status': 1
+        }
+
+        if Meal.objects.count() == 0:
+            makemanager = MealManager()
+            makemanager.meke_meal_range(300, 1200, 100,)
+        self.week_diet_manager = WeekDietManager()
+        self.diet_manager = DietManager(self.data['meal_count'])
+    
+    #중복 생성
+    def test_duplicate_fail(self):
+        diet1 = Diet.objects.create(
+            diet_kcal = 1000,
+            diet_protein = 100,
+            diet_fat = 100,
+            diet_carbs = 100,
+        )
+        diet1.meals.set(Meal.objects.all()[:3])
+        diet2 = Diet.objects.create(
+            diet_kcal = 1000,
+            diet_protein = 100,
+            diet_fat = 100,
+            diet_carbs = 100,
+        )
+        diet2.meals.set(Meal.objects.all()[:3])
+        # self.assertEqual(Diet.objects.count(), 1)
+
+
 class WeekDietMakeTest(TestCase):
     fixtures = ['_Master_data/Foods.json', '_Master_data/Food-Category.json', '_Master_data/Cooking-Category.json']
     def setUp(self):
@@ -25,7 +64,7 @@ class WeekDietMakeTest(TestCase):
         }
 
         if Meal.objects.count() == 0:
-            makemanager = MealMakeManager()
+            makemanager = MealManager()
             makemanager.meke_meal_range(300, 1200, 100,)
         self.week_diet_manager = WeekDietManager()
         self.diet_manager = DietManager(self.data['meal_count'])

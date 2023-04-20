@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from api.serializer.purchase_serializer import WeekDietPurchaseSerializer
 from api.serializer.diet_serializer import DietMakeSerializer, DietSerializer
+from api.serializer.purchase_serializer import WeekDietPurchaseSerializer
 from common.message import error_msg
 from diets.models import Diet, WeekDiet
 

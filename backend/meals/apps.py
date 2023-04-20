@@ -12,10 +12,10 @@ class MealsConfig(AppConfig):
 
         if Food.objects.count() > 20:
         
-            from meals.meal_manager import MealMakeManager
+            from meals.meal_manager import MealManager
             from meals.models import Meal
         
             if Meal.objects.count() == 0:
                 for food in Food.objects.all():
-                    makemanager = MealMakeManager()
+                    makemanager = MealManager()
                     makemanager.meke_meal_range(300, 1200, 100, food)

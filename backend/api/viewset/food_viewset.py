@@ -8,7 +8,7 @@ from api.serializer.food_serializer import (CookingOptionSerializer,
                                             FoodCategorySerializer,
                                             FoodSerializer)
 from foods.models import CookingOption, Food, FoodCategory
-from meals.meal_manager import MealMakeManager
+from meals.meal_manager import MealManager
 
 
 class CookingOptionViewset(viewsets.ModelViewSet):
@@ -37,8 +37,8 @@ class FoodViewset(viewsets.ModelViewSet):
             self.perform_create(serializer)
             _food = Food.objects.get(id=serializer.data.get("id"))
             if Food.objects.count() > 20:
-                makemanager = MealMakeManager()
-                makemanager.meke_meal_range(300, 1200, 100, _food)
+                makemanager = MealManager()
+                makemanager.make_instance(300, 1200, 100, _food)
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         print(serializer.errors)

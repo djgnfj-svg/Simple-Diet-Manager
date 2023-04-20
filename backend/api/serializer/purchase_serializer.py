@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+
 class MealPurchaseSerializer(serializers.Serializer):
     Food_Purchase_info = serializers.SerializerMethodField()
 

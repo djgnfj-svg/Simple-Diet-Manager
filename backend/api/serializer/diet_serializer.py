@@ -2,10 +2,9 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
-from diets.models import WeekDiet
 from core.metabolic_manager import MetabolicManager
 from diets.diet_manager import DietManager
-from diets.models import Diet
+from diets.models import Diet, WeekDiet
 from diets.weekdiet_manager import WeekDietManager
 
 

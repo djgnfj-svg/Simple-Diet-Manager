@@ -1,45 +1,28 @@
 
 
-def init_nutrient(_object, prefix: str = None):
-    if prefix is None:
-        _object["kcal"] = 0
-        _object["protein"] = 0
-        _object["fat"] = 0
-        _object["carbs"] = 0
-    else:
-        _object[prefix + "kcal"] = 0
-        _object[prefix + "protein"] = 0
-        _object[prefix + "fat"] = 0
-        _object[prefix + "carbs"] = 0
+def init_nutrient(_object, prefix: str = ''):
+    _object[prefix + "kcal"] = 0
+    _object[prefix + "protein"] = 0
+    _object[prefix + "fat"] = 0
+    _object[prefix + "carbs"] = 0
 
 
-def add_nutrietn(_object, food, prefix: str = None):
-    if prefix is None:
-        _object["kcal"] += food.kcal
-        _object["protein"] += food.protein
-        _object["fat"] += food.fat
-        _object["carbs"] += food.carbs
-    else:
-        _object[prefix + "kcal"] += food.kcal
-        _object[prefix + "protein"] += food.protein
-        _object[prefix + "fat"] += food.fat
-        _object[prefix + "carbs"] += food.carbs
+def add_nutrient(_object, nutrient, object_prefix='', nutrient_prefix=''):
+    _object[object_prefix+"kcal"] += getattr(nutrient, f"{nutrient_prefix}kcal")
+    _object[object_prefix+"protein"] += getattr(nutrient, f"{nutrient_prefix}protein")
+    _object[object_prefix+"fat"] += getattr(nutrient, f"{nutrient_prefix}fat")
+    _object[object_prefix+"carbs"] += getattr(nutrient, f"{nutrient_prefix}carbs")
 
 
-def minus_nutrietn(_object, food, prefix: str = None):
-    if prefix is None:
-        _object["kcal"] -= food.kcal
-        _object["protein"] -= food.protein
-        _object["fat"] -= food.fat
-        _object["carbs"] -= food.carbs
-    else:
-        _object[prefix + "kcal"] -= food.kcal
-        _object[prefix + "protein"] -= food.protein
-        _object[prefix + "fat"] -= food.fat
-        _object[prefix + "carbs"] -= food.carbs
+def subtract_nutrietn(_object, nutrient, object_prefix='', nutrient_prefix=''):
+    _object[object_prefix+"kcal"] -= getattr(nutrient, f"{nutrient_prefix}kcal")
+    _object[object_prefix+"protein"] -= getattr(nutrient, f"{nutrient_prefix}protein")
+    _object[object_prefix+"fat"] -= getattr(nutrient, f"{nutrient_prefix}fat")
+    _object[object_prefix+"carbs"] -= getattr(nutrient, f"{nutrient_prefix}carbs")
 
 
-def make_nutrient(kcal):
+
+def make_min_max_nutrient(kcal):
     # 비율은 탄단지 = 45 : 40 : 15
     min_nutrient = {}
     max_nutrient = {}

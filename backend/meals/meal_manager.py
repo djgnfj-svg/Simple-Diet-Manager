@@ -1,7 +1,8 @@
 from django.db.models import Q
 
-from common.manager import ManagerBase
-from core.nutrient_utils import add_nutrietn, init_nutrient, make_nutrient
+from common.manager import DietManagerBase
+from core.nutrient_utils import (add_nutrient, init_nutrient,
+                                 make_min_max_nutrient)
 from foods.models import Food
 from meals.models import Meal
 
@@ -33,38 +34,39 @@ class MealChecker:
             return True
         else:
             return False
-        
-class MealMakeManager():
-    def __init__(self):
-        self.data = {}
-        self.protein_full = False
-        self.fat_full = False
-        self.carbs_full = False
+    
+class MealManager(DietManagerBase):
+    # TODO : 요일 받기 6/3 해가 지고 남머지로 식단 추출하면됨 어짜피 삼시새끼로 할꺼니까
+    def get_data(self, need_nutrient, min_range, max_range):
+        min_range -= 0.1
 
-    def meke_meal_range(self,start, stop, step,food:Food = None):
-        for kcal in range(start, stop, step):
-            min, max = make_nutrient(kcal)
-            self.make_meal(min, max, food)
+        min_nutrient, max_nutrient = make_min_max_nutrient(need_nutrient["need_kcal"])
+        meal = self.find_instance(Meal, "meal_", min_nutrient, max_nutrient)
 
+        if meal.count() > 2:
+            return meal[0]
+        else :
+            return self.make_instance(min_nutrient, max_nutrient)
 
-    def make_meal(self, min_nutrient, max_nutrient, _food:Food=None):
-        current_nutrient = {}
-        food_list = []
-        init_nutrient(current_nutrient, prefix="current_")
-
-        if _food:
-            food_list.append(_food)
-            add_nutrietn(current_nutrient, _food, prefix="current_")
-
-        nutrient = ["kcal", "protein", "fat", "carbs"]
-
+    def make_instance(self, min_nutrient, max_nutrient, _food:Food=None):
         # TODO : 일단 임시 방편...
         min_nutrient["protein"] *= 0.5
         min_nutrient["fat"] *= 0.5
         min_nutrient["carbs"] *= 0.5
+        
+        current_nutrient = {}
+        food_list = []
 
-        food_focus = 0
+        init_nutrient(current_nutrient, prefix="current_")
+        if _food:
+            food_list.append(_food)
+            add_nutrient(current_nutrient, _food, "current_")
+
+
+        nutrient = ["kcal", "protein", "fat", "carbs"]
         nutrient_focus = 1
+        food_focus = 0
+
         while nutrient_focus < 4:
             # 현재 영양소를 만족했는가?
             if  MealChecker.check_nutirent(min_nutrient, max_nutrient, current_nutrient, nutrient[nutrient_focus], prefix="current_"):
@@ -75,12 +77,12 @@ class MealMakeManager():
             # 현재 영양소가 가장 큰 음식을 가져온다.
             food = Food.objects.order_by("-" + nutrient[nutrient_focus])[food_focus]
 
-            # 그것을 추가할때 너무 오버된다면 다음 으로 넘아간다.
+            # 그것을 추가할때 max nutrient를 오버한다면 다음식품으로 넘아간다.
             if MealChecker.check_food_over_nutrient(current_nutrient, max_nutrient, nutrient[nutrient_focus], food, prefix="current_"):
                 food_focus += 1
                 continue
 
-            add_nutrietn(current_nutrient, food, prefix="current_")
+            add_nutrient(current_nutrient, food, "current_")
             food_list.append(food)
             food_focus += 1
                 
@@ -93,27 +95,8 @@ class MealMakeManager():
         meal.foods.set(food_list)
         meal.save()
         return meal
-    
-class MealManager(ManagerBase):
-    def __init__(self):
-        self.data = {}
 
-    # TODO : 요일 받기 6/3 해가 지고 남머지로 식단 추출하면됨 어짜피 삼시새끼로 할꺼니까
-    def get_data(self, need_nutrient, min_range, max_range):
-        min_range -= 0.1
-        min_nutrient, max_nutrient = make_nutrient(need_nutrient["need_kcal"])
-        q = Q()
-
-        q &= Q(meal_protein__gte=min_nutrient["kcal"], meal_protein__lte=max_nutrient["kcal"])
-        q &= Q(meal_fat__gte=min_nutrient["fat"], meal_fat__lte=max_nutrient["fat"])
-        q &= Q(meal_carbs__gte=min_nutrient["carbs"], meal_carbs__lte=max_nutrient["carbs"])
-        q &= Q(meal_kcal__gte=min_nutrient["kcal"], meal_kcal__lte=max_nutrient["kcal"])
-
-        meal = Meal.objects.filter(q)
-        
-        if meal.count() > 2:
-            return meal[0]
-        else :
-            makemanager = MealMakeManager()
-            meal = makemanager.make_meal(min_nutrient, max_nutrient)
-            return meal
+    def meke_meal_range(self,start, stop, step,food:Food = None):
+        for kcal in range(start, stop, step):
+            min, max = make_min_max_nutrient(kcal)
+            self.make_instance(min, max, food)

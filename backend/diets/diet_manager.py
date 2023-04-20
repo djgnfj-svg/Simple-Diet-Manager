@@ -1,16 +1,13 @@
-from django.db.models import Q
-
-from common.manager import ManagerBase
+from common.manager import DietManagerBase
 from core.nutrient import NutrientCalculator as nc
-from core.nutrient_utils import init_nutrient
+from core.nutrient_utils import add_nutrient, init_nutrient
 from diets.models import Diet
 from meals.meal_manager import MealManager
 
 
-class DietManager(ManagerBase):
+# TODO : 중복검사 만들어야 한다.
+class DietManager(DietManagerBase):
     def __init__(self, meal_count):
-        self.data = {}
-
         if meal_count == 1:
             self.__meals = ["breakfast"]
             self.__meals_nutrient = [1]
@@ -21,51 +18,41 @@ class DietManager(ManagerBase):
             self.__meals = ["breakfast", "lunch", "dinner"]
             self.__meals_nutrient = [0.4, 0.3, 0.3]
 
-    # TODO : Make 함수를 만들어서 if 부분을 읽기 쉽게
     def get_data(self, metabolic_data, min_range, max_range):
-        init_nutrient(self.data, prefix="diet_")
         min_nutrient, max_nutrient =  self._cal_nutirient(metabolic_data, min_range, max_range)
-
-        q = Q()
-        q &= Q(diet_kcal__gte=min_nutrient["kcal"], diet_kcal__lte=max_nutrient["kcal"])
-        q &= Q(diet_protein__gte=min_nutrient["protein"], diet_protein__lte=max_nutrient["protein"])
-        q &= Q(diet_fat__gte=min_nutrient["fat"], diet_fat__lte=max_nutrient["fat"])
-        q &= Q(diet_carbs__gte=min_nutrient["carbs"], diet_carbs__lte=max_nutrient["carbs"])
-
-        diet = Diet.objects.filter(q)
-
+        diet = self.find_instance(Diet, "diet_", min_nutrient, max_nutrient)
         if diet.count() > 0:
             return diet[0]
         else :
-            meal_list = []
-            meal_data = {}
-            init_nutrient(meal_data, prefix="diet_")
+            return self.make_instance(metabolic_data, min_range, max_range)
+    
+    def make_instance(self, metabolic_data, min_range, max_range):
+        diet_data = {}
+        meal_list = []
+        init_nutrient(diet_data)
 
-            for _, nutrient_range in zip(self.__meals, self.__meals_nutrient):
-                need_nutrient = {}
-                need_nutrient["need_kcal"] = metabolic_data["metabolism_kcal"] * nutrient_range
-                need_nutrient["need_protein"] = metabolic_data["metabolism_protein"] * nutrient_range
-                need_nutrient["need_fat"] = metabolic_data["metabolism_fat"] * nutrient_range
-                need_nutrient["need_carbs"] = metabolic_data["metabolism_carbs"] * nutrient_range
-                
-                meal_manager = MealManager()
-                _meal = meal_manager.get_data(need_nutrient, min_range, max_range)
-                meal_list.append(_meal)
-                
-                meal_data["diet_kcal"] += _meal.meal_kcal
-                meal_data["diet_protein"] += _meal.meal_protein
-                meal_data["diet_fat"] += _meal.meal_fat
-                meal_data["diet_carbs"] += _meal.meal_carbs
+        for _, nutrient_range in zip(self.__meals, self.__meals_nutrient):
+            need_nutrient = {}
+            need_nutrient["need_kcal"] = metabolic_data["metabolism_kcal"] * nutrient_range
+            need_nutrient["need_protein"] = metabolic_data["metabolism_protein"] * nutrient_range
+            need_nutrient["need_fat"] = metabolic_data["metabolism_fat"] * nutrient_range
+            need_nutrient["need_carbs"] = metabolic_data["metabolism_carbs"] * nutrient_range
+            
+            meal_manager = MealManager()
+            _meal = meal_manager.get_data(need_nutrient, min_range, max_range)
+            add_nutrient(diet_data, _meal, nutrient_prefix="meal_")
+            meal_list.append(_meal)
 
         diet = Diet.objects.create(
-            diet_kcal=meal_data["diet_kcal"],
-            diet_protein=meal_data["diet_protein"],
-            diet_fat=meal_data["diet_fat"],
-            diet_carbs=meal_data["diet_carbs"],
+            diet_kcal=diet_data["kcal"],
+            diet_protein=diet_data["protein"],
+            diet_fat=diet_data["fat"],
+            diet_carbs=diet_data["carbs"],
         )
         diet.meals.set(meal_list)
         return diet
-    
+
+    # TODO : 이것도 부모 클래스로 올려서 * 6 하는 느낌으로 해도 되겠다.
     @staticmethod
     def _cal_nutirient(metabolic_data, min_range, max_range):
         min_nutrient = {}
