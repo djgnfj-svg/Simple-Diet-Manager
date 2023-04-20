@@ -5,7 +5,6 @@ from foods.models import Food, FoodCategory
 from meals.models import Meal
 
 
-#TODO : 추후 foods를 보여주는 sz랑 분리해야함
 class MealSerializer(serializers.ModelSerializer):
     foods = serializers.PrimaryKeyRelatedField(many=True, queryset=Food.objects.all())
     
@@ -26,15 +25,19 @@ class MealSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         instance = super().create(validated_data)
         
-        name = ''
-        for i, food in enumerate(instance.foods.all()):
-            name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)
-            instance.meal_kcal += food.kcal
-            print("하기함?")
-            instance.meal_protein += food.protein
-            instance.meal_fat += food.fat
-            instance.meal_carbs += food.carbs
-
+        if instance.foods.count() != 1:
+            for i, food in enumerate(instance.foods.all()):
+                name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)
+                instance.meal_kcal += food.kcal
+                instance.meal_protein += food.protein
+                instance.meal_fat += food.fat
+                instance.meal_carbs += food.carbs
+        else:
+            name = FoodCategory.objects.get(id = instance.foods.all()[0].category_id).name
+            instance.meal_kcal = instance.foods.all()[0].kcal
+            instance.meal_protein = instance.foods.all()[0].protein
+            instance.meal_fat = instance.foods.all()[0].fat
+            instance.meal_carbs = instance.foods.all()[0].carbs
         instance.name = name
         instance.meal_img = instance.foods.order_by('-protein')[0].img
         instance.save()
