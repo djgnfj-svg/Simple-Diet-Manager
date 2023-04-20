@@ -1,8 +1,8 @@
-from common.manager import DietManagerBase
+from common.manager.base_manager import DietManagerBase
+from common.manager.meal_manager import MealManager
 from core.nutrient import NutrientCalculator as nc
 from core.nutrient_utils import add_nutrient, init_nutrient
 from diets.models import Diet
-from meals.meal_manager import MealManager
 
 
 # TODO : 중복검사 만들어야 한다.

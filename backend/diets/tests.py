@@ -1,11 +1,11 @@
 from django.test import TestCase
 
 from accounts.models import UserBodyInfo
+from common.manager.diet_manager import DietManager
+from common.manager.meal_manager import MealManager
+from common.manager.weekdiet_manager import WeekDietManager
 from core.metabolic_manager import MetabolicManager
-from diets.diet_manager import DietManager
 from diets.models import Diet, WeekDiet
-from diets.weekdiet_manager import WeekDietManager
-from meals.meal_manager import MealManager
 from meals.models import Meal
 
 
@@ -30,7 +30,7 @@ class DietTest(TestCase):
         self.week_diet_manager = WeekDietManager()
         self.diet_manager = DietManager(self.data['meal_count'])
     
-    #중복 생성
+    #중복 생성 방지
     def test_duplicate_fail(self):
         diet1 = Diet.objects.create(
             diet_kcal = 1000,

@@ -1,4 +1,4 @@
-from common.manager import ManagerBase
+from common.manager.base_manager import ManagerBase
 from core.metabolic_calculator import MetabolicCarculater
 
 

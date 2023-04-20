@@ -1,8 +1,8 @@
 from accounts.models import UserBodyInfo
-from common.manager import DietManagerBase
+from common.manager.base_manager import DietManagerBase
+from common.manager.diet_manager import DietManager
 from core.nutrient import NutrientCalculator as nc
 from core.nutrient_utils import add_nutrient, init_nutrient
-from diets.diet_manager import DietManager
 from diets.models import WeekDiet
 
 

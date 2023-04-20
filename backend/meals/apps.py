@@ -12,7 +12,7 @@ class MealsConfig(AppConfig):
 
         if Food.objects.count() > 20:
         
-            from meals.meal_manager import MealManager
+            from common.manager.meal_manager import MealManager
             from meals.models import Meal
         
             if Meal.objects.count() == 0:

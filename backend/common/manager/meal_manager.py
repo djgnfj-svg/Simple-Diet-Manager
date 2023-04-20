@@ -1,6 +1,4 @@
-from django.db.models import Q
-
-from common.manager import DietManagerBase
+from common.manager.base_manager import DietManagerBase
 from core.nutrient_utils import (add_nutrient, init_nutrient,
                                  make_min_max_nutrient)
 from foods.models import Food

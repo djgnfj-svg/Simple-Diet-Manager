@@ -2,14 +2,15 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
+from common.manager.diet_manager import DietManager
+from common.manager.weekdiet_manager import WeekDietManager
 from core.metabolic_manager import MetabolicManager
-from diets.diet_manager import DietManager
 from diets.models import Diet, WeekDiet
-from diets.weekdiet_manager import WeekDietManager
+from meals.models import Meal
 
 
 class DietSerializer(serializers.ModelSerializer):
-    meals = serializers.SerializerMethodField()
+    meals = serializers.PrimaryKeyRelatedField(many=True, queryset=Meal.objects.all())
 
     diet_kcal = serializers.IntegerField(read_only=True, default=0)
     diet_protein = serializers.IntegerField(read_only=True, default=0)
@@ -28,7 +29,11 @@ class DietSerializer(serializers.ModelSerializer):
         for meal, meal_name in zip(obj.meals.all(), meals_name_list):
             meals[meal_name] = MealSerializer(meal).data
         return meals
-
+    
+    def to_representation(self, instance):
+        rtn = super().to_representation(instance)
+        rtn["meals"] = self.get_meals(instance)
+        return rtn
 
 class WeekDietSerializer(serializers.ModelSerializer):
     diets = serializers.SerializerMethodField()
@@ -47,7 +52,7 @@ class WeekDietSerializer(serializers.ModelSerializer):
     
 
 
-class DietMakeSerializer(serializers.Serializer):
+class WeekDietMakeSerializer(serializers.Serializer):
     GENDER_CHOICES = (
         ('M', 'M'),
         ('W', 'W'),

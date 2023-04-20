@@ -22,6 +22,7 @@ class Meal(TimeStampedModel):
         if self.id :
             self.meal_img = self.foods.order_by("-protein").first().img
             name = FoodCategory.objects.get(id = self.foods.order_by("-protein").first().category_id).name
+            # TODO : 음식의 종류가 3개 이하이면 음식의 카테고리를 모두 써주자 겹치는개 있다면 숫자로 표시 (닭가슴살 2, 요거트 1) 이런씩으로 
             self.name = f'{name} 외 {self.foods.count() - 1}개'
         super().save(*args, **kwargs)
 

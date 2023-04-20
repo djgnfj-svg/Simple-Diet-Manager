@@ -1,24 +1,27 @@
 from rest_framework import serializers
 
 from api.serializer.food_serializer import FoodSerializer
-from foods.models import FoodCategory
+from foods.models import Food, FoodCategory
 from meals.models import Meal
 
 
 #TODO : 추후 foods를 보여주는 sz랑 분리해야함
 class MealSerializer(serializers.ModelSerializer):
+    foods = serializers.PrimaryKeyRelatedField(many=True, queryset=Food.objects.all())
+    
     meal_kcal = serializers.IntegerField(read_only=True, default=0)
     meal_protein = serializers.IntegerField(read_only=True, default=0)
     meal_fat = serializers.IntegerField(read_only=True, default=0)
     meal_carbs = serializers.IntegerField(read_only=True, default=0)
+    
     class Meta:
         model = Meal
         exclude = ('created_at', 'updated_at')
         
     def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret['foods'] = FoodSerializer(instance.foods.all(), many=True).data
-        return ret
+        rtn = super().to_representation(instance)
+        rtn['foods'] = FoodSerializer(instance.foods.all(), many=True).data
+        return rtn
 
     def create(self, validated_data):
         instance = super().create(validated_data)
@@ -27,6 +30,7 @@ class MealSerializer(serializers.ModelSerializer):
         for i, food in enumerate(instance.foods.all()):
             name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)
             instance.meal_kcal += food.kcal
+            print("하기함?")
             instance.meal_protein += food.protein
             instance.meal_fat += food.fat
             instance.meal_carbs += food.carbs

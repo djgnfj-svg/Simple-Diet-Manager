@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from api.serializer.food_serializer import (CookingOptionSerializer,
                                             FoodCategorySerializer,
                                             FoodSerializer)
+from common.manager.meal_manager import MealManager
 from foods.models import CookingOption, Food, FoodCategory
-from meals.meal_manager import MealManager
 
 
 class CookingOptionViewset(viewsets.ModelViewSet):
