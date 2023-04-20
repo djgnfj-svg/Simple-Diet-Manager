@@ -35,6 +35,7 @@ class DietSerializer(serializers.ModelSerializer):
         rtn["meals"] = self.get_meals(instance)
         return rtn
 
+# TODO : 확장성 이 어마어마하게 쓰게기이다...
 class WeekDietSerializer(serializers.ModelSerializer):
     diets = serializers.SerializerMethodField()
 
@@ -45,8 +46,9 @@ class WeekDietSerializer(serializers.ModelSerializer):
     def get_diets(self, obj) -> list:
         diets = {}
         day_of_week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat']
-        for diet, day in zip(obj.diets.all(), day_of_week):
-            diets[day] = DietSerializer(diet).data
+        for i, diet in enumerate(obj.diets.all()):
+            diets[day_of_week[i]] = DietSerializer(diet).data
+            diets[day_of_week[i+3]] = DietSerializer(diet).data
 
         return diets
     

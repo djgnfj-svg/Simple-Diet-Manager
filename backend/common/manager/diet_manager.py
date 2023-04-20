@@ -5,7 +5,6 @@ from core.nutrient_utils import add_nutrient, init_nutrient
 from diets.models import Diet
 
 
-# TODO : 중복검사 만들어야 한다.
 class DietManager(DietManagerBase):
     def __init__(self, meal_count):
         if meal_count == 1:
@@ -13,11 +12,11 @@ class DietManager(DietManagerBase):
             self.__meals_nutrient = [1]
         elif meal_count == 2:
             self.__meals = ["breakfast", "lunch"]
-            self.__meals_nutrient = [0.6, 0.4]
         elif meal_count == 3:
             self.__meals = ["breakfast", "lunch", "dinner"]
             self.__meals_nutrient = [0.4, 0.3, 0.3]
 
+    #TODO : 추후 옵션으로 월 화 수 각자 다르게 할 수 있도록
     def get_data(self, metabolic_data, min_range, max_range):
         min_nutrient, max_nutrient =  self._cal_nutirient(metabolic_data, min_range, max_range)
         diet = self.find_instance(Diet, "diet_", min_nutrient, max_nutrient)

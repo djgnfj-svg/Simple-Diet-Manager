@@ -8,11 +8,9 @@ from diets.models import WeekDiet
 
 class WeekDietManager(DietManagerBase):
     def __init__(self):
-        self.data = {}
-        self.day_of_week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+        pass
 
     def get_data(self, meal_count, userbody: UserBodyInfo, metabolic, min_range, max_range):
-        # TODO : 범위를 낮춰가면서 더 찾을 수 도 있음
         min_nutrient, max_nutrient = self._cal_week_nutirient(metabolic, min_range, max_range)
         week_diet = self.find_instance(WeekDiet, "week_", min_nutrient, max_nutrient)
 
@@ -28,12 +26,18 @@ class WeekDietManager(DietManagerBase):
         diet_list = []
         init_nutrient(week_data)
         
-        for _ in self.day_of_week:
+        for i in range(0,3):
             diet_manger = DietManager(meal_count)
-            _diet = diet_manger.get_data(metabolic, min_range, max_range)
+            _diet = diet_manger.get_data(metabolic, min_range, max_range, i)
             
             add_nutrient(week_data, _diet, nutrient_prefix="diet_")
             diet_list.append(_diet)
+
+        n_diets = len(diet_list)
+        for i in range(n_diets):
+            diet = diet_list[i]
+            add_nutrient(week_data, diet, nutrient_prefix="diet_")
+            diet_list.append(diet)
 
         week_diet = WeekDiet.objects.create(
             week_kcal=week_data["kcal"],
