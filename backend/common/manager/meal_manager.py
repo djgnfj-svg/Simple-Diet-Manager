@@ -4,7 +4,6 @@ from core.nutrient_utils import (add_nutrient, init_nutrient,
 from foods.models import Food
 from meals.models import Meal
 
-
 class MealChecker:
     def __init__(self) -> None:
         pass
@@ -46,7 +45,7 @@ class MealManager(DietManagerBase):
         else :
             return self.make_instance(min_nutrient, max_nutrient)
 
-    def make_instance(self, min_nutrient, max_nutrient, _food:Food=None):
+    def make_instance(self, min_nutrient, max_nutrient, _food:Food=None, bulk_create=False):
         # TODO : 일단 임시 방편...
         min_nutrient["protein"] *= 0.5
         min_nutrient["fat"] *= 0.5
@@ -64,17 +63,18 @@ class MealManager(DietManagerBase):
         nutrient = ["kcal", "protein", "fat", "carbs"]
         nutrient_focus = 1
         food_focus = 0
+        foods_qs = Food.objects.order_by("-" + nutrient[nutrient_focus])
+        foods_list = [food for food in foods_qs if getattr(food, nutrient[nutrient_focus]) is not None]
 
         while nutrient_focus < 4:
             # 현재 영양소를 만족했는가?
-            if  MealChecker.check_nutirent(min_nutrient, max_nutrient, current_nutrient, nutrient[nutrient_focus], prefix="current_"):
+            if MealChecker.check_nutirent(min_nutrient, max_nutrient, current_nutrient, nutrient[nutrient_focus], prefix="current_"):
                 nutrient_focus += 1
                 food_focus = 0
                 continue
 
             # 현재 영양소가 가장 큰 음식을 가져온다.
-            food = Food.objects.order_by("-" + nutrient[nutrient_focus])[food_focus]
-
+            food = foods_list[food_focus]
             # 그것을 추가할때 max nutrient를 오버한다면 다음식품으로 넘아간다.
             if MealChecker.check_food_over_nutrient(current_nutrient, max_nutrient, nutrient[nutrient_focus], food, prefix="current_"):
                 food_focus += 1
@@ -83,7 +83,8 @@ class MealManager(DietManagerBase):
             add_nutrient(current_nutrient, food, "current_")
             food_list.append(food)
             food_focus += 1
-                
+        if bulk_create:
+            return current_nutrient
         meal = Meal.objects.create(
             meal_kcal= current_nutrient["current_kcal"],
             meal_protein= current_nutrient["current_protein"],
@@ -92,9 +93,21 @@ class MealManager(DietManagerBase):
         )
         meal.foods.set(food_list)
         meal.save()
+            
         return meal
 
-    def meke_meal_range(self,start, stop, step,food:Food = None):
+    def meke_meal_range(self,start, stop, step,food:Food = None, bulk_create=False):
+        temp = []
         for kcal in range(start, stop, step):
             min, max = make_min_max_nutrient(kcal)
-            self.make_instance(min, max, food)
+            nutrient = self.make_instance(min, max, food, bulk_create=bulk_create)
+            temp.append(
+                Meal(
+                    meal_kcal= nutrient["current_kcal"],
+                    meal_protein= nutrient["current_protein"],
+                    meal_fat= nutrient["current_fat"],
+                    meal_carbs= nutrient["current_carbs"],
+                )
+            )
+        if bulk_create:
+            Meal.objects.bulk_create(temp)

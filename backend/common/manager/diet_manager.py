@@ -29,7 +29,6 @@ class DietManager(DietManagerBase):
         diet_data = {}
         meal_list = []
         init_nutrient(diet_data)
-
         for _, nutrient_range in zip(self.__meals, self.__meals_nutrient):
             need_nutrient = {}
             need_nutrient["need_kcal"] = metabolic_data["metabolism_kcal"] * nutrient_range

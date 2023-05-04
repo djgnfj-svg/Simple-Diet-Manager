@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: 1px solid red;
+    border: 1px solid;
 `;
 
 function WeekDietOutputPage(props) {

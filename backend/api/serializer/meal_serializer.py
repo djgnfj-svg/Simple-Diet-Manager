@@ -23,9 +23,10 @@ class MealSerializer(serializers.ModelSerializer):
         return rtn
 
     def create(self, validated_data):
+        print(validated_data['foods'])
         instance = super().create(validated_data)
         
-        if instance.foods.count() != 1:
+        if instance.foods.count() != 1 and instance.name == '':
             for i, food in enumerate(instance.foods.all()):
                 name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)
                 instance.meal_kcal += food.kcal

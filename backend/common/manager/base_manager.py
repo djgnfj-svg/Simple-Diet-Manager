@@ -43,6 +43,6 @@ class DietManagerBase(ManagerBase):
             nutrient_max = "{}{}".format(model_prefix, nutrient)
             q &= Q(**{"{}__gte".format(nutrient_min): min_nutrient[nutrient], "{}__lte".format(nutrient_max): max_nutrient[nutrient]})
         return model.objects.filter(q)
-    
+
     def make_instance(self):
         pass

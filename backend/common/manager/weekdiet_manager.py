@@ -28,7 +28,7 @@ class WeekDietManager(DietManagerBase):
         
         for i in range(0,3):
             diet_manger = DietManager(meal_count)
-            _diet = diet_manger.get_data(metabolic, min_range, max_range, i)
+            _diet = diet_manger.get_data(metabolic, min_range, max_range)
             
             add_nutrient(week_data, _diet, nutrient_prefix="diet_")
             diet_list.append(_diet)

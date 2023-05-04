@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: 1px solid red;
+    border: 1px solid;
 `;
 
 function DietDetailPage() {
@@ -29,7 +29,7 @@ function DietDetailPage() {
     }, [id]);
     return (
         <>
-        <h1>간단식단</h1>
+        <h1>간단식단ver0.1</h1>
         <Wrapper>
             {mealData.map((meals, index) => {
                 return (

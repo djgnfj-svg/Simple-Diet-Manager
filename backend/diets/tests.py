@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 from accounts.models import UserBodyInfo
+from foods.models import Food
 from common.manager.diet_manager import DietManager
 from common.manager.meal_manager import MealManager
 from common.manager.weekdiet_manager import WeekDietManager
@@ -26,7 +27,7 @@ class DietTest(TestCase):
 
         if Meal.objects.count() == 0:
             makemanager = MealManager()
-            makemanager.meke_meal_range(300, 1200, 100,)
+            makemanager.meke_meal_range(300, 1200, 100, bulk_create=True)
         self.week_diet_manager = WeekDietManager()
         self.diet_manager = DietManager(self.data['meal_count'])
     
@@ -65,7 +66,7 @@ class WeekDietMakeTest(TestCase):
 
         if Meal.objects.count() == 0:
             makemanager = MealManager()
-            makemanager.meke_meal_range(300, 1200, 100,)
+            makemanager.meke_meal_range(300, 1200, 100,bulk_create=True)
         self.week_diet_manager = WeekDietManager()
         self.diet_manager = DietManager(self.data['meal_count'])
         pass
