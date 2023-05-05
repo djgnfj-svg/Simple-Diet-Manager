@@ -1,8 +1,11 @@
+from django.db import transaction
+
 from common.manager.base_manager import DietManagerBase
 from core.nutrient_utils import (add_nutrient, init_nutrient,
                                  make_min_max_nutrient)
 from foods.models import Food
 from meals.models import Meal
+
 
 class MealChecker:
     def __init__(self) -> None:
@@ -45,6 +48,7 @@ class MealManager(DietManagerBase):
         else :
             return self.make_instance(min_nutrient, max_nutrient)
 
+    @transaction.atomic
     def make_instance(self, min_nutrient, max_nutrient, _food:Food=None, bulk_create=False):
         # TODO : 일단 임시 방편...
         min_nutrient["protein"] *= 0.5
@@ -85,6 +89,10 @@ class MealManager(DietManagerBase):
             food_focus += 1
         if bulk_create:
             return current_nutrient
+        
+        if Meal.objects.filter(foods__in=food_list):
+            return Meal.objects.filter(foods__in=food_list).first()
+        
         meal = Meal.objects.create(
             meal_kcal= current_nutrient["current_kcal"],
             meal_protein= current_nutrient["current_protein"],

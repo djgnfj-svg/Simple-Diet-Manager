@@ -1,8 +1,10 @@
+from typing import Any
 from django.db import models
 
 from common.models import TimeStampedModel
 from foods.models import Food, FoodCategory
 
+    
 
 class Meal(TimeStampedModel):
     name = models.CharField(max_length=50, null=True, blank=True)

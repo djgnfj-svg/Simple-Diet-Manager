@@ -1,5 +1,9 @@
+from django.db import transaction
+
 from common.manager.base_manager import DietManagerBase
 from common.manager.meal_manager import MealManager
+from config.meal_nutrient_ratio import (ONE_MEAL_NUTRIENT, THREE_MEAL_NUTRIENT,
+                                        TWO_MEAL_NUTRIENT)
 from core.nutrient import NutrientCalculator as nc
 from core.nutrient_utils import add_nutrient, init_nutrient
 from diets.models import Diet
@@ -9,12 +13,13 @@ class DietManager(DietManagerBase):
     def __init__(self, meal_count):
         if meal_count == 1:
             self.__meals = ["breakfast"]
-            self.__meals_nutrient = [1]
+            self.__meals_nutrient = ONE_MEAL_NUTRIENT
         elif meal_count == 2:
             self.__meals = ["breakfast", "lunch"]
+            self.__meals_nutrient = TWO_MEAL_NUTRIENT
         elif meal_count == 3:
             self.__meals = ["breakfast", "lunch", "dinner"]
-            self.__meals_nutrient = [0.4, 0.3, 0.3]
+            self.__meals_nutrient = THREE_MEAL_NUTRIENT
 
     #TODO : 추후 옵션으로 월 화 수 각자 다르게 할 수 있도록
     def get_data(self, metabolic_data, min_range, max_range):
@@ -24,7 +29,8 @@ class DietManager(DietManagerBase):
             return diet[0]
         else :
             return self.make_instance(metabolic_data, min_range, max_range)
-    
+
+    @transaction.atomic
     def make_instance(self, metabolic_data, min_range, max_range):
         diet_data = {}
         meal_list = []
@@ -41,6 +47,8 @@ class DietManager(DietManagerBase):
             add_nutrient(diet_data, _meal, nutrient_prefix="meal_")
             meal_list.append(_meal)
 
+        if Diet.objects.filter(meals__in=meal_list):
+            return Diet.objects.filter(meals__in=meal_list).first()
         diet = Diet.objects.create(
             diet_kcal=diet_data["kcal"],
             diet_protein=diet_data["protein"],

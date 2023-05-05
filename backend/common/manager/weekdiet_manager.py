@@ -1,3 +1,5 @@
+from django.db import transaction
+
 from accounts.models import UserBodyInfo
 from common.manager.base_manager import DietManagerBase
 from common.manager.diet_manager import DietManager
@@ -20,8 +22,9 @@ class WeekDietManager(DietManagerBase):
         else :
             return self.make_instance(meal_count, metabolic, min_range, \
                                       max_range, userbody)
-    
-    def make_instance(self,meal_count, metabolic, min_range, max_range, userbody):
+
+    @transaction.atomic
+    def make_instance(self, meal_count, metabolic, min_range, max_range, userbody):
         week_data = {}
         diet_list = []
         init_nutrient(week_data)
@@ -38,6 +41,9 @@ class WeekDietManager(DietManagerBase):
             diet = diet_list[i]
             add_nutrient(week_data, diet, nutrient_prefix="diet_")
             diet_list.append(diet)
+
+        if WeekDiet.objects.filter(diets__in=diet_list):
+            return WeekDiet.objects.filter(diets__in=diet_list).first()
 
         week_diet = WeekDiet.objects.create(
             week_kcal=week_data["kcal"],

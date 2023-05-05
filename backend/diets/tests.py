@@ -1,12 +1,12 @@
 from django.test import TestCase
 
 from accounts.models import UserBodyInfo
-from foods.models import Food
 from common.manager.diet_manager import DietManager
 from common.manager.meal_manager import MealManager
 from common.manager.weekdiet_manager import WeekDietManager
 from core.metabolic_manager import MetabolicManager
 from diets.models import Diet, WeekDiet
+from foods.models import Food
 from meals.models import Meal
 
 
