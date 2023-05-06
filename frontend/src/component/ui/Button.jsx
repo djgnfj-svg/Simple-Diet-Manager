@@ -2,26 +2,32 @@ import React from "react";
 import styled from "styled-components";
 
 const StyleButton = styled.button`
-    background-color: #96ff33;
-    border: none;
-    padding: 10px 20px;
+    background-color: #2196f3;
+    color: white;
+    padding: 12px 24px;
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    font-weight: bold;
+    border: none;
     border-radius: 4px;
-    transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 
-    :hover {
-        background-color: #8AE52E;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    &:hover {
+        background-color: #1976d2;
+    }
+
+    &:focus {
+        outline: none;
     }
 `;
 
 
 function Button(props) {
-    const { title, onClick, disabled } = props;
-    return <StyleButton onClick={onClick} disabled={disabled}>{title || "button"}</StyleButton>;
+    const { title, onClick, disabled, isLoading } = props;
+    return <StyleButton onClick={onClick}
+     disabled={disabled || isLoading}>
+        {title || "button"}
+        </StyleButton>;
 }
 
 export default Button;

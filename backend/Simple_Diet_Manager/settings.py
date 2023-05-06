@@ -44,12 +44,16 @@ SECRET_KEY = get_secret("SECRET_KEY")
 
 if get_secret("ENV") == "DEV":
     DEV = True
+    
 else :
     DEV = False
 
 if DEV:
     ALLOWED_HOSTS = ["*"]
     DEBUG = True
+    DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+    }
 else:
     DEBUG = False
     ALLOWED_HOSTS = ["simple-diet-manager.link"]
@@ -64,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar', # debug tool bar
 
     # library
 	'rest_framework',
@@ -85,6 +90,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'Simple_Diet_Manager.urls'
@@ -213,3 +220,4 @@ else :
         'http://simple-diet-manager.link',
         'http://simple-diet-manager.link:8000',
     ]
+

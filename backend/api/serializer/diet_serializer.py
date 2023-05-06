@@ -2,8 +2,8 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
-from common.manager.diet_manager import DietManager
-from common.manager.weekdiet_manager import WeekDietManager
+from common.geter.diet_getter import DietGetter
+from common.geter.weekdiet_getter import WeekDietGetter
 from core.metabolic_manager import MetabolicManager
 from diets.models import Diet, WeekDiet
 from meals.models import Meal
@@ -81,16 +81,15 @@ class WeekDietMakeSerializer(serializers.Serializer):
         metabolic_manager = MetabolicManager()
         metabolic = metabolic_manager.get_data(validated_data)
 
-        week_diet_manager = WeekDietManager()
+        week_diet_manager = WeekDietGetter()
         # diet_status 0: 유지 1: 감량 2: 증량(미구현)
         min_range = 0.8 if validated_data['diet_status'] == 1 else 0.9
         max_range = 0.9 if validated_data['diet_status'] == 1 else 1.0
-        week_diet = week_diet_manager.get_data(
-            validated_data["meal_count"], userbodyinfo, metabolic, min_range, max_range)
+        week_diet = week_diet_manager.get_data(validated_data["meal_count"], userbodyinfo, metabolic, min_range, max_range)
 
         rtn = WeekDietSerializer(week_diet).data
 
         rtn["diet_status"] = validated_data["diet_status"]
-        rtn["min_nutrient"], rtn["max_nutrient"] = DietManager._cal_nutirient(
+        rtn["min_nutrient"], rtn["max_nutrient"] = DietGetter._cal_nutirient(
             metabolic, min_range, max_range)
         return rtn

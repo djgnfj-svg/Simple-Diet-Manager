@@ -26,7 +26,7 @@ const StyleLabel = styled.label`
     margin: 0 10px;
     border-radius: 5px;
     cursor: pointer;
-    border: 2px solid lightgrey;
+    border: 2px solid ;
     transition: all 0.3s ease;
 
     & > span {

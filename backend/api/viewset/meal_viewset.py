@@ -6,4 +6,4 @@ from meals.models import Meal
 
 class MealViewset(viewsets.ModelViewSet):
     serializer_class = MealSerializer
-    queryset = Meal.objects.all()
+    queryset = Meal.objects.all().order_by('-id')

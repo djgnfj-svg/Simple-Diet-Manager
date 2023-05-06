@@ -4,9 +4,15 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Wrapper = styled.div`
+height: 100%;
     padding: 16px;
     display: flex;
     flex-direction: column;
+
+    position: sticky;
+    top: 10px;
+    z-index: 1;
+    background-color: white;
 `;
 
 const Card = styled.div`
@@ -14,7 +20,6 @@ const Card = styled.div`
     display: inline-block;
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
-    color: rgb(0, 0, 0);
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -31,7 +36,6 @@ const StyleInfo = styled.div`
     font-weight: 600;
     font-size: 1.25rem;
     letter-spacing: -0.025em;
-    color: rgb(0, 0, 0);
     justify-content: space-between;
     margin-bottom: 1rem;
 `;

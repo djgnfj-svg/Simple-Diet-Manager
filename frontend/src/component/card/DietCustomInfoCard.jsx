@@ -1,4 +1,4 @@
-import React from "react";
+import { React} from "react";
 import styled from "styled-components";
 import RadioButton from "../ui/RadioButton";
 import Button from "../ui/Button";
@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     padding: 16px;
     widht: calc(100% - 32px);
     height: 100%;
-    border: 1px solid blue;
+    border: 1px solid;
     display: flex;
     flex-direction: column;
 `;
@@ -52,7 +52,7 @@ function DietCustomInfoCard(props) {
                 <StyleCard>
                     <StyleRadioWrapper>
                         {/* <RadioButton placeholder="1끼" id="meal_1" name="MealCount" value={1} onChange={onChangeMealsCount} disabled={true} /> */}
-                        {/* <RadioButton placeholder="2끼" id="meal_2" name="MealCount" value={2} onChange={onChangeMealsCount} /> */}
+                        <RadioButton placeholder="2끼" id="meal_2" name="MealCount" value={2} onChange={onChangeMealsCount} />
                         <RadioButton placeholder="3끼" id="meal_3" name="MealCount" value={3} onChange={onChangeMealsCount} />
                     </StyleRadioWrapper>
                 </StyleCard>
@@ -64,7 +64,7 @@ function DietCustomInfoCard(props) {
                     </StyleRadioWrapper>
                 </StyleCard>
                 <ButtonWrapper>
-                    <Button title="finish"/>
+                    <Button title="finish" />
                 </ButtonWrapper>
             </form>
         </Wrapper>

@@ -1,7 +1,43 @@
+from typing import Any
 from django.db import models
 
 from common.models import TimeStampedModel
-from foods.models import Food, FoodCategory
+from foods.models import Food
+
+
+class MealManager(models.Manager):
+    def meal_update(self, foods, **kwargs: Any) -> Any:
+        meal = self.filter(foods__in=foods).first()
+        if meal == None or len(meal.foods.all()) != len(foods):
+            meal.foods.clear()
+            meal.foods.set(foods)
+            meal.meal_kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
+            meal.meal_protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
+            meal.meal_fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
+            meal.meal_carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
+            meal.meal_img=meal.foods.order_by("-protein").first().img
+            meal.name=f'{meal.foods.order_by("-protein").first().name} 외 {meal.foods.count() -1}개'
+            meal.save()
+            return meal
+        else :
+            raise ValueError("이미 존재하는 식사입니다.")
+
+    def meal_create(self, foods, meal_count, **kwargs: Any) -> Any:
+        meal = self.filter(foods__in=foods).first()
+        if meal != None and len(meal.foods.all()) == len(foods):
+            return meal
+        else :
+            meal = super().create(**kwargs)
+
+            meal.foods.set(foods)
+            meal.meal_count = meal_count
+            meal.meal_kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
+            meal.meal_protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
+            meal.meal_fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
+            meal.meal_carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
+            meal.meal_img=meal.foods.order_by("-protein").first().img
+            meal.name=f'{meal.foods.order_by("-protein").first().name} 외 {meal.foods.count() -1}개'
+        return meal
 
 
 class Meal(TimeStampedModel):
@@ -14,17 +50,18 @@ class Meal(TimeStampedModel):
     meal_carbs = models.IntegerField(null=False, default=0)
     meal_video = models.URLField(max_length=100, null=True, blank=True)
     meal_img = models.ImageField(upload_to='meal/%Y/%m/%d/', null=True, blank=True)
+    meal_count = models.IntegerField(null=False, default=3)
+    objects = MealManager()
 
     class meta:
         db_table = "meal"
 
     def save(self, *args, **kwargs):
         if self.id :
-            self.meal_img = self.foods.order_by("-protein").first().img
-            name = FoodCategory.objects.get(id = self.foods.order_by("-protein").first().category_id).name
-            # TODO : 음식의 종류가 3개 이하이면 음식의 카테고리를 모두 써주자 겹치는개 있다면 숫자로 표시 (닭가슴살 2, 요거트 1) 이런씩으로 
-            self.name = f'{name} 외 {self.foods.count() - 1}개'
-        super().save(*args, **kwargs)
-
-    def __str__(self) -> str:
-        return self.name
+            if self.foods.count() == 1:
+                self.name = self.foods.first().name
+            else :
+                self.name = f'{self.foods.order_by("-protein").first().name} 외 {self.foods.count() -1}개'
+        else :
+            self.name = "새로운 식단 | 아직 음식 없음"
+        return super().save(*args, **kwargs)

@@ -11,6 +11,7 @@ class Diet(models.Model):
     diet_protein = models.IntegerField(default=0)
     diet_fat = models.IntegerField(default=0)
     diet_carbs = models.IntegerField(default=0)
+    meal_count = models.IntegerField(default=0)
 
 class WeekDiet(models.Model):
     diets = models.ManyToManyField(Diet, related_name="weeks")
@@ -20,3 +21,4 @@ class WeekDiet(models.Model):
     week_protein = models.IntegerField(default=0)
     week_fat = models.IntegerField(default=0)
     week_carbs = models.IntegerField(default=0)
+    meal_count = models.IntegerField(default=0)

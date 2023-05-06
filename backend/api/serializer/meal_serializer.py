@@ -13,6 +13,7 @@ class MealSerializer(serializers.ModelSerializer):
     meal_fat = serializers.IntegerField(read_only=True, default=0)
     meal_carbs = serializers.IntegerField(read_only=True, default=0)
     
+    meal_count = serializers.IntegerField(required=True, min_value=2, max_value=3)
     class Meta:
         model = Meal
         exclude = ('created_at', 'updated_at')
@@ -21,45 +22,19 @@ class MealSerializer(serializers.ModelSerializer):
         rtn = super().to_representation(instance)
         rtn['foods'] = FoodSerializer(instance.foods.all(), many=True).data
         return rtn
-
+    
+    def validate(self, data):
+        if 'foods' not in data:
+            raise serializers.ValidationError("foods field is required")
+        return data
+    
     def create(self, validated_data):
-        instance = super().create(validated_data)
-        
-        if instance.foods.count() != 1:
-            for i, food in enumerate(instance.foods.all()):
-                name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)
-                instance.meal_kcal += food.kcal
-                instance.meal_protein += food.protein
-                instance.meal_fat += food.fat
-                instance.meal_carbs += food.carbs
-        else:
-            name = FoodCategory.objects.get(id = instance.foods.all()[0].category_id).name
-            instance.meal_kcal = instance.foods.all()[0].kcal
-            instance.meal_protein = instance.foods.all()[0].protein
-            instance.meal_fat = instance.foods.all()[0].fat
-            instance.meal_carbs = instance.foods.all()[0].carbs
-        instance.name = name
-        instance.meal_img = instance.foods.order_by('-protein')[0].img
-        instance.save()
+        instance = Meal.objects.meal_create(**validated_data)
         return instance
 
-    
     def update(self, instance, validated_data):
-        instance = super().update(instance, validated_data)
-        instance.meal_kcal = 0
-        instance.meal_protein = 0
-        instance.meal_fat = 0
-        instance.meal_carbs = 0
-        
-        name = ''
-        for i, food in enumerate(instance.foods.all()):
-            name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)
-            instance.meal_kcal += food.kcal
-            instance.meal_protein += food.protein
-            instance.meal_fat += food.fat
-            instance.meal_carbs += food.carbs
-
-        instance.name = name
-        instance.meal_img = instance.foods.order_by('-protein')[0].img
-        instance.save()
+        try:
+            instance = Meal.objects.meal_update(**validated_data)
+        except ValueError as e:
+            raise serializers.ValidationError(str(e))
         return instance
