@@ -20,7 +20,8 @@ class MealAPITest(APITestCase):
     def setUp(self):
         self.url = "/api/meals/"
         self.data = {
-            "foods" : [1,2,3]
+            "foods" : [1,2,3],
+            "meal_count" : 3
         }
         Meal.objects.meal_create(
             foods = [1,2,3],
@@ -46,22 +47,25 @@ class MealAPITest(APITestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_update(self):
-        response = self.client.put(self.url + "1/", data={})
-        self.assertEqual(response.status_code, 400)
+        response = self.client.post(self.url, data=self.data)
+        self.data["foods"] = [1,2,3,4]
+        response = self.client.put(self.url + "1/", data=self.data)
+        self.assertEqual(response.status_code, 200)
     
     def test_delete(self):
         response = self.client.post(self.url, data=self.data)
         response = self.client.delete(self.url + "1/")
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, 204)
 
-    # def test_delete_fail(self):
-    #     response = self.client.delete(self.url + "100/")
-    #     self.assertEqual(response.status_code, 405)
+    def test_delete_fail(self):
+        response = self.client.delete(self.url + "100/")
+        self.assertEqual(response.status_code, 404)
     
-    # def test_create_fail(self):
-    #     response = self.client.post(self.url, data={})
-    #     self.assertEqual(response.status_code, 400)
+    def test_create_fail(self):
+        response = self.client.post(self.url, data={})
+        self.assertEqual(response.status_code, 400)
 
-    # def test_update_fail(self):
-    #     response = self.client.put(self.url + "1/", data={})
-    #     self.assertEqual(response.status_code, 400)
+    def test_update_fail(self):
+        response = self.client.post(self.url, data=self.data)
+        response = self.client.put(self.url + "1/", data={})
+        self.assertEqual(response.status_code, 400)

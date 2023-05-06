@@ -6,6 +6,22 @@ from foods.models import Food
 
 
 class MealManager(models.Manager):
+    def meal_update(self, foods, **kwargs: Any) -> Any:
+        meal = self.filter(foods__in=foods).first()
+        if meal == None or len(meal.foods.all()) != len(foods):
+            meal.foods.clear()
+            meal.foods.set(foods)
+            meal.meal_kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
+            meal.meal_protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
+            meal.meal_fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
+            meal.meal_carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
+            meal.meal_img=meal.foods.order_by("-protein").first().img
+            meal.name=f'{meal.foods.order_by("-protein").first().name} 외 {meal.foods.count() -1}개'
+            meal.save()
+            return meal
+        else :
+            raise ValueError("이미 존재하는 식사입니다.")
+
     def meal_create(self, foods, meal_count, **kwargs: Any) -> Any:
         meal = self.filter(foods__in=foods).first()
         if meal != None and len(meal.foods.all()) == len(foods):

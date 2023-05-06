@@ -16,3 +16,11 @@ from rest_framework.test import APITestCase
 class DietAPITest(APITestCase):
     fixtures = ['_Master_data/Food-Category.json',
                 '_Master_data/Cooking-Category.json', '_Master_data/Foods.json']
+    
+    # MEAL처럼 한번에 create되게 하는 로직 만들면서 작성 지금은 여기까지
+    def setUp(self) -> None:
+        self.url = "/api/diets/"
+        self.data = {
+            
+        }
+        return super().setUp()
