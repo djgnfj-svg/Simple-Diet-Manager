@@ -4,8 +4,10 @@ from rest_framework.response import Response
 from api.serializer.food_serializer import (CookingOptionSerializer,
                                             FoodCategorySerializer,
                                             FoodSerializer)
-from common.manager.meal_manager import MealManager
+from common.geter.meal_getter import MealGetter
+from common.maker.meal_maker import MealMaker
 from foods.models import CookingOption, Food, FoodCategory
+from meals.models import Meal
 
 
 class CookingOptionViewset(viewsets.ModelViewSet):
@@ -22,10 +24,11 @@ class FoodViewset(viewsets.ModelViewSet):
     queryset = Food.objects.order_by("-id")
 
     def list(self, request, *args, **kwargs):
+        super().list(request, *args, **kwargs)
         search = request.query_params.get('search', '')
-        filtered_foods = Food.objects.filter(name__icontains=search)
-        page = self.paginate_queryset(filtered_foods)
+        filtered_foods = Food.objects.filter(name__icontains=search).order_by("-id")
 
+        page = self.paginate_queryset(filtered_foods)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
@@ -35,16 +38,14 @@ class FoodViewset(viewsets.ModelViewSet):
 
 
     def create(self, request, *args, **kwargs):
-        
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             self.perform_create(serializer)
             _food = Food.objects.get(id=serializer.data.get("id"))
             if Food.objects.count() > 20:
-                makemanager = MealManager()
+                makemanager = MealMaker(Meal)
                 makemanager.meke_meal_range(300, 1200, 100, _food, bulk_create=True)
 
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

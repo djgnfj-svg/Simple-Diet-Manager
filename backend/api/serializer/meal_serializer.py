@@ -21,11 +21,18 @@ class MealSerializer(serializers.ModelSerializer):
         rtn = super().to_representation(instance)
         rtn['foods'] = FoodSerializer(instance.foods.all(), many=True).data
         return rtn
-
+    
+    def validate(self, data):
+        if 'foods' not in data:
+            raise serializers.ValidationError("foods field is required")
+        return data
+    
+    # 이부분 수정하면 됨
     def create(self, validated_data):
-        print(validated_data['foods'])
+        # 여기서 meal_create인가로 받으면 국받일듯
         instance = super().create(validated_data)
-        
+        if instance.foods.count() < 1:
+            raise serializers.ValidationError('음식이 없습니다.')
         if instance.foods.count() != 1 and instance.name == '':
             for i, food in enumerate(instance.foods.all()):
                 name.join(', ', FoodCategory.objects.get(id = instance.foods.all()[i].category_id).name)

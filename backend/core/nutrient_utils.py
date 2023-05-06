@@ -1,11 +1,13 @@
 from config.meal_nutrient_ratio import CARBS_RATIO, FAT_RATIO, PROTEIN_RATIO
 
 
-def init_nutrient(_object, prefix: str = ''):
-    _object[prefix + "kcal"] = 0
-    _object[prefix + "protein"] = 0
-    _object[prefix + "fat"] = 0
-    _object[prefix + "carbs"] = 0
+def init_nutrient(prefix: str = ''):
+    obj = {}
+    obj[prefix + "kcal"] = 0
+    obj[prefix + "protein"] = 0
+    obj[prefix + "fat"] = 0
+    obj[prefix + "carbs"] = 0
+    return obj
 
 
 def add_nutrient(_object, nutrient, object_prefix='', nutrient_prefix=''):
@@ -22,12 +24,9 @@ def subtract_nutrietn(_object, nutrient, object_prefix='', nutrient_prefix=''):
     _object[object_prefix+"carbs"] -= getattr(nutrient, f"{nutrient_prefix}carbs")
 
 
-
 def make_min_max_nutrient(kcal):
-    min_nutrient = {}
-    max_nutrient = {}
-    init_nutrient(min_nutrient)
-    init_nutrient(max_nutrient)
+    min_nutrient = init_nutrient()
+    max_nutrient = init_nutrient()
     min_nutrient["kcal"] = kcal
     max_nutrient["kcal"] = kcal + 100
 

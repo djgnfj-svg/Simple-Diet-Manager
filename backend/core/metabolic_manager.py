@@ -1,9 +1,8 @@
-from common.manager.base_manager import ManagerBase
 from config.nutrient_range import FAT_RANGE, PROTEIN_RANGE
 from core.metabolic_calculator import MetabolicCarculater
 
 
-class MetabolicManager(ManagerBase):
+class MetabolicManager:
     def __init__(self):
         self.data = {}
 

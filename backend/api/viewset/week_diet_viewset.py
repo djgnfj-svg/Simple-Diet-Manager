@@ -1,9 +1,6 @@
 from django.shortcuts import get_object_or_404
-from django.template.loader import get_template
-from django.http import HttpResponse
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import action
 
 from api.serializer.diet_serializer import WeekDietMakeSerializer
 from api.serializer.purchase_serializer import WeekDietPurchaseSerializer
@@ -25,7 +22,7 @@ class WeekDietViewSet(viewsets.ViewSet):
         serializer = WeekDietPurchaseSerializer(weekdiet)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-    # #TODO : 미루자 귀찮다...
+    # #TODO : 미루자 노가다 작업이다.
     # @action(detail=True, methods=['get'])
     # def get_pdf(self, request, pk=None):
     #     import io
