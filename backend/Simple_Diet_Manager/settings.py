@@ -55,9 +55,8 @@ if DEV:
     'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
     }
 else:
-    DEBUG = True
-    ALLOWED_HOSTS = ["*"]
-    # ALLOWED_HOSTS = ["simple-diet-manager.link"]
+    DEBUG = False
+    ALLOWED_HOSTS = ["simple-diet-manager.link"]
 
 
 # Application definition

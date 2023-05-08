@@ -28,10 +28,13 @@ function UserInputpage(props) {
     return (
         <Wrapper>
             <h1>간단식단ver0.1</h1>
-            <h3 style={{color:"gray"}}>당신에게 맞는 식단을 구성해 보세요</h3>
+            <h2>현재 버전을 업그레이드 하면서 서버가 정상동작 하지 않는 버그가 있습니다</h2>
+            <h2>고치고 있으며 2023년 5월 10일까지 수정 할 예정입니다.</h2>
+            <h2>들어와주신 분들께는 정말 죄송합니다.</h2>
+            {/* <h3 style={{color:"gray"}}>당신에게 맞는 식단을 구성해 보세요</h3>
             <Container>
                 <UserInputCard />
-            </Container>
+            </Container> */}
         </Wrapper>
     );
 }

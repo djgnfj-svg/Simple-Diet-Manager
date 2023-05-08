@@ -63,43 +63,43 @@ function WeekDietOutputPage(props) {
       DietCarbs: state.diets.sat.diet_carbs,
     },
   ];
-  const MealList = [
-    [
-      state.diets.mon.meals.breakfast,
-      state.diets.mon.meals.lunch || null,
-      state.diets.mon.meals.dinner || null,
-    ],
-    [
-      state.diets.tue.meals.breakfast,
-      state.diets.tue.meals.lunch || null,
-      state.diets.tue.meals.dinner || null,
-    ],
-    [
-      state.diets.wed.meals.breakfast,
-      state.diets.wed.meals.lunch || null,
-      state.diets.wed.meals.dinner || null,
-    ],
-    [
-      state.diets.thu.meals.breakfast,
-      state.diets.thu.meals.lunch || null,
-      state.diets.thu.meals.dinner || null,
-    ],
-    [
-      state.diets.fri.meals.breakfast,
-      state.diets.fri.meals.lunch || null,
-      state.diets.fri.meals.dinner || null,
-    ],
-    [
-      state.diets.sat.meals.breakfast,
-      state.diets.sat.meals.lunch || null,
-      state.diets.sat.meals.dinner || null,
-    ],
-  ];
+  // const MealList = [
+  //   [
+  //     state.diets.mon.meals.breakfast,
+  //     state.diets.mon.meals.lunch || null,
+  //     state.diets.mon.meals.dinner || null,
+  //   ],
+  //   [
+  //     state.diets.tue.meals.breakfast,
+  //     state.diets.tue.meals.lunch || null,
+  //     state.diets.tue.meals.dinner || null,
+  //   ],
+  //   [
+  //     state.diets.wed.meals.breakfast,
+  //     state.diets.wed.meals.lunch || null,
+  //     state.diets.wed.meals.dinner || null,
+  //   ],
+  //   [
+  //     state.diets.thu.meals.breakfast,
+  //     state.diets.thu.meals.lunch || null,
+  //     state.diets.thu.meals.dinner || null,
+  //   ],
+  //   [
+  //     state.diets.fri.meals.breakfast,
+  //     state.diets.fri.meals.lunch || null,
+  //     state.diets.fri.meals.dinner || null,
+  //   ],
+  //   [
+  //     state.diets.sat.meals.breakfast,
+  //     state.diets.sat.meals.lunch || null,
+  //     state.diets.sat.meals.dinner || null,
+  //   ],
+  // ];
 
   return (
     <Wrapper>
-      <DietUserBodyInfoCard id={state.id} diet_status={state.diet_status} min_nutrient={state.min_nutrient} max_nutrient={state.max_nutrient} />
-      <DietCardList DietMealdata={DietMealdata} MealList={MealList} />
+      {/* <DietUserBodyInfoCard id={state.id} diet_status={state.diet_status} min_nutrient={state.min_nutrient} max_nutrient={state.max_nutrient} />
+      <DietCardList DietMealdata={DietMealdata} MealList={MealList} /> */}
     </Wrapper>
   );
 }

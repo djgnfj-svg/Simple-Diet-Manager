@@ -90,6 +90,7 @@ function UserInputCard() {
         })
         .catch((err) => {
             alert(err)
+            console.log(err)
         })
 }
 
