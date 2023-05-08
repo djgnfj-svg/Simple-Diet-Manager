@@ -8,12 +8,12 @@ class MealGetter(GetterBase):
     def __init__(self, _model):
         super().__init__(_model)
     
-    def get_data(self, need_nutrient, meal_count):
+    def get_data(self, need_nutrient):
         min_nutrient, max_nutrient = make_min_max_nutrient(need_nutrient["need_kcal"])
-        meal = self.find_instance(self.model, "meal_", min_nutrient, max_nutrient, meal_count)
+        meal = self.find_instance(self.model, "meal_", min_nutrient, max_nutrient)
 
         if meal.exists():
             return meal[0]
         else :
             make_manager = MealMaker(self.model)
-            return make_manager(need_nutrient, meal_count)
+            return make_manager.make_instance(min_nutrient, max_nutrient)

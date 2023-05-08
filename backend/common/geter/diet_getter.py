@@ -1,11 +1,13 @@
+from common.maker.diet_maker import DietMaker
 from common.geter.base_getter import GetterBase
 from core.nutrient import NutrientCalculator as nc
 from diets.models import Diet
 
 
 class DietGetter(GetterBase):
-    def __init__(self, model):
+    def __init__(self, model, meal_count):
         super().__init__(model)
+        self.maker = DietMaker(model, meal_count)
 
     #TODO : 추후 옵션으로 월 화 수 각자 다르게 할 수 있도록
     def get_data(self, metabolic_data, min_range, max_range, meal_count):
@@ -15,7 +17,7 @@ class DietGetter(GetterBase):
         if diet.count() > 0:
             return diet[0]
         else :
-            return self.make_instance(metabolic_data, min_range, max_range, meal_count)
+            return self.maker.make_instance(metabolic_data, min_range, max_range, meal_count)
 
     # TODO : 이것도 부모 클래스로 올려서 * 6 하는 느낌으로 해도 되겠다.
     @staticmethod

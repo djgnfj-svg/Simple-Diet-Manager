@@ -18,7 +18,8 @@ class WeekDietGetter(GetterBase):
         if week_diet.count() > 0:
             return week_diet[0] 
         else :
-            return WeekDietMaker.make_instance(meal_count, metabolic, min_range, max_range, userbody)
+            week_maker = WeekDietMaker(WeekDiet)
+            return week_maker.make_instance(meal_count, metabolic, min_range, max_range, userbody)
 
     def _cal_week_nutirient(self, metabolic_data, min_range, max_range):
         min_week_nutrient = {}

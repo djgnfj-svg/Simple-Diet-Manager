@@ -1,4 +1,4 @@
-from gettext import translation
+from django.db import transaction
 
 from common.geter.meal_getter import MealGetter
 from common.maker.base_maker import MakerBase
@@ -21,7 +21,7 @@ class DietMaker(MakerBase):
             self.__meals = ["breakfast", "lunch", "dinner"]
             self.__meals_nutrient = THREE_MEAL_NUTRIENT
 
-    @translation.atomic
+    @transaction.atomic
     def make_instance(self, metabolic_data, min_range, max_range, meal_count, bulk=False):
         diet_data = init_nutrient()
         meal_list = []
@@ -34,7 +34,7 @@ class DietMaker(MakerBase):
             need_nutrient["need_carbs"] = metabolic_data["metabolism_carbs"] * nutrient_range
             
             meal_getter = MealGetter(Meal)
-            _meal = meal_getter.get_data(need_nutrient, min_range, max_range, meal_count)
+            _meal = meal_getter.get_data(need_nutrient)
             add_nutrient(diet_data, _meal, nutrient_prefix="meal_")
             meal_list.append(_meal)
 

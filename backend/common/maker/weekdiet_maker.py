@@ -1,4 +1,5 @@
 from django.db import transaction
+from diets.models import Diet
 from common.geter.diet_getter import DietGetter
 
 from common.maker.base_maker import MakerBase
@@ -16,7 +17,7 @@ class WeekDietMaker(MakerBase):
         
         # 월화수 를만들어서 목금토로 복사하기 때문에  주간식단 6일치가 나온다.
         for i in range(0,3):
-            diet_manger = DietGetter(meal_count)
+            diet_manger = DietGetter(Diet, meal_count)
             _diet = diet_manger.get_data(metabolic, min_range, max_range, meal_count)
             # 2번 더하는게 맞다
             add_nutrient(week_nutrient_data, _diet, nutrient_prefix="diet_")
