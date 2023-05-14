@@ -6,6 +6,7 @@ import DietDetailPage from './component/page/DietDetailPage';
 import FoodListPage from './component/page/FoodListPage';
 import Navbar from './component/ui/Navbar';
 import Footer from './component/ui/Footer';
+import LoginPage from './component/page/LoginPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/diets" element={<WeekDietOutputPage/>} />
         <Route path="/diets/:id" element={<DietDetailPage/>} />
         <Route path="/food-list" element={<FoodListPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
