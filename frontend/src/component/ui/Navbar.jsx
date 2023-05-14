@@ -1,5 +1,3 @@
-
-
 // navbnrar component
 import React from 'react';
 import styled from 'styled-components';
@@ -25,18 +23,46 @@ const Logo = styled.a`
     }
 `;
 
+const MenuItem = styled.a`
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+`;
+
+const LoginButton = styled.button`
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+`;
+
 
 function Navbar() {
-  return (
-    <Nav>
-      <Logo>
-        <a href='/'>
-        <img  src={`${process.env.PUBLIC_URL}/simple_diet.ico`} alt="Disney+" />
-        </a>
-      </Logo>
-    </Nav>
-  );
+    return (
+        <Nav>
+            <Logo>
+                <a href='/'>
+                    <img src={`${process.env.PUBLIC_URL}/simple_diet.ico`} alt="Disney+" />
+                </a>
+            </Logo>
+            <MenuItem href="/food-list">식품 리스트</MenuItem>
+            <LoginButton>Login</LoginButton>
+        </Nav>
+    );
 }
-
 
 export default Navbar;
