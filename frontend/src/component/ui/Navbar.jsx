@@ -48,6 +48,11 @@ const LoginButton = styled.button`
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
     }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
 `;
 
 
@@ -60,7 +65,7 @@ function Navbar() {
                 </a>
             </Logo>
             <MenuItem href="/food-list">식품 리스트</MenuItem>
-            <LoginButton>Login</LoginButton>
+            <LoginButton><a href='/login'>Login</a></LoginButton>
         </Nav>
     );
 }

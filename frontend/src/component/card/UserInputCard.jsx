@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import UserBodyInfoCard from "./UserBodyInfoCard";
 import UserActivityInfoCard from "./UserActivityInfoCard";
 import DietCustomInfoCard from "./DietCustomInfoCard";
+import FoodCategoryCard from "./FoodCategoryCard";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -30,7 +31,18 @@ function UserInputCard() {
     //옵션값
     const [mealCount, setMealCount] = React.useState("");
     const [dietstatus, setDietStatus] = React.useState("");
+    const [foodCategory, setFoodCategory] = React.useState([]);
 
+    const handleFoodCategorySubmit = (e) => {
+        e.preventDefault();
+        const checkedCategories = Object.values(e.target).filter(
+          (target) => target.type === "checkbox" && target.checked
+        );
+        const selectedValues = checkedCategories.map((checkbox) => checkbox.value);
+        console.log(selectedValues);
+        setFoodCategory(selectedValues);
+        setCurrentIndex(currentIndex + 1);
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -81,7 +93,8 @@ function UserInputCard() {
             general_activity: generalActivity,
             excise_activity: exciseActivity,
             meal_count: mealCount,
-            diet_status : dietstatus
+            diet_status : dietstatus,
+            food_category: foodCategory
         }
         axios.post(process.env.REACT_APP_API + "/api/week-diets/", data)
             .then((res) => {
@@ -121,12 +134,22 @@ return (
                     setGeneralActivity={setGeneralActivity}
                 />
                 :
-                <DietCustomInfoCard
+                    currentIndex === 2
+                    ?
+                    <FoodCategoryCard 
+                        handleSubmit={handleFoodCategorySubmit}
+                    />
+                    :
+                    currentIndex === 3
+                    ?
+                    <DietCustomInfoCard
                     handleSubmit={handleDietSubmit}
                     handleBackSubmit={handleBackSubmit}
                     setMealCount={setMealCount}
                     setDietStatus={setDietStatus}
-                />
+                    />
+                    :
+                    <h1>에러</h1>
         }
     </Wrapper>
 );

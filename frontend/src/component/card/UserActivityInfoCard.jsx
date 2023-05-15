@@ -25,6 +25,7 @@ const StyleRadioWrapper = styled.div`
     padding: 20px 15px;
     box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
 `;
+
 const ButtonWrapper = styled.div`
     width: 100%;
     display: flex;

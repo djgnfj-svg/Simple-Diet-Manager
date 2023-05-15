@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 
 const Card = styled.div`
     padding: 8px;
-    
 `;
 
 const ButtonWrapper = styled.div`
@@ -38,6 +37,7 @@ const StyleRadioWrapper = styled.div`
     padding: 20px 15px;
     box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
 `;
+
 function UserBodyInfoCard(props) {
     const { handleSubmit, setAge, setHeight, setWeight, setGender } = props;
 
