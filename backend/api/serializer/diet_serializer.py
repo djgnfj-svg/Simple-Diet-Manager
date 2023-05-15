@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
+from foods.models import FoodCategory
 from common.geter.diet_getter import DietGetter
 from common.geter.weekdiet_getter import WeekDietGetter
 from core.metabolic_manager import MetabolicManager
@@ -67,8 +68,13 @@ class WeekDietMakeSerializer(serializers.Serializer):
     excise_activity = serializers.FloatField(min_value=0, max_value=0.3)
     meal_count = serializers.IntegerField(min_value=1, max_value=3)
     diet_status = serializers.IntegerField(min_value=0, max_value=2)
+    food_categories = serializers.PrimaryKeyRelatedField(many=True, queryset=FoodCategory.objects.all())
 
+    
     def create(self, validated_data):
+        '''
+        '''
+
         userbodyinfo = UserBodyInfo.objects.create(
             age=validated_data['age'],
             weight=validated_data['weight'],

@@ -11,18 +11,18 @@ class MealManager(models.Manager):
         if meal == None or len(meal.foods.all()) != len(foods):
             meal.foods.clear()
             meal.foods.set(foods)
-            meal.meal_kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
-            meal.meal_protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
-            meal.meal_fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
-            meal.meal_carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
-            meal.meal_img=meal.foods.order_by("-protein").first().img
+            meal.kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
+            meal.protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
+            meal.fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
+            meal.carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
+            meal.image=meal.foods.order_by("-protein").first().image
             meal.name=f'{meal.foods.order_by("-protein").first().name} 외 {meal.foods.count() -1}개'
             meal.save()
             return meal
         else :
             raise ValueError("이미 존재하는 식사입니다.")
 
-    def meal_create(self, foods, meal_count, **kwargs: Any) -> Any:
+    def meal_create(self, foods, **kwargs: Any) -> Any:
         meal = self.filter(foods__in=foods).first()
         if meal != None and len(meal.foods.all()) == len(foods):
             return meal
@@ -30,27 +30,27 @@ class MealManager(models.Manager):
             meal = super().create(**kwargs)
 
             meal.foods.set(foods)
-            meal.meal_count = meal_count
-            meal.meal_kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
-            meal.meal_protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
-            meal.meal_fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
-            meal.meal_carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
-            meal.meal_img=meal.foods.order_by("-protein").first().img
+            meal.kcal=meal.foods.aggregate(models.Sum("kcal")).get("kcal__sum")
+            meal.protein=meal.foods.aggregate(models.Sum("protein")).get("protein__sum")
+            meal.fat=meal.foods.aggregate(models.Sum("fat")).get("fat__sum")
+            meal.carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
+            meal.image=meal.foods.order_by("-protein").first().image
             meal.name=f'{meal.foods.order_by("-protein").first().name} 외 {meal.foods.count() -1}개'
         return meal
 
 
 class Meal(TimeStampedModel):
+    foods = models.ManyToManyField(Food, related_name="meals")
+
     name = models.CharField(max_length=50, null=True, blank=True)
 
-    foods = models.ManyToManyField(Food, related_name="meals")
-    meal_kcal = models.IntegerField(null=False, default=0)
-    meal_protein = models.IntegerField(null=False, default=0)
-    meal_fat = models.IntegerField(null=False, default=0)
-    meal_carbs = models.IntegerField(null=False, default=0)
-    meal_video = models.URLField(max_length=100, null=True, blank=True)
-    meal_img = models.ImageField(upload_to='meal/%Y/%m/%d/', null=True, blank=True)
-    meal_count = models.IntegerField(null=False, default=3)
+    kcal = models.IntegerField(null=False, default=0)
+    protein = models.IntegerField(null=False, default=0)
+    fat = models.IntegerField(null=False, default=0)
+    carbs = models.IntegerField(null=False, default=0)
+
+    image = models.ImageField(upload_to='meal/%Y/%m/%d/', null=True, blank=True)
+
     objects = MealManager()
 
     class meta:

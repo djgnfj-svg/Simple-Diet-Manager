@@ -1,12 +1,6 @@
 from rest_framework import serializers
 
-from foods.models import CookingOption, Food, FoodCategory
-
-
-class CookingOptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CookingOption
-        fields = "__all__"
+from foods.models import Food, FoodCategory
 
 class FoodCategorySerializer(serializers.ModelSerializer):
     class Meta:

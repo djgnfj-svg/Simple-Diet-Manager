@@ -14,8 +14,7 @@ from rest_framework.test import APITestCase
 from meals.models import Meal
 
 class MealAPITest(APITestCase):
-    fixtures = ['_Master_data/Food-Category.json',
-                '_Master_data/Cooking-Category.json', '_Master_data/Foods.json']
+    fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']
 
     def setUp(self):
         self.url = "/api/meals/"

@@ -21,7 +21,7 @@ const FooterText = styled.p`
 function Footer() {
     return (
         <FooterWrapper>
-            <FooterText>연락 : djgnfj8923@naver.com</FooterText>
+            <FooterText>연락 : djgnfj@gmail.com</FooterText>
         </FooterWrapper>
     );
 }

@@ -1,18 +1,11 @@
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from api.serializer.food_serializer import (CookingOptionSerializer,
-                                            FoodCategorySerializer,
-                                            FoodSerializer)
+from api.serializer.food_serializer import FoodCategorySerializer, FoodSerializer
 from common.geter.meal_getter import MealGetter
 from common.maker.meal_maker import MealMaker
-from foods.models import CookingOption, Food, FoodCategory
+from foods.models import Food, FoodCategory
 from meals.models import Meal
-
-
-class CookingOptionViewset(viewsets.ModelViewSet):
-    serializer_class = CookingOptionSerializer
-    queryset = CookingOption.objects.order_by("-id")
 
 
 class FoodCategoryViewset(viewsets.ModelViewSet):

@@ -10,8 +10,7 @@
             "number": 10,
             "gram": 100,
             "category": 1,
-            "cookingoption": 3,
-            "img": "/master_img/chicken-breast.jpg",
+            "image": "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/6081081115?itemId=11273250763",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -28,8 +27,7 @@
             "number": 10,
             "gram": 100,
             "category": 1,
-            "cookingoption": 3,
-            "img": "/master_img/chicken-breast.jpg",
+            "image": "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/1519330646?itemId=5810607566",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -46,8 +44,7 @@
             "number": 8,
             "gram": 150,
             "category": 1,
-            "cookingoption": 3,
-            "img" : "/master_img/chicken-breast.jpg",
+            "image" : "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/4656203901?itemId=5810700340",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -64,8 +61,7 @@
             "number": 10,
             "gram": 150,
             "category": 5,
-            "cookingoption": 3,
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/1391921882?itemId=2427315006",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -82,8 +78,7 @@
             "number": 10,
             "gram": 100,
             "category": 1,
-            "cookingoption": 3,
-            "img" : "/master_img/chicken-breast.jpg",
+            "image" : "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/2171896373",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -100,8 +95,7 @@
             "number": 10,
             "gram": 100,
             "category": 1,
-            "cookingoption": 3,
-            "img" : "/master_img/chicken-breast.jpg",
+            "image" : "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/4926123653",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -118,8 +112,7 @@
             "number": 5,
             "gram": 70,
             "category": 1,
-            "cookingoption": 3,
-            "img" : "/master_img/chicken-breast.jpg",
+            "image" : "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/1915681699",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -136,8 +129,7 @@
             "number": 6,
             "gram": 300,
             "category": 5,
-            "cookingoption": 3,
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/1915681699",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -154,8 +146,7 @@
             "number": 6,
             "gram": 300,
             "category": 5,
-            "cookingoption": 3,
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/1310396687",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -172,8 +163,7 @@
             "number": 4,
             "gram": 210,
             "category": 5,
-            "cookingoption": 3,
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/343228726",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -190,8 +180,7 @@
             "number": 10,
             "gram": 100,
             "category": 5,
-            "cookingoption": 3,
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/6382513128",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -208,8 +197,7 @@
             "number": 8,
             "gram": 90,
             "category": 1,
-            "cookingoption": 3,
-            "img" : "/master_img/chicken-breast.jpg",
+            "image" : "/master_image/chicken-breast.jpg",
             "link": "https://www.coupang.com/vp/products/242350474",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -226,8 +214,7 @@
             "number": 20,
             "gram": 50,
             "category": 8,
-            "cookingoption": 1,
-            "img" : "/master_img/milk.jpg",
+            "image" : "/master_image/milk.jpg",
             "link": "https://www.coupang.com/vp/products/4971916592",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -244,8 +231,7 @@
             "number": 12,
             "gram": 85,
             "category": 9,
-            "cookingoption": 1,
-            "img" : "/master_img/fish.jpg",
+            "image" : "/master_image/fish.jpg",
             "link": "https://www.coupang.com/vp/products/1145100301",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -262,8 +248,7 @@
             "number": 12,
             "gram": 85,
             "category": 9,
-            "cookingoption": 1,
-            "img" : "/master_img/fish.jpg",
+            "image" : "/master_image/fish.jpg",
             "link": "https://www.coupang.com/vp/products/2042132",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -280,8 +265,7 @@
             "number": 8,
             "gram": 77,
             "category": 6,
-            "cookingoption": 1,
-            "img" : "/master_img/noodle.jpg",
+            "image" : "/master_image/noodle.jpg",
             "link": "https://www.coupang.com/vp/products/1568884328",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -298,8 +282,7 @@
             "number": 3,
             "gram": 100,
             "category": 8,
-            "cookingoption": 1,
-            "img" : "/master_img/milk.jpg",
+            "image" : "/master_image/milk.jpg",
             "link": "https://www.coupang.com/vp/products/5463245022",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -316,8 +299,7 @@
             "number": 10,
             "gram": 20,
             "category": 8,
-            "cookingoption": 1,
-            "img" : "/master_img/milk.jpg",
+            "image" : "/master_image/milk.jpg",
             "link": "https://www.coupang.com/vp/products/1395521967",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -334,8 +316,7 @@
             "number": 10,
             "gram": 20,
             "category": 7,
-            "cookingoption": 1,
-            "img" : "/master_img/salad.jpg",
+            "image" : "/master_image/salad.jpg",
             "link": "https://www.coupang.com/vp/products/4697181000",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -352,8 +333,7 @@
             "number": 1,
             "gram": 100,
             "category": 7,
-            "cookingoption": 1,
-            "img" : "/master_img/salad.jpg",
+            "image" : "/master_image/salad.jpg",
             "link": "https://www.coupang.com/vp/products/1173326805",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
@@ -370,8 +350,7 @@
             "number": 10,
             "gram": 210,
             "category": 5,
-            "cookingoption": 3,
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/2792667",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"

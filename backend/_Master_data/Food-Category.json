@@ -3,7 +3,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "닭고기",
-            "img" : "/master_img/chicken-breast.jpg",
+            "image" : "/master_image/chicken-breast.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -12,7 +12,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "소고기",
-            "img" : "/master_img/beef.jpg",
+            "image" : "/master_image/beef.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -21,7 +21,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "돼지고기",
-            "img" : "/master_img/pork-belly.jpg",
+            "image" : "/master_image/pork-belly.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -30,7 +30,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "빵",
-            "img" : "/master_img/bread.jpg",
+            "image" : "/master_image/bread.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -39,7 +39,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "밥류",
-            "img" : "/master_img/bob.jpg",
+            "image" : "/master_image/bob.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -48,7 +48,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "면류",
-            "img" : "/master_img/noodle.jpg",
+            "image" : "/master_image/noodle.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -57,7 +57,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "채소",
-            "img" : "/master_img/salad.jpg",
+            "image" : "/master_image/salad.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -66,7 +66,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "유제품",
-            "img" : "/master_img/milk.jpg",
+            "image" : "/master_image/milk.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -75,7 +75,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "수산물",
-            "img" : "/master_img/fish.jpg",
+            "image" : "/master_image/fish.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -84,7 +84,7 @@
         "model": "foods.FoodCategory",
         "fields": {
             "name": "기타",
-            "img" : "/master_img/other.jpg",
+            "image" : "/master_image/other.jpg",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }

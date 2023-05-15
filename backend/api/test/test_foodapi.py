@@ -12,8 +12,7 @@
 from rest_framework.test import APITestCase
 
 class FoodAPITest(APITestCase):
-    fixtures = ['_Master_data/Food-Category.json',
-                '_Master_data/Cooking-Category.json', '_Master_data/Foods.json']
+    fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']
     
     def setUp(self):
         self.url = "/api/foods/"
@@ -26,7 +25,6 @@ class FoodAPITest(APITestCase):
             "number": 10,
             "gram": 100,
             "category": 1,
-            "cookingoption": 3,
             "link": "https://www.coupang.com/vp/products/6081081115?itemId=11273250763",
         }
         pass
