@@ -6,11 +6,11 @@ class MetabolicManager:
     def __init__(self):
         self.data = {}
 
-    def get_data(self, data):
-        self.data["metabolism_kcal"] = MetabolicCarculater.calculate_kcal(data)
-        self.data["metabolism_protein"] = MetabolicCarculater.calculate_protein(data, PROTEIN_RANGE)
-        self.data["metabolism_fat"] = MetabolicCarculater.calculate_fat(self.data["metabolism_kcal"], FAT_RANGE)
-        self.data["metabolism_carbs"] = MetabolicCarculater.calculate_carbs(self.data["metabolism_kcal"], self.data["metabolism_protein"], self.data["metabolism_fat"])
+    def make_metabolic_data(self, data):
+        self.data["kcal"] = MetabolicCarculater.calculate_kcal(data)
+        self.data["protein"] = MetabolicCarculater.calculate_protein(data, PROTEIN_RANGE)
+        self.data["fat"] = MetabolicCarculater.calculate_fat(self.data["kcal"], FAT_RANGE)
+        self.data["carbs"] = MetabolicCarculater.calculate_carbs(self.data["kcal"], self.data["protein"], self.data["fat"])
 
         return self.data
     

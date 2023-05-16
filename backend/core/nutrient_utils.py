@@ -23,7 +23,18 @@ def subtract_nutrietn(_object, nutrient, object_prefix='', nutrient_prefix=''):
     _object[object_prefix+"fat"] -= getattr(nutrient, f"{nutrient_prefix}fat")
     _object[object_prefix+"carbs"] -= getattr(nutrient, f"{nutrient_prefix}carbs")
 
+def get_min_max_range(diet_status):
+    '''
+    0 : 감량
+    1 : 유지
+    2 : 증량 TODO : 미구현
+    '''
 
+    if diet_status == 0:
+        return 0.8, 0.9
+    elif diet_status == 1:
+        return 0.9, 1.0
+        
 def make_min_max_nutrient(kcal):
     min_nutrient = init_nutrient()
     max_nutrient = init_nutrient()

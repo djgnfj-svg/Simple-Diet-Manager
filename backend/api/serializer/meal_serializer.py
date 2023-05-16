@@ -13,7 +13,6 @@ class MealSerializer(serializers.ModelSerializer):
     meal_fat = serializers.IntegerField(read_only=True, default=0)
     meal_carbs = serializers.IntegerField(read_only=True, default=0)
     
-    meal_count = serializers.IntegerField(required=True, min_value=2, max_value=3)
     class Meta:
         model = Meal
         exclude = ('created_at', 'updated_at')

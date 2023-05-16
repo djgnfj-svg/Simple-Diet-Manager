@@ -10,7 +10,7 @@ class MealGetter(GetterBase):
     
     def get_data(self, need_nutrient):
         min_nutrient, max_nutrient = make_min_max_nutrient(need_nutrient["need_kcal"])
-        meal = self.find_instance(self.model, "meal_", min_nutrient, max_nutrient)
+        meal = self.find_instance(self.model, min_nutrient, max_nutrient)
 
         if meal.exists():
             return meal[0]

@@ -13,7 +13,7 @@ class DietGetter(GetterBase):
     def get_data(self, metabolic_data, min_range, max_range, meal_count):
         min_nutrient, max_nutrient =  self._cal_nutirient(metabolic_data, min_range, max_range)
         
-        diet = self.find_instance(Diet, "diet_", min_nutrient, max_nutrient, meal_count)
+        diet = self.find_instance(Diet, min_nutrient, max_nutrient, meal_count)
         if diet.count() > 0:
             return diet[0]
         else :
@@ -23,15 +23,15 @@ class DietGetter(GetterBase):
     @staticmethod
     def _cal_nutirient(metabolic_data, min_range, max_range):
         min_nutrient = {}
-        min_nutrient["kcal"] = nc.cal_range(metabolic_data["metabolism_kcal"], min_range)
-        min_nutrient["carbs"] = nc.cal_range(metabolic_data["metabolism_carbs"], min_range)
-        min_nutrient["protein"] = nc.cal_range(metabolic_data["metabolism_protein"], min_range)
-        min_nutrient["fat"] = nc.cal_range(metabolic_data["metabolism_fat"], min_range)
+        min_nutrient["kcal"] = nc.cal_range(metabolic_data["kcal"], min_range)
+        min_nutrient["carbs"] = nc.cal_range(metabolic_data["carbs"], min_range)
+        min_nutrient["protein"] = nc.cal_range(metabolic_data["protein"], min_range)
+        min_nutrient["fat"] = nc.cal_range(metabolic_data["fat"], min_range)
 
         max_nutrient = {}
-        max_nutrient["kcal"] = nc.cal_range(metabolic_data["metabolism_kcal"], max_range)
-        max_nutrient["carbs"] = nc.cal_range(metabolic_data["metabolism_carbs"], max_range)
-        max_nutrient["protein"] = nc.cal_range(metabolic_data["metabolism_protein"], max_range)
-        max_nutrient["fat"] = nc.cal_range(metabolic_data["metabolism_fat"], max_range)
+        max_nutrient["kcal"] = nc.cal_range(metabolic_data["kcal"], max_range)
+        max_nutrient["carbs"] = nc.cal_range(metabolic_data["carbs"], max_range)
+        max_nutrient["protein"] = nc.cal_range(metabolic_data["protein"], max_range)
+        max_nutrient["fat"] = nc.cal_range(metabolic_data["fat"], max_range)
 
         return min_nutrient, max_nutrient

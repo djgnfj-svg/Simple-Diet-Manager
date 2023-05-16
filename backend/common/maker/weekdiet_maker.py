@@ -20,8 +20,8 @@ class WeekDietMaker(MakerBase):
             diet_manger = DietGetter(Diet, meal_count)
             _diet = diet_manger.get_data(metabolic, min_range, max_range, meal_count)
             # 2번 더하는게 맞다
-            add_nutrient(week_nutrient_data, _diet, nutrient_prefix="diet_")
-            add_nutrient(week_nutrient_data, _diet, nutrient_prefix="diet_")
+            add_nutrient(week_nutrient_data, _diet)
+            add_nutrient(week_nutrient_data, _diet)
             diet_list.append(_diet)
         diet_list = diet_list * 2
 
@@ -30,10 +30,10 @@ class WeekDietMaker(MakerBase):
             return self.model.objects.filter(diets__in=diet_list, meal_count=meal_count).first()
 
         week_diet = self.model.objects.create(
-            week_kcal=week_nutrient_data["kcal"],
-            week_protein=week_nutrient_data["protein"],
-            week_fat=week_nutrient_data["fat"],
-            week_carbs=week_nutrient_data["carbs"],
+            kcal=week_nutrient_data["kcal"],
+            protein=week_nutrient_data["protein"],
+            fat=week_nutrient_data["fat"],
+            carbs=week_nutrient_data["carbs"],
             meal_count = meal_count,
             bodyinfo=userbody,
         )

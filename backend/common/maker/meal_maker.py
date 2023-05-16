@@ -58,10 +58,10 @@ class MealMaker(MakerBase):
             meal = self.model.objects.filter(foods__in=food_list).first()
         else:
             meal = Meal.objects.create(
-                meal_kcal=cn["current_kcal"],
-                meal_protein=cn["current_protein"],
-                meal_fat=cn["current_fat"],
-                meal_carbs=cn["current_carbs"],
+                kcal=cn["current_kcal"],
+                protein=cn["current_protein"],
+                fat=cn["current_fat"],
+                carbs=cn["current_carbs"],
             )
             meal.foods.set(food_list)
             meal.save()

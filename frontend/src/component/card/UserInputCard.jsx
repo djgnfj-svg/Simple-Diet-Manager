@@ -94,7 +94,7 @@ function UserInputCard() {
             excise_activity: exciseActivity,
             meal_count: mealCount,
             diet_status : dietstatus,
-            food_category: foodCategory
+            categories: foodCategory
         }
         axios.post(process.env.REACT_APP_API + "/api/week-diets/", data)
             .then((res) => {

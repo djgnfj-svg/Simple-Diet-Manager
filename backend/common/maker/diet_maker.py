@@ -28,14 +28,14 @@ class DietMaker(MakerBase):
         
         for _, nutrient_range in zip(self.__meals, self.__meals_nutrient):
             need_nutrient = {}
-            need_nutrient["need_kcal"] = metabolic_data["metabolism_kcal"] * nutrient_range
-            need_nutrient["need_protein"] = metabolic_data["metabolism_protein"] * nutrient_range
-            need_nutrient["need_fat"] = metabolic_data["metabolism_fat"] * nutrient_range
-            need_nutrient["need_carbs"] = metabolic_data["metabolism_carbs"] * nutrient_range
+            need_nutrient["need_kcal"] = metabolic_data["kcal"] * nutrient_range
+            need_nutrient["need_protein"] = metabolic_data["protein"] * nutrient_range
+            need_nutrient["need_fat"] = metabolic_data["fat"] * nutrient_range
+            need_nutrient["need_carbs"] = metabolic_data["carbs"] * nutrient_range
             
             meal_getter = MealGetter(Meal)
             _meal = meal_getter.get_data(need_nutrient)
-            add_nutrient(diet_data, _meal, nutrient_prefix="meal_")
+            add_nutrient(diet_data, _meal)
             meal_list.append(_meal)
 
         if bulk:
@@ -46,10 +46,10 @@ class DietMaker(MakerBase):
             diet = self.model.objects.filter(meals__in=meal_list, meal_count=meal_count).first()
         else :
             diet = self.model.objects.create(
-                diet_kcal=diet_data["kcal"],
-                diet_protein=diet_data["protein"],
-                diet_fat=diet_data["fat"],
-                diet_carbs=diet_data["carbs"],
+                kcal=diet_data["kcal"],
+                protein=diet_data["protein"],
+                fat=diet_data["fat"],
+                carbs=diet_data["carbs"],
                 meal_count=meal_count
             )
             diet.meals.set(meal_list)
