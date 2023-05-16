@@ -54,8 +54,8 @@ class MealMaker(MakerBase):
         if bulk_create:
             return cn
 
-        if self.model.objects.filter(foods__in=food_list).exists():
-            meal = self.model.objects.filter(foods__in=food_list).first()
+        # if self.model.objects.filter(foods__in=food_list).exists():
+        #     meal = self.model.objects.filter(foods__in=food_list).first()
         else:
             meal = Meal.objects.create(
                 kcal=cn["current_kcal"],

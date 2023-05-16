@@ -2,9 +2,8 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
-from core.nutrient_utils import get_min_max_range
+from core.nutrient_utils import get_min_max_range, cal_nutrient_range
 from foods.models import FoodCategory
-from common.geter.diet_getter import DietGetter
 from common.geter.weekdiet_getter import WeekDietGetter
 from core.metabolic_manager import MetabolicManager
 from diets.models import Diet, WeekDiet
@@ -69,8 +68,9 @@ class WeekDietMakeSerializer(serializers.Serializer):
     diet_status = serializers.IntegerField(min_value=0, max_value=2)
     categories = serializers.PrimaryKeyRelatedField(many=True, queryset=FoodCategory.objects.all())
 
-    
+    # 보여줄 데이터 생성
     def create(self, validated_data):
+        #유저 데이터 생성
         userbodyinfo = UserBodyInfo.objects.create(
             age=validated_data['age'],
             weight=validated_data['weight'],
@@ -79,18 +79,24 @@ class WeekDietMakeSerializer(serializers.Serializer):
             general=validated_data['general_activity'],
             activity=validated_data['excise_activity'],
         )
-
+        #대사량 데이터 생성
         metabolic_manager = MetabolicManager()
         metabolic = metabolic_manager.make_metabolic_data(validated_data)
         min_range, max_range = get_min_max_range(validated_data['diet_status'])
 
 
+        #주간 식단 데이터 생성
         week_diet_manager = WeekDietGetter()
-        week_diet = week_diet_manager.get_data(validated_data["meal_count"], userbodyinfo, metabolic, min_range, max_range)
+        min_nutrient = cal_nutrient_range(metabolic, min_range)
+        max_nutrient = cal_nutrient_range(metabolic, max_range)
+        categories = FoodCategory.objects.filter(id__in=validated_data["categories"])
+        week_diet = week_diet_manager.get_data(
+            validated_data["meal_count"], userbodyinfo, min_nutrient, max_nutrient, categories
+            )
 
-
+        #출력에 필요한 데이터 생성
         rtn = WeekDietSerializer(week_diet).data
         rtn["diet_status"] = validated_data["diet_status"]
-        rtn["min_nutrient"], rtn["max_nutrient"] = DietGetter._cal_nutirient(
-            metabolic, min_range, max_range)
+        rtn["min_nutrient"] = min_nutrient
+        rtn["max_nutrient"] = max_nutrient
         return rtn

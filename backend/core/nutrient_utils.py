@@ -1,5 +1,7 @@
 from config.meal_nutrient_ratio import CARBS_RATIO, FAT_RATIO, PROTEIN_RATIO
 
+def cal_range(value, range):
+    return round(value * range)
 
 def init_nutrient(prefix: str = ''):
     obj = {}
@@ -9,25 +11,25 @@ def init_nutrient(prefix: str = ''):
     obj[prefix + "carbs"] = 0
     return obj
 
-
 def add_nutrient(_object, nutrient, object_prefix='', nutrient_prefix=''):
     _object[object_prefix+"kcal"] += getattr(nutrient, f"{nutrient_prefix}kcal")
     _object[object_prefix+"protein"] += getattr(nutrient, f"{nutrient_prefix}protein")
     _object[object_prefix+"fat"] += getattr(nutrient, f"{nutrient_prefix}fat")
     _object[object_prefix+"carbs"] += getattr(nutrient, f"{nutrient_prefix}carbs")
 
-
-def subtract_nutrietn(_object, nutrient, object_prefix='', nutrient_prefix=''):
-    _object[object_prefix+"kcal"] -= getattr(nutrient, f"{nutrient_prefix}kcal")
-    _object[object_prefix+"protein"] -= getattr(nutrient, f"{nutrient_prefix}protein")
-    _object[object_prefix+"fat"] -= getattr(nutrient, f"{nutrient_prefix}fat")
-    _object[object_prefix+"carbs"] -= getattr(nutrient, f"{nutrient_prefix}carbs")
+def cal_nutrient_range(metabolic, range):
+    nutrient = {}
+    nutrient["kcal"] = cal_range(metabolic["kcal"], range)
+    nutrient["carbs"] = cal_range(metabolic["carbs"], range)
+    nutrient["protein"] = cal_range(metabolic["protein"], range)
+    nutrient["fat"] = cal_range(metabolic["fat"], range)
+    return nutrient
 
 def get_min_max_range(diet_status):
     '''
-    0 : 감량
-    1 : 유지
-    2 : 증량 TODO : 미구현
+    감량 : 0,
+    유지 : 1,
+    증량 : 2
     '''
 
     if diet_status == 0:
