@@ -88,9 +88,7 @@ function UserBodyInfoCard(props) {
                         <RadioButton id="G" placeholder="여자" name="gender" value="W" onChange={handleGender}/>
                     </StyleRadioWrapper>
                 </Card>
-                <ButtonWrapper>
-                    <Button title="활동정보" />
-                </ButtonWrapper>
+                <Button title="활동정보" />
             </form>
         </Wrapper>
     );

@@ -49,13 +49,13 @@ function MealCard(props) {
                         <test>
                             <h1>{meal_name[meal_name_index]}</h1>
                             <StyleMealCard>
-                                <Styleimg src={process.env.REACT_APP_API + meal.meal_img} />
+                                <Styleimg src={process.env.REACT_APP_API + meal.image} />
                                 <StyleMealInfo>
                                     <div>{meal.name}</div>
-                                    <div>칼로리  : {meal.meal_kcal}kcal</div>
-                                    <div>단백질 : {meal.meal_protein}g</div>
-                                    <div>지방 : {meal.meal_fat}g</div>
-                                    <div>탄수화물 : {meal.meal_carbs}g</div>
+                                    <div>칼로리  : {meal.kcal}kcal</div>
+                                    <div>단백질 : {meal.protein}g</div>
+                                    <div>지방 : {meal.fat}g</div>
+                                    <div>탄수화물 : {meal.carbs}g</div>
                                 </StyleMealInfo>
                             </StyleMealCard>
                         </test>

@@ -64,6 +64,10 @@ function LoginPage() {
         buttonImage = `${process.env.PUBLIC_URL}/btn_google_signin_dark_focus_web.png`;
     }
 
+    // 버튼눌리면 동작
+    const handleLogin = () => {
+        alert("Ver 0.4때 구현할 예정입니다.")
+    }
     return (
         <Login>
             <LoginBox>
@@ -75,6 +79,7 @@ function LoginPage() {
                     onMouseLeave={handleMouseLeave}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
+                    onClick={handleLogin}
                 />
             </LoginBox>
         </Login>

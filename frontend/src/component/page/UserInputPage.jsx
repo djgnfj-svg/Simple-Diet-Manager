@@ -10,12 +10,15 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
+    
+    `;
 
-const Container = styled.div`
+    const Container = styled.div`
     width: 100%;
     max-width: 720px;
     height: 100%;
+    text-align: center;
+    background-color: #ffffff;
 
     & > * {
         :not(:last-child) {
@@ -27,8 +30,9 @@ const Container = styled.div`
 function UserInputpage(props) {
     return (
         <Wrapper>
-            <h3 style={{color:"gray"}}>당신에게 맞는 식단을 구성해 보세요</h3>
             <Container>
+            <h1>간단식단 ver0.3</h1>
+            <h3 style={{color:"gray"}}>당신에게 맞는 식단을 구성해 보세요</h3>
                 <UserInputCard />
             </Container>
         </Wrapper>

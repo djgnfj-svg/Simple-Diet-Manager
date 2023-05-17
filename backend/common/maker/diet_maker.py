@@ -41,21 +41,18 @@ class DietMaker(MakerBase):
         # TODO : 추후 base class로 올려서 1큐로 해결하자
 
         if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).exists() :
-            if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).count() > 1:
-                return self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).first()
-            else :
+            if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).count() > 0:
                 for diet in self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category):
                     if len(diet.meals.all()) == len(meal_list):
                         return diet
-        else :
-            diet = self.model.objects.create(
-                kcal=diet_data["kcal"],
-                protein=diet_data["protein"],
-                fat=diet_data["fat"],
-                carbs=diet_data["carbs"],
-                meal_count = meal_count,
-                category = category
-            )
-            diet.meals.set(meal_list)
-            diet.save()
+        diet = self.model.objects.create(
+            kcal=diet_data["kcal"],
+            protein=diet_data["protein"],
+            fat=diet_data["fat"],
+            carbs=diet_data["carbs"],
+            meal_count = meal_count,
+            category = category
+        )
+        diet.meals.set(meal_list)
+        diet.save()
         return diet

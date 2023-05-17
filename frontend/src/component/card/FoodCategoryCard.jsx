@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from 'react-router';
-import Checkbox from "../ui/checkbox";
+import Checkbox from "../ui/Checkbox";
 import Button from "../ui/Button";
 const ButtonWrapper = styled.div`
     width: 100%;
@@ -63,7 +63,7 @@ function FoodCategoryCard(props) {
                             key={index}
                             name="FoodCategory"
                             placeholder={food.name}
-                            value={food.name}
+                            value={food.id}
                             onChange={(event) => {
                                 const { checked, value } = event.target;
                                 if (checked) {
@@ -77,9 +77,7 @@ function FoodCategoryCard(props) {
                         />
                     ))}
                 </StyleRadioWrapper>
-                <ButtonWrapper>
                     <Button title="마지막!" />
-                </ButtonWrapper>
             </Wrapper>
         </>
     );

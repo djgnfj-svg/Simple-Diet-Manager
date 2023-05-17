@@ -1,73 +1,40 @@
-// navbnrar component
-import React from 'react';
-import styled from 'styled-components';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.css';
 
-const Nav = styled.nav`
-    height: 70px;
-    background: #4BBDDC;
-    display: flex;
-    align-items: center;
-    padding: 0 36px;
-`;
-
-const Logo = styled.a`
-    width: 80px;
-    margin-top: 4px;
-    max-height: 70px;
-    font-size: 0;
-    display: inline-block;
-
-    img {
-        display: block;
-        width: 70%;
-    }
-`;
-
-const MenuItem = styled.a`
-    color: white;
-    font-size: 16px;
-    text-decoration: none;
-    margin-right: 20px;
-    transition: opacity 0.3s ease;
-
-    &:hover {
-        opacity: 0.8;
-    }
-`;
-
-const LoginButton = styled.button`
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: auto;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    a {
-        color: white;
-        text-decoration: none;
-    }
-`;
-
-
-function Navbar() {
-    return (
-        <Nav>
-            <Logo>
-                <a href='/'>
-                    <img src={`${process.env.PUBLIC_URL}/simple_diet.ico`} alt="Disney+" />
-                </a>
-            </Logo>
-            <MenuItem href="/food-list">식품 리스트</MenuItem>
-            <LoginButton><a href='/login'>Login</a></LoginButton>
-        </Nav>
-    );
+function CollapsibleExample() {
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="/">간단식단</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/food-list">식품</Nav.Link>
+            {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+            {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown> */}
+          </Nav>
+          <Nav>
+            <Nav.Link eventKey={2} href="/login">
+              로그인
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default Navbar;
+export default CollapsibleExample;

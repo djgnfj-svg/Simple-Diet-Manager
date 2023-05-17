@@ -15,9 +15,9 @@ class MealMaker(MakerBase):
     @transaction.atomic
     def make_instance(self, min_nutrient, max_nutrient, category, _food: Food = None, bulk_create: bool = False):
         # TODO : 일단 임시 방편...
-        min_nutrient["protein"] *= 0.5
-        min_nutrient["fat"] *= 0.5
-        min_nutrient["carbs"] *= 0.5
+        min_nutrient["protein"] *= 0.3
+        min_nutrient["fat"] *= 0.3
+        min_nutrient["carbs"] *= 0.3
 
         # current_nutrient
         cn = init_nutrient(prefix="current_")
@@ -61,22 +61,21 @@ class MealMaker(MakerBase):
             return cn
 
         if self.model.objects.filter(foods__in=food_list, category=category).exists():
-            if self.model.objects.filter(foods__in=food_list, category=category).count() > 1:
+            if self.model.objects.filter(foods__in=food_list, category=category).count() > 0:
                 for meal in self.model.objects.filter(foods__in=food_list, category=category):
                     if len(meal.foods.all()) == len(food_list):
                         return meal
-            else :
-                meal = self.model.objects.filter(foods__in=food_list, category=category).first()
-        else :
-            meal = Meal.objects.create(
-                kcal=cn["current_kcal"],
-                protein=cn["current_protein"],
-                fat=cn["current_fat"],
-                carbs=cn["current_carbs"],
-                category = category,
-            )
-            meal.foods.set(food_list)
-            meal.save()
+                    
+        meal = Meal.objects.create(
+            kcal=cn["current_kcal"],
+            protein=cn["current_protein"],
+            fat=cn["current_fat"],
+            carbs=cn["current_carbs"],
+            category = category,
+            image = category.image,
+        )
+        meal.foods.set(food_list)
+        meal.save()
         return meal
 
     def meke_meal_range(self, start, stop, step, food: Food = None, bulk_create=False):

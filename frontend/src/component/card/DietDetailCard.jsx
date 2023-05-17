@@ -32,10 +32,10 @@ function DietDetailCard(props) {
                         <div>
                             <h1>{meal_name[index]}</h1>
                             <div>이름 : {meal[1].name}</div>
-                            <div>칼로리 : {meal[1].meal_kcal}kcal</div>
-                            <div>단백질 : {meal[1].meal_protein}g</div>
-                            <div>지방 : {meal[1].meal_fat}g</div>
-                            <div>탄수화물 : {meal[1].meal_carbs}g</div>
+                            <div>칼로리 : {meal[1].kcal}kcal</div>
+                            <div>단백질 : {meal[1].protein}g</div>
+                            <div>지방 : {meal[1].fat}g</div>
+                            <div>탄수화물 : {meal[1].carbs}g</div>
                         <FoodDataList foods={meal[1].foods} />
                         </div>
                     </Wrapper>

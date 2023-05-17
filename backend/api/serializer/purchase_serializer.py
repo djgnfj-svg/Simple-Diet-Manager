@@ -42,6 +42,7 @@ class WeekDietPurchaseSerializer(serializers.Serializer):
     class Meta:
         fields = ("Diet_Purchase_info")
 
+    # TODO : 결제페이지 지금 manytomany가 하나있을때 제대로 계산되지 않는 버그 있음
     def get_Diet_Purchase_info(self, obj) -> list:
         food_list = []
         rtn_list = []

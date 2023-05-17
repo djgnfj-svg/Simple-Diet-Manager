@@ -68,9 +68,7 @@ function UserActivityInfoCard(props) {
                         <RadioButton id="7" placeholder="7+회" name="excise_activity" value={0.3} onChange={onChangeActivitynextSubmit} />
                     </StyleRadioWrapper>
                 </StyleCard>
-                <ButtonWrapper>
                     <Button title="식단정보" />
-                </ButtonWrapper>
             </form>
         </Wrapper>
     );

@@ -2,32 +2,60 @@ import React from "react";
 import styled from "styled-components";
 
 const StyleButton = styled.button`
-    background-color: #2196f3;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+box-sizing: border-box;
+-webkit-appearance: none;
+   -moz-appearance: none;
+        appearance: none;
+background-color: transparent;
+border: 2px solid #e74c3c;
+border-radius: 0.6em;
+color: #e74c3c;
+cursor: pointer;
+display: flex;
+align-self: center;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1;
+margin: 20px;
+padding: 1.2em 2.8em;
+text-decoration: none;
+text-align: center;
+text-transform: uppercase;
+font-family: "Montserrat", sans-serif;
+font-weight: 700;
 
-    &:hover {
-        background-color: #1976d2;
-    }
 
-    &:focus {
-        outline: none;
+&:hover, &:focus {
+    color: #fff;
+    outline: 0;
+    box-shadow: 0 0 40px 40px #e74c3c inset;
+  }
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+
+`;
+
+const Wapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    // 오른쪽 정렬
+    & > * {
+        margin-left: auto;
     }
 `;
 
 
 function Button(props) {
     const { title, onClick, disabled, isLoading } = props;
-    return <StyleButton onClick={onClick}
-     disabled={disabled || isLoading}>
-        {title || "button"}
-        </StyleButton>;
+    return (
+        <Wapper>
+            <StyleButton onClick={onClick} disabled={disabled || isLoading} >
+                {title || "button"}
+            </StyleButton>
+        </Wapper>
+    );
 }
 
 export default Button;

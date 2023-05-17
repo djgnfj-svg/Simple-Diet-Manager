@@ -1,17 +1,21 @@
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-
+from django.utils.decorators import method_decorator
 from api.serializer.food_serializer import FoodCategorySerializer, FoodSerializer
 from common.geter.meal_getter import MealGetter
 from common.maker.meal_maker import MealMaker
 from foods.models import Food, FoodCategory
 from meals.models import Meal
-
+from django.views.decorators.cache import cache_page
 
 class FoodCategoryViewset(viewsets.ModelViewSet):
     serializer_class = FoodCategorySerializer
     queryset = FoodCategory.objects.order_by("-id")
 
+    @method_decorator(cache_page(60))
+    def list(self, request, *args, **kwargs):
+        print("cache")
+        return super().list(request, *args, **kwargs)
 class FoodViewset(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     queryset = Food.objects.order_by("-id")

@@ -35,11 +35,19 @@ function UserInputCard() {
 
     const handleFoodCategorySubmit = (e) => {
         e.preventDefault();
+        if (e.target.length === 3) {
+          alert("3개만 선택 해주세요");
+          return;
+        }
         const checkedCategories = Object.values(e.target).filter(
           (target) => target.type === "checkbox" && target.checked
         );
+        
         const selectedValues = checkedCategories.map((checkbox) => checkbox.value);
-        console.log(selectedValues);
+        if (selectedValues.length !== 3) {
+          alert("3개만 선택 해주세요");
+          return;
+        }
         setFoodCategory(selectedValues);
         setCurrentIndex(currentIndex + 1);
       };

@@ -41,7 +41,7 @@ function FoodDataList(props) {
             {foods.map((food, index) => {
                 return (
                     <Wrapper>
-                        <Styleimg src={process.env.REACT_APP_API + food.img} />
+                        <Styleimg src={process.env.REACT_APP_API + food.image} />
                         <FoodListCard>
                             <FoodDataString>이름 : {food.name}</FoodDataString>
                             <FoodDataString>칼로리 : {food.kcal}kcal</FoodDataString>
