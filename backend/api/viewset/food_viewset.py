@@ -14,8 +14,14 @@ class FoodCategoryViewset(viewsets.ModelViewSet):
 
     @method_decorator(cache_page(60))
     def list(self, request, *args, **kwargs):
-        print("cache")
-        return super().list(request, *args, **kwargs)
+        queryset = FoodCategory.objects.order_by("-id").exclude(name="기타")
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 class FoodViewset(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     queryset = Food.objects.order_by("-id")

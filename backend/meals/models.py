@@ -7,7 +7,7 @@ from foods.models import Food
 
 
 class MealManager(models.Manager):
-    def meal_update(self, foods, **kwargs: Any) -> Any:
+    def meal_update(self, foods, category,  **kwargs: Any) -> Any:
         meal = self.filter(foods__in=foods).first()
         if meal == None or len(meal.foods.all()) != len(foods):
             meal.foods.clear()
@@ -23,11 +23,12 @@ class MealManager(models.Manager):
         else :
             raise ValueError("이미 존재하는 식사입니다.")
 
-    def meal_create(self, foods, **kwargs: Any) -> Any:
+    def meal_create(self, foods, category, **kwargs: Any) -> Any:
         meal = self.filter(foods__in=foods).first()
         if meal != None and len(meal.foods.all()) == len(foods):
             return meal
         else :
+            kwargs["category"] = category
             meal = super().create(**kwargs)
 
             meal.foods.set(foods)
@@ -37,6 +38,7 @@ class MealManager(models.Manager):
             meal.carbs=meal.foods.aggregate(models.Sum("carbs")).get("carbs__sum")
             meal.image=meal.foods.order_by("-protein").first().image
             meal.name=f'{meal.foods.order_by("-protein").first().name} 외 {meal.foods.count() -1}개'
+            meal.category = category
         return meal
 
 

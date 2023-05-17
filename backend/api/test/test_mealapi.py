@@ -10,6 +10,7 @@
 '''
 
 from rest_framework.test import APITestCase
+from foods.models import FoodCategory
 
 from meals.models import Meal
 
@@ -20,11 +21,11 @@ class MealAPITest(APITestCase):
         self.url = "/api/meals/"
         self.data = {
             "foods" : [1,2,3],
-            "meal_count" : 3
+            "category" : 1
         }
         Meal.objects.meal_create(
             foods = [1,2,3],
-            meal_count=3
+            category=FoodCategory.objects.get(id=1)
         )
         pass
     

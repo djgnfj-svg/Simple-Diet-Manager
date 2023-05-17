@@ -30,7 +30,6 @@ class MealMaker(MakerBase):
         #nutrient focus
         nf = 1
         food_focus = 0
-
         category_food = Food.objects.filter(category=category).order_by("-" + self.nutrient[nf]).first()
         food_list.append(category_food)
         add_nutrient(cn, category_food, object_prefix="current_")
