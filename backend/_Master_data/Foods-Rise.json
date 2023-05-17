@@ -1,0 +1,146 @@
+[
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "새우 볶음밥",
+            "brand" : "곰곰",
+            "kcal": 492,
+            "carbs": 86,
+            "protein": 10,
+            "fat": 12,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/185917324",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "닭갈비볶음밥",
+            "brand" : "곰곰",
+            "kcal": 520,
+            "carbs": 91,
+            "protein": 12,
+            "fat": 12,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/1310396687",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "김치볶음밥",
+            "brand" : "곰곰",
+            "kcal": 540,
+            "carbs": 86,
+            "protein": 9,
+            "fat": 18,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/185917305",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "햄야채 볶음밥",
+            "brand" : "곰곰",
+            "kcal": 544,
+            "carbs": 90,
+            "protein": 10,
+            "fat": 16,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/343228726",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "소불고기볶음밥",
+            "brand" : "곰곰",
+            "kcal": 537,
+            "carbs": 91,
+            "protein": 10,
+            "fat": 15,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/1310396645",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "김치치즈 구운주먹밥",
+            "brand" : "한우물",
+            "kcal": 165,
+            "carbs": 31,
+            "protein": 4,
+            "fat": 2.6,
+            "number": 10,
+            "gram": 100,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/6382513128",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "참치마요 구운주먹밥",
+            "brand" : "한우물",
+            "kcal": 190,
+            "carbs": 30,
+            "protein": 7,
+            "fat": 5,
+            "number": 10,
+            "gram": 100,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/6382513683",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "참치마요 구운주먹밥",
+            "brand" : "한우물",
+            "kcal": 180,
+            "carbs": 34,
+            "protein": 5,
+            "fat": 2,
+            "number": 10,
+            "gram": 100,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/6382513683",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    }
+]

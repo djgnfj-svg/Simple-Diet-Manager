@@ -13,7 +13,7 @@ class FoodCategory(TimeStampedModel):
     
 
 class Food(TimeStampedModel):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     brand = models.CharField(max_length=50, null=True, blank=True)
 
 
@@ -24,7 +24,7 @@ class Food(TimeStampedModel):
 
     number = models.IntegerField(null=False, default=0)
     gram = models.IntegerField(null=False, default=0)
-    link = models.URLField(max_length=100, null=True)
+    link = models.URLField(max_length=100, null=True, unique=True)
     image = models.ImageField(upload_to='food-image/%Y/%m/%d/', null=True, blank=True)
 
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, related_name="foods")

@@ -1,0 +1,56 @@
+[
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "신라면 건면 사발 77g",
+            "brand": "농심",
+            "kcal": 285,
+            "carbs": 54,
+            "protein": 7,
+            "fat": 4,
+            "number": 8,
+            "gram": 77,
+            "category": 4,
+            "image" : "/master_image/noodle.jpg",
+            "link": "https://www.coupang.com/vp/products/1568884328",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "컵누들 우동맛 컵라면",
+            "brand": "오뚜기",
+            "kcal": 120,
+            "carbs": 27,
+            "protein": 2,
+            "fat": 1,
+            "number": 6,
+            "gram": 38,
+            "category": 4,
+            "image" : "/master_image/noodle.jpg",
+            "link": "https://www.coupang.com/vp/products/7235298117",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "컵누들 매콤한맛",
+            "brand": "오뚜기",
+            "kcal": 120,
+            "carbs": 29,
+            "protein": 1,
+            "fat": 0,
+            "number": 6,
+            "gram": 38,
+            "category": 4,
+            "image" : "/master_image/noodle.jpg",
+            "link": "https://www.coupang.com/vp/products/5932459264?",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    }
+]

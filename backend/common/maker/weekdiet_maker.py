@@ -26,9 +26,10 @@ class WeekDietMaker(MakerBase):
         diet_list = diet_list * 2
 
         # 추후 쿼리계산해서 1개로 줄이자
-        # if self.model.objects.filter(diets__in=diet_list, meal_count=meal_count).exists():
-        #     return self.model.objects.filter(diets__in=diet_list, meal_count=meal_count).first()
-
+        if self.model.objects.filter(diets__in=diet_list, meal_count=meal_count).exists() and \
+            len(self.model.objects.filter(diets__in=diet_list, meal_count=meal_count).first().diets.all()) == len(diet_list):
+            return self.model.objects.filter(diets__in=diet_list, meal_count=meal_count).first()
+        
         week_diet = self.model.objects.create(
             kcal=week_nutrient_data["kcal"],
             protein=week_nutrient_data["protein"],

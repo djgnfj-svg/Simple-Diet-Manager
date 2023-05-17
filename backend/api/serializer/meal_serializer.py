@@ -8,10 +8,10 @@ from meals.models import Meal
 class MealSerializer(serializers.ModelSerializer):
     foods = serializers.PrimaryKeyRelatedField(many=True, queryset=Food.objects.all())
     
-    meal_kcal = serializers.IntegerField(read_only=True, default=0)
-    meal_protein = serializers.IntegerField(read_only=True, default=0)
-    meal_fat = serializers.IntegerField(read_only=True, default=0)
-    meal_carbs = serializers.IntegerField(read_only=True, default=0)
+    kcal = serializers.IntegerField(read_only=True, default=0)
+    protein = serializers.IntegerField(read_only=True, default=0)
+    fat = serializers.IntegerField(read_only=True, default=0)
+    carbs = serializers.IntegerField(read_only=True, default=0)
     
     class Meta:
         model = Meal

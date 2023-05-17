@@ -1,4 +1,5 @@
 from django.db import transaction
+from core.nutrient_utils import cal_nutrient_range
 
 from common.geter.meal_getter import MealGetter
 from common.maker.base_maker import MakerBase
@@ -27,11 +28,7 @@ class DietMaker(MakerBase):
         meal_list = []
         
         for _, nutrient_range in zip(self.__meals, self.__meals_nutrient):
-            need_nutrient = {}
-            need_nutrient["need_kcal"] = min_nutrient["kcal"] * nutrient_range
-            need_nutrient["need_protein"] = min_nutrient["protein"] * nutrient_range
-            need_nutrient["need_fat"] = min_nutrient["fat"] * nutrient_range
-            need_nutrient["need_carbs"] = min_nutrient["carbs"] * nutrient_range
+            need_nutrient = cal_nutrient_range(min_nutrient, nutrient_range)
             
             meal_getter = MealGetter(Meal)
             _meal = meal_getter.get_data(need_nutrient, category)
@@ -42,15 +39,22 @@ class DietMaker(MakerBase):
             return diet_data
         
         # TODO : 추후 base class로 올려서 1큐로 해결하자
-        # if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count).exists():
-        #     diet = self.model.objects.filter(meals__in=meal_list, meal_count=meal_count).first()
+
+        if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).exists() :
+            if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).count() > 1:
+                return self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).first()
+            else :
+                for diet in self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category):
+                    if len(diet.meals.all()) == len(meal_list):
+                        return diet
         else :
             diet = self.model.objects.create(
                 kcal=diet_data["kcal"],
                 protein=diet_data["protein"],
                 fat=diet_data["fat"],
                 carbs=diet_data["carbs"],
-                meal_count = meal_count
+                meal_count = meal_count,
+                category = category
             )
             diet.meals.set(meal_list)
             diet.save()

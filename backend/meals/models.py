@@ -1,5 +1,6 @@
 from typing import Any
 from django.db import models
+from foods.models import FoodCategory
 
 from common.models import TimeStampedModel
 from foods.models import Food
@@ -41,7 +42,7 @@ class MealManager(models.Manager):
 
 class Meal(TimeStampedModel):
     foods = models.ManyToManyField(Food, related_name="meals")
-
+    category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, related_name="meals")
     name = models.CharField(max_length=50, null=True, blank=True)
 
     kcal = models.IntegerField(null=False, default=0)

@@ -2,50 +2,53 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "한끼통살 통살 닭가슴살 허니소이",
-            "kcal": 135,
-            "protein": 21,
-            "fat": 1.5,
-            "carbs": 9,
-            "number": 10,
-            "gram": 100,
-            "category": 1,
-            "image": "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/6081081115?itemId=11273250763",
-            "created_at": "2023-02-15",
-            "updated_at": "2023-02-15"
-        }
-    },
-    {
-        "model": "foods.Food",
-        "fields": {
-            "name": "햇살닭 저염훈제 닭가슴살 플러스",
-            "kcal": 121,
-            "carbs": 2,
-            "protein": 23.3,
-            "fat": 1.5,
-            "number": 10,
-            "gram": 100,
-            "category": 1,
-            "image": "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/1519330646?itemId=5810607566",
-            "created_at": "2023-02-15",
-            "updated_at": "2023-02-15"
-        }
-    },
-    {
-        "model": "foods.Food",
-        "fields": {
-            "name": "햇살닭 흑마늘 수비드 닭가슴살",
-            "kcal": 172.5,
-            "carbs": 9,
-            "protein": 31.5,
+            "name": "저염 훈제 닭가슴살 (냉동)",
+            "brand" : "곰곰",
+            "kcal": 117,
+            "protein": 22,
             "fat": 2,
+            "carbs": 3,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/5492982057",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "페퍼콘스팀 닭가슴살 (냉동)",
+            "brand" : "햇살닭",
+            "kcal": 250,
+            "protein": 52,
+            "fat": 3,
+            "carbs": 4,
+            "number": 4,
+            "gram": 200,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/227333377?itemId=5810669748&vendorItemId=4822362817",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "페퍼콘스팀 닭가슴살 (냉동)",
+            "brand" : "햇살닭",
+            "kcal": 250,
+            "protein": 52,
+            "fat": 3,
+            "carbs": 4,
             "number": 8,
-            "gram": 150,
+            "gram": 200,
             "category": 1,
-            "image" : "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/4656203901?itemId=5810700340",
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/227333377?itemId=5810669748&vendorItemId=73109116660",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -53,16 +56,17 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "라이틀리 곤약즉석밥 현미퀴노아",
-            "kcal": 90,
-            "carbs": 21,
-            "protein": 2,
-            "fat": 0,
+            "name": "불닭맛 닭가슴살",
+            "brand" : "바나나인",
+            "kcal":196 ,
+            "protein": 31,
+            "fat": 3,
+            "carbs": 12,
             "number": 10,
             "gram": 150,
-            "category": 5,
-            "image" : "/master_image/bob.jpg",
-            "link": "https://www.coupang.com/vp/products/1391921882?itemId=2427315006",
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -70,16 +74,35 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "목우촌 닭가슴살 스테이크 구운갈릭",
-            "kcal": 142,
-            "carbs": 10,
-            "protein": 19,
+            "name": "닭가슴살 데리야끼맛 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 140,
+            "protein": 21,
+            "fat": 1,
+            "carbs": 13,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6204233874",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "닭가슴살 화이트머쉬룸 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 105,
+            "protein": 18,
             "fat": 2,
+            "carbs": 3,
             "number": 10,
             "gram": 100,
             "category": 1,
-            "image" : "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/2171896373",
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6417693287",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -87,16 +110,17 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "곰곰 흑미 닭가슴살 스테이크",
-            "kcal": 155,
+            "name": "그릴드 닭가슴살 저크바베큐 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 110,
+            "protein": 19,
+            "fat": 1,
             "carbs": 10,
-            "protein": 17,
-            "fat": 5,
             "number": 10,
             "gram": 100,
             "category": 1,
-            "image" : "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/4926123653",
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6458758184",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -104,16 +128,17 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "곰곰 프랑크 닭가슴살 소시지 꼬치형",
-            "kcal": 122,
-            "carbs": 7,
-            "protein": 12,
-            "fat": 5,
-            "number": 5,
-            "gram": 70,
+            "name": "닭가슴살 떡볶이맛 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 130,
+            "protein": 21,
+            "fat": 1,
+            "carbs": 14,
+            "number": 10,
+            "gram": 100,
             "category": 1,
-            "image" : "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/1915681699",
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6734610249",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -121,16 +146,71 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "곰곰 새우 볶음밥",
+            "name": "닭가슴살 핵불닭맛 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 125,
+            "protein": 20,
+            "fat": 1,
+            "carbs": 14,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6081081113",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "소고기 스테이크 청양고추",
+            "brand" : "미트리",
+            "kcal": 150,
+            "carbs": 8,
+            "protein": 21,
+            "fat": 4,
+            "number": 10,
+            "gram": 10,
+            "category": 2,
+            "image" : "/master_image/beef.jpg",
+            "link": "https://www.coupang.com/vp/products/6185327736?itemId=12173100857&vendorItemId=70220431773",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "소고기 스테이크 오리지널",
+            "brand" : "미트리",
+            "kcal": 155,
+            "carbs": 7,
+            "protein": 22,
+            "fat": 5,
+            "number": 10,
+            "gram": 10,
+            "category": 2,
+            "image" : "/master_image/beef.jpg",
+            "link": "https://www.coupang.com/vp/products/6185351523?itemId=12173304611&vendorItemId=70126507011",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "새우 볶음밥",
+            "brand" : "곰곰",
             "kcal": 492,
             "carbs": 86,
             "protein": 10,
             "fat": 12,
             "number": 6,
             "gram": 300,
-            "category": 5,
+            "category": 3,
             "image" : "/master_image/bob.jpg",
-            "link": "https://www.coupang.com/vp/products/1915681699",
+            "link": "https://www.coupang.com/vp/products/185917324",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -138,14 +218,15 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "곰곰 닭갈비볶음밥",
+            "name": "닭갈비볶음밥",
+            "brand" : "곰곰",
             "kcal": 520,
             "carbs": 91,
             "protein": 12,
             "fat": 12,
             "number": 6,
             "gram": 300,
-            "category": 5,
+            "category": 3,
             "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/1310396687",
             "created_at": "2023-02-15",
@@ -155,14 +236,33 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "풀무원 고슬고슬 계란코팅 황금밥알 포크 스크램블 볶음밥",
-            "kcal": 435,
-            "carbs": 66,
-            "protein": 12,
-            "fat": 14,
-            "number": 4,
-            "gram": 210,
-            "category": 5,
+            "name": "김치볶음밥",
+            "brand" : "곰곰",
+            "kcal": 540,
+            "carbs": 86,
+            "protein": 9,
+            "fat": 18,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/185917305",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "햄야채 볶음밥",
+            "brand" : "곰곰",
+            "kcal": 544,
+            "carbs": 90,
+            "protein": 10,
+            "fat": 16,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
             "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/343228726",
             "created_at": "2023-02-15",
@@ -172,14 +272,33 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "한우물 김치치즈 구운주먹밥",
+            "name": "소불고기볶음밥",
+            "brand" : "곰곰",
+            "kcal": 537,
+            "carbs": 91,
+            "protein": 10,
+            "fat": 15,
+            "number": 6,
+            "gram": 300,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/1310396645",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "김치치즈 구운주먹밥",
+            "brand" : "한우물",
             "kcal": 165,
             "carbs": 31,
             "protein": 4,
             "fat": 2.6,
             "number": 10,
             "gram": 100,
-            "category": 5,
+            "category": 3,
             "image" : "/master_image/bob.jpg",
             "link": "https://www.coupang.com/vp/products/6382513128",
             "created_at": "2023-02-15",
@@ -189,16 +308,17 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "하림 닭가슴살 핫도그",
-            "kcal": 235,
-            "carbs": 27,
-            "protein": 9,
-            "fat": 10,
-            "number": 8,
-            "gram": 90,
-            "category": 1,
-            "image" : "/master_image/chicken-breast.jpg",
-            "link": "https://www.coupang.com/vp/products/242350474",
+            "name": "참치마요 구운주먹밥",
+            "brand" : "한우물",
+            "kcal": 190,
+            "carbs": 30,
+            "protein": 7,
+            "fat": 5,
+            "number": 10,
+            "gram": 100,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/6382513683",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -206,50 +326,17 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "롯데제과 퀘이커 마시는오트밀 오트&그레인",
-            "kcal": 222,
-            "carbs": 29,
-            "protein": 9,
-            "fat": 8,
-            "number": 20,
-            "gram": 50,
-            "category": 8,
-            "image" : "/master_image/milk.jpg",
-            "link": "https://www.coupang.com/vp/products/4971916592",
-            "created_at": "2023-02-15",
-            "updated_at": "2023-02-15"
-        }
-    },
-    {
-        "model": "foods.Food",
-        "fields": {
-            "name": "동원 고추 참치",
-            "kcal": 110,
-            "carbs": 10,
-            "protein": 9,
-            "fat": 3.9,
-            "number": 12,
-            "gram": 85,
-            "category": 9,
-            "image" : "/master_image/fish.jpg",
-            "link": "https://www.coupang.com/vp/products/1145100301",
-            "created_at": "2023-02-15",
-            "updated_at": "2023-02-15"
-        }
-    },
-    {
-        "model": "foods.Food",
-        "fields": {
-            "name": "동원 라이트 스탠다드 참치",
+            "name": "소불고기 구운주먹밥",
+            "brand" : "한우물",
             "kcal": 180,
-            "carbs": 0,
-            "protein": 16,
-            "fat": 13,
-            "number": 12,
-            "gram": 85,
-            "category": 9,
-            "image" : "/master_image/fish.jpg",
-            "link": "https://www.coupang.com/vp/products/2042132",
+            "carbs": 34,
+            "protein": 5,
+            "fat": 2,
+            "number": 10,
+            "gram": 100,
+            "category": 3,
+            "image" : "/master_image/bob.jpg",
+            "link": "https://www.coupang.com/vp/products/6382516636",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -257,16 +344,53 @@
     {
         "model": "foods.Food",
         "fields": {
-            "name": "농심 신라면 건면 사발 77g",
+            "name": "신라면 건면 사발 77g",
+            "brand": "농심",
             "kcal": 285,
             "carbs": 54,
             "protein": 7,
-            "fat": 4.4,
+            "fat": 4,
             "number": 8,
             "gram": 77,
-            "category": 6,
+            "category": 4,
             "image" : "/master_image/noodle.jpg",
             "link": "https://www.coupang.com/vp/products/1568884328",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "컵누들 우동맛 컵라면",
+            "brand": "오뚜기",
+            "kcal": 120,
+            "carbs": 27,
+            "protein": 2,
+            "fat": 1,
+            "number": 6,
+            "gram": 38,
+            "category": 4,
+            "image" : "/master_image/noodle.jpg",
+            "link": "https://www.coupang.com/vp/products/7235298117",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "컵누들 매콤한맛",
+            "brand": "오뚜기",
+            "kcal": 120,
+            "carbs": 29,
+            "protein": 1,
+            "fat": 0,
+            "number": 6,
+            "gram": 38,
+            "category": 4,
+            "image" : "/master_image/noodle.jpg",
+            "link": "https://www.coupang.com/vp/products/5932459264?",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -281,9 +405,26 @@
             "fat": 10.7,
             "number": 3,
             "gram": 100,
-            "category": 8,
+            "category": 5,
             "image" : "/master_image/milk.jpg",
             "link": "https://www.coupang.com/vp/products/5463245022",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "롯데제과 퀘이커 마시는오트밀 오트&그레인",
+            "kcal": 222,
+            "carbs": 29,
+            "protein": 9,
+            "fat": 8,
+            "number": 20,
+            "gram": 50,
+            "category": 5,
+            "image" : "/master_image/milk.jpg",
+            "link": "https://www.coupang.com/vp/products/4971916592",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }
@@ -298,7 +439,7 @@
             "fat": 4.8,
             "number": 10,
             "gram": 20,
-            "category": 8,
+            "category": 5,
             "image" : "/master_image/milk.jpg",
             "link": "https://www.coupang.com/vp/products/1395521967",
             "created_at": "2023-02-15",
@@ -315,7 +456,7 @@
             "fat": 0,
             "number": 10,
             "gram": 20,
-            "category": 7,
+            "category": 6,
             "image" : "/master_image/salad.jpg",
             "link": "https://www.coupang.com/vp/products/4697181000",
             "created_at": "2023-02-15",
@@ -332,26 +473,9 @@
             "fat": 29,
             "number": 1,
             "gram": 100,
-            "category": 7,
+            "category": 6,
             "image" : "/master_image/salad.jpg",
             "link": "https://www.coupang.com/vp/products/1173326805",
-            "created_at": "2023-02-15",
-            "updated_at": "2023-02-15"
-        }
-    },
-    {
-        "model": "foods.Food",
-        "fields": {
-            "name": "햇반 백미밥",
-            "kcal": 315,
-            "carbs": 70,
-            "protein": 5,
-            "fat": 1.5,
-            "number": 10,
-            "gram": 210,
-            "category": 5,
-            "image" : "/master_image/bob.jpg",
-            "link": "https://www.coupang.com/vp/products/2792667",
             "created_at": "2023-02-15",
             "updated_at": "2023-02-15"
         }

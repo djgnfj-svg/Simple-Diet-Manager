@@ -13,23 +13,32 @@ from meals.models import Meal
 class DietSerializer(serializers.ModelSerializer):
     meals = serializers.PrimaryKeyRelatedField(many=True, queryset=Meal.objects.all())
 
-    diet_kcal = serializers.IntegerField(read_only=True, default=0)
-    diet_protein = serializers.IntegerField(read_only=True, default=0)
-    diet_fat = serializers.IntegerField(read_only=True, default=0)
-    diet_carbs = serializers.IntegerField(read_only=True, default=0)
-
+    kcal = serializers.IntegerField(read_only=True, default=0)
+    protein = serializers.IntegerField(read_only=True, default=0)
+    fat = serializers.IntegerField(read_only=True, default=0)
+    carbs = serializers.IntegerField(read_only=True, default=0)
+    meal_count = serializers.IntegerField(read_only=True, default=3)
     class Meta:
         model = Diet
-        fields = ("id", "meals", "diet_kcal",
-                  "diet_protein", "diet_fat", "diet_carbs")
+        fields = ("id", "meals", "kcal",
+                  "protein", "fat", "carbs", "meal_count")
 
     def get_meals(self, obj) -> list:
         meals = {}
-        meals_name_list = ['breakfast', 'lunch', 'dinner']
+        if obj.meal_count == 3:
+            meals_name_list = ['breakfast', 'lunch', 'dinner']
+        else:
+            meals_name_list = ['breakfast', 'lunch']
 
-        for meal, meal_name in zip(obj.meals.all(), meals_name_list):
-            meals[meal_name] = MealSerializer(meal).data
-        return meals
+        if obj.meals.count() == 1:
+            for i in meals_name_list:
+                meals[i] = MealSerializer(obj.meals.first()).data
+            return meals
+        else:
+            for meal, meal_name in zip(obj.meals.all(), meals_name_list):
+                
+                meals[meal_name] = MealSerializer(meal).data
+            return meals
     
     def to_representation(self, instance):
         rtn = super().to_representation(instance)
@@ -50,7 +59,6 @@ class WeekDietSerializer(serializers.ModelSerializer):
         for i, diet in enumerate(obj.diets.all()):
             diets[day_of_week[i]] = DietSerializer(diet).data
             diets[day_of_week[i+3]] = DietSerializer(diet).data
-
         return diets
     
 class WeekDietMakeSerializer(serializers.Serializer):
@@ -93,7 +101,6 @@ class WeekDietMakeSerializer(serializers.Serializer):
         week_diet = week_diet_manager.get_data(
             validated_data["meal_count"], userbodyinfo, min_nutrient, max_nutrient, categories
             )
-
         #출력에 필요한 데이터 생성
         rtn = WeekDietSerializer(week_diet).data
         rtn["diet_status"] = validated_data["diet_status"]

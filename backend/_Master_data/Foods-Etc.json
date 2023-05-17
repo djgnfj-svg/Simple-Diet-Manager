@@ -1,0 +1,36 @@
+[
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "토마토",
+            "kcal": 16,
+            "carbs": 4,
+            "protein": 1,
+            "fat": 0,
+            "number": 10,
+            "gram": 20,
+            "category": 6,
+            "image" : "/master_image/salad.jpg",
+            "link": "https://www.coupang.com/vp/products/4697181000",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "아보카도",
+            "kcal": 322,
+            "carbs": 17,
+            "protein": 4,
+            "fat": 29,
+            "number": 1,
+            "gram": 100,
+            "category": 6,
+            "image" : "/master_image/salad.jpg",
+            "link": "https://www.coupang.com/vp/products/1173326805",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    }
+]

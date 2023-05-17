@@ -20,6 +20,8 @@ class GetterBase(ManagerBase):
             nutrient_min = "{}".format(nutrient)
             nutrient_max = "{}".format(nutrient)
             q &= Q(**{"{}__gte".format(nutrient_min): min_nutrient[nutrient], "{}__lte".format(nutrient_max): max_nutrient[nutrient]})
+            if category is not None:
+                q &= Q(category=category)
             if meal_count is not None:
                 q &= Q(meal_count=meal_count)
         return model.objects.filter(q)

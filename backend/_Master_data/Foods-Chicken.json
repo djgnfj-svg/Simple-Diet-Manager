@@ -1,0 +1,164 @@
+[
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "저염 훈제 닭가슴살 (냉동)",
+            "brand" : "곰곰",
+            "kcal": 117,
+            "protein": 22,
+            "fat": 2,
+            "carbs": 3,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/5492982057",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "페퍼콘스팀 닭가슴살 (냉동)",
+            "brand" : "햇살닭",
+            "kcal": 250,
+            "protein": 52,
+            "fat": 3,
+            "carbs": 4,
+            "number": 4,
+            "gram": 200,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/227333377?itemId=5810669748&vendorItemId=4822362817",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "페퍼콘스팀 닭가슴살 (냉동)",
+            "brand" : "햇살닭",
+            "kcal": 250,
+            "protein": 52,
+            "fat": 3,
+            "carbs": 4,
+            "number": 8,
+            "gram": 200,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/227333377?itemId=5810669748&vendorItemId=73109116660",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "불닭맛 닭가슴살",
+            "brand" : "바나나인",
+            "kcal":196 ,
+            "protein": 31,
+            "fat": 3,
+            "carbs": 12,
+            "number": 10,
+            "gram": 150,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "닭가슴살 데리야끼맛 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 140,
+            "protein": 21,
+            "fat": 1,
+            "carbs": 13,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6204233874",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "닭가슴살 화이트머쉬룸 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 105,
+            "protein": 18,
+            "fat": 2,
+            "carbs": 3,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6417693287",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "그릴드 닭가슴살 저크바베큐 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 110,
+            "protein": 19,
+            "fat": 1,
+            "carbs": 10,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6458758184",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "닭가슴살 떡볶이맛 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 130,
+            "protein": 21,
+            "fat": 1,
+            "carbs": 14,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6734610249",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    },
+    {
+        "model": "foods.Food",
+        "fields": {
+            "name": "닭가슴살 핵불닭맛 (냉동)",
+            "brand" : "한끼통살",
+            "kcal": 125,
+            "protein": 20,
+            "fat": 1,
+            "carbs": 14,
+            "number": 10,
+            "gram": 100,
+            "category": 1,
+            "image": "/master_image/chicken-breast.jpg",
+            "link": "https://www.coupang.com/vp/products/6081081113",
+            "created_at": "2023-02-15",
+            "updated_at": "2023-02-15"
+        }
+    }
+]

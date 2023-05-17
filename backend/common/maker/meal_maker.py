@@ -13,7 +13,7 @@ class MealMaker(MakerBase):
         self.nutrient = ["kcal", "protein", "fat", "carbs"]
 
     @transaction.atomic
-    def make_instance(self, min_nutrient, max_nutrient, _food: Food = None, bulk_create: bool = False):
+    def make_instance(self, min_nutrient, max_nutrient, category, _food: Food = None, bulk_create: bool = False):
         # TODO : 일단 임시 방편...
         min_nutrient["protein"] *= 0.5
         min_nutrient["fat"] *= 0.5
@@ -31,15 +31,21 @@ class MealMaker(MakerBase):
         nf = 1
         food_focus = 0
 
+        category_food = Food.objects.filter(category=category).order_by("-" + self.nutrient[nf]).first()
+        food_list.append(category_food)
+        add_nutrient(cn, category_food, object_prefix="current_")
+        
+
+        # 처음 단백질을 채울때는 카테고리순으로 정리한다.
         qs_food = Food.objects.order_by("-" + self.nutrient[nf])
         while nf < len(self.nutrient):
             if checker.check_nutrient(min_nutrient, cn, self.nutrient[nf], prefix="current_"):
                 nf += 1
                 if nf < len(self.nutrient):
-                    break
-                else:
                     food_focus = 0
                     qs_food = Food.objects.order_by("-" + self.nutrient[nf])
+                else:
+                    break
                 continue
 
             food = qs_food[food_focus]
@@ -54,14 +60,20 @@ class MealMaker(MakerBase):
         if bulk_create:
             return cn
 
-        # if self.model.objects.filter(foods__in=food_list).exists():
-        #     meal = self.model.objects.filter(foods__in=food_list).first()
-        else:
+        if self.model.objects.filter(foods__in=food_list, category=category).exists():
+            if self.model.objects.filter(foods__in=food_list, category=category).count() > 1:
+                for meal in self.model.objects.filter(foods__in=food_list, category=category):
+                    if len(meal.foods.all()) == len(food_list):
+                        return meal
+            else :
+                meal = self.model.objects.filter(foods__in=food_list, category=category).first()
+        else :
             meal = Meal.objects.create(
                 kcal=cn["current_kcal"],
                 protein=cn["current_protein"],
                 fat=cn["current_fat"],
                 carbs=cn["current_carbs"],
+                category = category,
             )
             meal.foods.set(food_list)
             meal.save()
@@ -74,10 +86,10 @@ class MealMaker(MakerBase):
             nutrient = self.make_instance(min_nutrient, max_nutrient, food, bulk_create=bulk_create)
             meal_list.append(
                 Meal(
-                    meal_kcal=nutrient["current_kcal"],
-                    meal_protein=nutrient["current_protein"],
-                    meal_fat=nutrient["current_fat"],
-                    meal_carbs=nutrient["current_carbs"],
+                    kcal=nutrient["current_kcal"],
+                    protein=nutrient["current_protein"],
+                    fat=nutrient["current_fat"],
+                    carbs=nutrient["current_carbs"],
                 )
             )
         if bulk_create:

@@ -12,7 +12,7 @@ from common.models import TimeStampedModel
 
 class Diet(TimeStampedModel):
     meals = models.ManyToManyField(Meal)
-    # category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
 
     kcal = models.IntegerField(default=0)
     protein = models.IntegerField(default=0)
@@ -24,7 +24,7 @@ class Diet(TimeStampedModel):
 class WeekDiet(TimeStampedModel):
     diets = models.ManyToManyField(Diet)
     bodyinfo = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE)
-    # categories = models.ManyToManyField(FoodCategory)
+    categories = models.ManyToManyField(FoodCategory)
 
     kcal = models.IntegerField(default=0)
     protein = models.IntegerField(default=0)

@@ -4,10 +4,24 @@ from common.geter.base_getter import GetterBase
 from common.maker.weekdiet_maker import WeekDietMaker
 from diets.models import WeekDiet
 
+from django.db.models import Q
+
 
 class WeekDietGetter(GetterBase):
     def __init__(self):
         pass
+    
+    def find_instance(self, model:WeekDiet, min_nutrient, max_nutrient, meal_count=None, categories=None):
+        q = Q()
+        for nutrient in ["kcal", "protein", "fat", "carbs"]:
+            nutrient_min = "{}".format(nutrient)
+            nutrient_max = "{}".format(nutrient)
+            q &= Q(**{"{}__gte".format(nutrient_min): min_nutrient[nutrient], "{}__lte".format(nutrient_max): max_nutrient[nutrient]})
+            q &= Q(categories__in=categories)
+            if meal_count is not None:
+                q &= Q(meal_count=meal_count)
+        return model.objects.filter(q)
+
 
     def get_data(self, meal_count, userbody, min_nutrient, max_nutrient, categories):
         week_min_nutrient = cal_nutrient_range(min_nutrient, 6)
