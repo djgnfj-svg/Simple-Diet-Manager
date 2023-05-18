@@ -46,9 +46,3 @@ if [ -z "$SERVICE_NIGNX" ]; then
 fi
 
 sudo apt-get clean
-sudo apt autoremove
-sudo apt autoremove --purge
-sudo apt autoremove --purge snapd
-sudo npm cache clean -f
-sudo mv /var/lib/apt/lists /var/lib/apt/lists.old  
-npm cache clean --force

@@ -6,7 +6,6 @@ PROJECT_BACKEND_PATH=$PROJECT_NAME/$PROJECT_BACKEND_NAME
 
 PROJECT_PATH=$DEPLOY_PATH/$PROJECT_NAME
 
-
 # 깃 클론
 cd $DEPLOY_PATH/
 git clone https://github.com/djgnfj-svg/Simple-Diet-Manager.git
@@ -16,14 +15,15 @@ cp -r $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
 
 # 가상환경만들기
 cd $PROJECT_BACKEND_PATH
+sudo apt install python3-venv
 python3 -m venv myvenv
 source myvenv/bin/activate
 
 # pip 설치
 sudo apt-get update
-sudo apt-get install -y build-essential
 sudo apt-get install python3
 sudo apt-get install -y python3-pip
+sudo apt-get install -y python3-dev default-libmysqlclient-dev build-essential
 pip install -r requirements.txt
 python3 manage.py collectstatic
 python3 manage.py migrate
@@ -34,7 +34,6 @@ cp -r $PROJECT_BACKEND_PATH/_Master_data/master_image/ $PROJECT_BACKEND_PATH/med
 cd ..
 cd $PROJECT_NAME/frontend
 sudo apt-get install -y nodejs
-set NODE_OPTIONS=--max_old_space_size=4096
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 

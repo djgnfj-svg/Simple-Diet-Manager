@@ -14,11 +14,10 @@ import json
 import os
 from pathlib import Path
 
-import pymysql
 from django.core.exceptions import ImproperlyConfigured
 
+import pymysql
 pymysql.install_as_MySQLdb()
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,8 +51,9 @@ if DEV:
     ALLOWED_HOSTS = ["*"]
     DEBUG = True
     DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+        'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
     }
+    INTERNAL_IPS = ['127.0.0.1'] 
 else:
     DEBUG = False
     ALLOWED_HOSTS = ["simple-diet-manager.link"]
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 
     # library
 	'rest_framework',
@@ -79,8 +80,6 @@ INSTALLED_APPS = [
     'accounts',
     
 ]
-if DEV:
-    INSTALLED_APPS += ['debug_toolbar']
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
