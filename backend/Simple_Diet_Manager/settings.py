@@ -68,7 +68,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar', # debug tool bar
 
     # library
 	'rest_framework',
@@ -80,6 +79,8 @@ INSTALLED_APPS = [
     'accounts',
     
 ]
+if DEV:
+    INSTALLED_APPS += ['debug_toolbar']
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

@@ -32,10 +32,14 @@ if [ -e $NGINX_DJANGO_FILE_ENABLE ]; then
 fi
 
 # 프로젝트 파일삭제
-sudo rm -rf $PROJECT_PATH
+if [ -e $PROJECT_PATH ]; then
+    sudo rm -rf $PROJECT_PATH
+fi
 
 # 서비스 중지
-sudo supervisorctl stop gunicorn
+if [ -z "$SERVICE_GUNICONR" ]; then
+    sudo supervisorctl stop gunicorn
+fi
 
 if [ -z "$SERVICE_NIGNX" ]; then
     sudo service nginx stop
@@ -46,3 +50,5 @@ sudo apt autoremove
 sudo apt autoremove --purge
 sudo apt autoremove --purge snapd
 sudo npm cache clean -f
+sudo mv /var/lib/apt/lists /var/lib/apt/lists.old  
+npm cache clean --force

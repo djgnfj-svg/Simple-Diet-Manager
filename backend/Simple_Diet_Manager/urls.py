@@ -22,12 +22,20 @@ from django.views.generic import TemplateView
 
 from api.urls import router
 
-urlpatterns = [
-    path('__debug__/', include(debug_toolbar.urls)),
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+if settings.DEBUG:
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+        path('admin/', admin.site.urls),
+        path('api/', include(router.urls)),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('api/', include(router.urls)),
+
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -13,3 +13,6 @@ sudo apt-get install supervisor
 
 # nginx 설치
 sudo apt-get install nginx
+
+#npm 설치
+sudo api install npm
