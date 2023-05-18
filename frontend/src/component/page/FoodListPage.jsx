@@ -57,7 +57,7 @@ const FoodListPage = () => {
         {foods.map((food, index) => (
           <FoodCard
             key={index}
-            img={food.img}
+            img={food.image}
             name={food.name}
             carbs={food.carbs}
             protein={food.protein}

@@ -67,11 +67,12 @@ function DietUserBodyInfoCard(props) {
                 <StyleInfo>탄수화물 : {min_nutrient.carbs} ~ {max_nutrient.carbs}g</StyleInfo>
             </Card>
             <Card>
-                <h1>필요정보</h1>
+                <h1>구매정보</h1>
                 {Object.entries(purchase).map((info, index) => {
+                    console.log(info)
                     return (
                         <>
-                            <StyleInfo><a href={info[1].link} target="_blank" rel="noreferrer">{info[1].name}</a> {info[1].count}개</StyleInfo>
+                            <StyleInfo><a href={info[1].food_link} target="_blank" rel="noreferrer">{info[1].food_name}</a> {info[1].food_count}개</StyleInfo>
                         </>
                     )
                 })}
