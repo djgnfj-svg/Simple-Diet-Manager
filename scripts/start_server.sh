@@ -13,32 +13,28 @@ git clone https://github.com/djgnfj-svg/Simple-Diet-Manager.git
 
 # 시크릿 파일 이동
 cp -r $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
-
-
-pip install -r $PROJECT_BACKEND_PATH/requirements.txt
-python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
-python3 $PROJECT_BACKEND_PATH/manage.py migrate
-
-
-mkdir $PROJECT_BACKEND_PATH/media/
+# 가상환경만들기
+cd $PROJECT_BACKEND_PATH
+python3 -m venv myvenv
+source myvenv/bin/activate
+# pip 설치
+sudo apt-get update
+sudo apt-get install -y build-essential
+sudo apt-get install python3
+sudo apt-get install -y python3-pip
+pip install -r requirements.txt
+python3 manage.py collectstatic
+python3 manage.py migrate
+mkdir media
 cp -r $PROJECT_BACKEND_PATH/_Master_data/master_image/ $PROJECT_BACKEND_PATH/media/
 
 # npm 설치
+cd ..
 cd $PROJECT_NAME/frontend
-
-# node update
 sudo apt-get install -y nodejs
 set NODE_OPTIONS=--max_old_space_size=4096
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-
-# npm install
-# npm update
-# sudo rm -rf node_modules
-# sudo rm -f package-lock.json
-# sudo npm cache verify
-# export NODE_OPTIONS=--max_old_space_size=800
-# sudo npm i
 
 # 구니콘 설정 이동
 cd ..

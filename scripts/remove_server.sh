@@ -48,8 +48,3 @@ sudo apt autoremove --purge snapd
 sudo npm cache clean -f
 sudo mv /var/lib/apt/lists /var/lib/apt/lists.old  
 npm cache clean --force
-
-if [ -e /swapfile ]; then
-    sudo swapoff -v /swapfile
-    sudo rm /swapfile
-fi
