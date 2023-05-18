@@ -22,6 +22,7 @@ class FoodCategoryViewset(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
 class FoodViewset(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
     queryset = Food.objects.order_by("-id")

@@ -1,8 +1,4 @@
-# pip 등 설치(codedeploy도)
-sudo yum update -y
-sudo yum install git -y
-sudo yum install python3-pip python3-devel python3-setuptools -y
-
+# pip 설치
 sudo apt-get update
 sudo apt-get install -y build-essential
 sudo apt-get install python3

@@ -1,4 +1,4 @@
-name: Simple-Diet-Manager CI/CD
+name: Simple-Diet-Manager CI-CD
 
 on:
   push:

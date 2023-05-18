@@ -15,20 +15,13 @@ git clone https://github.com/djgnfj-svg/Simple-Diet-Manager.git
 cp -r $DEPLOY_PATH/.secrets.json $PROJECT_BACKEND_PATH/.secrets.json
 
 
-# requirements.txt 설치
 pip install -r $PROJECT_BACKEND_PATH/requirements.txt
-#static file
 python3 $PROJECT_BACKEND_PATH/manage.py collectstatic
-#migrate
 python3 $PROJECT_BACKEND_PATH/manage.py migrate
 
-# load data RDS일 경우 조금 거시기해짐...
+
 mkdir $PROJECT_BACKEND_PATH/media/
 cp -r $PROJECT_BACKEND_PATH/_Master_data/master_image/ $PROJECT_BACKEND_PATH/media/
-# python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Food-Category.json
-# python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Cooking-Category.json
-# python3 $PROJECT_BACKEND_PATH/manage.py loaddata $PROJECT_BACKEND_PATH/_Master_data/Foods.json
-
 
 # npm 설치
 cd $PROJECT_NAME/frontend

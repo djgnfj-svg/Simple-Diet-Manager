@@ -52,17 +52,21 @@ function UserInputCard() {
         setCurrentIndex(currentIndex + 1);
       };
 
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
         if (age === "" || height === "" || weight === "" || gender === "") {
             alert("모든 항목을 입력해주세요.");
+            return;
+        }
+        if (isNaN(age) || isNaN(height) || isNaN(weight)) {
+            alert("숫자 값을 입력해주세요.");
             return;
         }
         if (age < 0 || height < 0 || weight < 0) {
             alert("0보다 작은 수는 입력할 수 없습니다.");
             return;
         }
-        if (age >100 || age < 20){
+        if (age > 100 || age < 20){
             alert("20세 이상, 100세 이하만 입력 가능합니다.");
             return;
         }
@@ -74,9 +78,10 @@ function UserInputCard() {
             alert("50kg 이상, 230kg 이하만 입력 가능합니다.");
             return;
         }
-
+    
         setCurrentIndex(currentIndex + 1)
     };
+    
 
     const handleActivitySubmit = (e) => {
         e.preventDefault();

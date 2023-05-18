@@ -1,16 +1,7 @@
-# API테스트
-'''
-생성
-삭제
-수정
-조회
-
-실패
-초과 미만 없음
-'''
-
 from rest_framework.test import APITestCase
 import random
+
+from diets.models import WeekDiet
 
 class DietAPITest(APITestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']
@@ -33,7 +24,9 @@ class DietAPITest(APITestCase):
         return data
     
     def test_weekdiet_create(self):
-        for _ in range(50):
+        for _ in range(25):
             data = self.generate_random_data()
             response = self.client.post(self.url, data, format='json')
             self.assertEqual(response.status_code, 201)
+            for diet in WeekDiet.objects.order_by("created_at").last().diets.all():
+                self.assertEqual(diet.meal_count, data["meal_count"])

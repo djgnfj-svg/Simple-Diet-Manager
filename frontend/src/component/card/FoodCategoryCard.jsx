@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate } from 'react-router';
 import Checkbox from "../ui/Checkbox";
 import Button from "../ui/Button";
-const ButtonWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    // 오른쪽 정렬
-    & > * {
-        margin-left: auto;
-    }
-`;
+
 const Wrapper = styled.form`
     padding: 16px;
     widht: 100%;
@@ -38,6 +27,7 @@ function FoodCategoryCard(props) {
     const { handleSubmit } = props;
     const [Categorys, setCategorys] = useState([]);
     const [checkedValues, setCheckedValues] = useState([]);
+    
     const fetchFoods = async (searchQuery) => {
         try {
             const response = await axios.get(
@@ -55,7 +45,7 @@ function FoodCategoryCard(props) {
     return (
         <>
             <Wrapper onSubmit={handleSubmit} >
-                <h1>3가지 고르슈</h1>
+                <h1>3가지를 선택하세요</h1>
                 <StyleRadioWrapper>
                     {Categorys.map((food, index) => (
                         <Checkbox

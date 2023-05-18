@@ -32,14 +32,10 @@ if [ -e $NGINX_DJANGO_FILE_ENABLE ]; then
 fi
 
 # 프로젝트 파일삭제
-if [ -e $PROJECT_PATH ]; then
-    sudo rm -rf $PROJECT_PATH
-fi
+sudo rm -rf $PROJECT_PATH
 
 # 서비스 중지
-# if [ -z "$SERVICE_GUNICONR" ]; then
 sudo supervisorctl stop gunicorn
-# fi
 
 if [ -z "$SERVICE_NIGNX" ]; then
     sudo service nginx stop

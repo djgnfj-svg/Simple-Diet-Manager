@@ -7,10 +7,10 @@ const FoodCard = ({ img, name, carbs, protein, fat, calories }) => {
     <Card>
       <FoodImage src={img} alt={img} />
       <h3>{name}</h3>
-      <p>탄: {carbs}g</p>
-      <p>단: {protein}g</p>
-      <p>지: {fat}g</p>
-      <p>칼: {calories}kcal</p>
+      <p>탄수화물 : {carbs}g</p>
+      <p>단백질 : {protein}g</p>
+      <p>지방 : {fat}g</p>
+      <p>칼로리 : {calories}kcal</p>
     </Card>
   );
 };
@@ -62,7 +62,7 @@ const FoodListPage = () => {
             carbs={food.carbs}
             protein={food.protein}
             fat={food.fat}
-            calories={food.calories}
+            calories={food.carbs}
           />
         ))}
       </Cards>

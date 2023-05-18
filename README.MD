@@ -1,8 +1,8 @@
 # 프로젝트명 : 간단식단0.1(1인 프로젝트)
 
 ### URL : http://simple-diet-manager.link/
-### Last_Update : 23.04.19
-### 프로젝트 기간 : 23.03.26 ~ 진행중
+### Last_Update : 23.05.18
+### 프로젝트 기간 : 23.03.26 ~ 23.05.18
 ### 연락 : djgnfj3795@gmail.com
 
 ---
@@ -22,7 +22,6 @@
 
 ## 🛠사용기술 및 도구
 - Backend : Python, Django, AWS-EC2, AWS-RDS, Github Actions, AWS-S3, AWS-Code-Deploy
-- Frontend : React
 
 <br />
 
@@ -42,6 +41,6 @@
 
 - ### 주간 식단 계산 & 상세보기
 
-    ![주간 식단계산](https://user-images.githubusercontent.com/72533187/232237537-320a2ef1-012f-4d79-bd0f-5bdd9730339a.gif)
+    ![주간 식단계산](https://github.com/djgnfj-svg/Simple-Diet-Manager/assets/72533187/53046e97-ba1d-4dc3-8a32-f24bc95accdb)
 <br />
 
