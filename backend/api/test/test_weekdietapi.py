@@ -1,7 +1,9 @@
-from rest_framework.test import APITestCase
 import random
 
+from rest_framework.test import APITestCase
+
 from diets.models import WeekDiet
+
 
 class DietAPITest(APITestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']

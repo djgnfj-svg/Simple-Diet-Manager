@@ -1,12 +1,15 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from django.utils.decorators import method_decorator
-from api.serializer.food_serializer import FoodCategorySerializer, FoodSerializer
+
+from api.serializer.food_serializer import (FoodCategorySerializer,
+                                            FoodSerializer)
 from common.geter.meal_getter import MealGetter
 from common.maker.meal_maker import MealMaker
 from foods.models import Food, FoodCategory
 from meals.models import Meal
-from django.views.decorators.cache import cache_page
+
 
 class FoodCategoryViewset(viewsets.ModelViewSet):
     serializer_class = FoodCategorySerializer

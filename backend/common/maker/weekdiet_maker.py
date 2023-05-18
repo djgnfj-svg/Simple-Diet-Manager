@@ -1,9 +1,9 @@
 from django.db import transaction
-from diets.models import Diet
-from common.geter.diet_getter import DietGetter
 
+from common.geter.diet_getter import DietGetter
 from common.maker.base_maker import MakerBase
 from core.nutrient_utils import add_nutrient, init_nutrient
+from diets.models import Diet
 
 
 class WeekDietMaker(MakerBase):

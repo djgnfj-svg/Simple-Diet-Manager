@@ -1,8 +1,9 @@
 from django.db import transaction
+
 from common.maker.base_maker import MakerBase
 from common.meal_checker import MealChecker as checker
-
-from core.nutrient_utils import add_nutrient, init_nutrient, make_min_max_nutrient
+from core.nutrient_utils import (add_nutrient, init_nutrient,
+                                 make_min_max_nutrient)
 from foods.models import Food
 from meals.models import Meal
 

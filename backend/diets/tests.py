@@ -4,7 +4,9 @@
 '''
 
 from django.test import TestCase
+
 from diets.models import Diet, WeekDiet
+
 
 # 
 class DietTest(TestCase):

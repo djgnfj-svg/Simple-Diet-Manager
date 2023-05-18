@@ -1,11 +1,9 @@
 from django.db import models
 
 from accounts.models import UserBodyInfo
+from common.models import TimeStampedModel
 from foods.models import FoodCategory
 from meals.models import Meal
-
-from common.models import TimeStampedModel
-
 
 # class DietManager(models.Manager):
 #     def diet_create(self, meals, )

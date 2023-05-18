@@ -2,11 +2,11 @@ from rest_framework import serializers
 
 from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
-from core.nutrient_utils import get_min_max_range, cal_nutrient_range
-from foods.models import FoodCategory
 from common.geter.weekdiet_getter import WeekDietGetter
 from core.metabolic_manager import MetabolicManager
+from core.nutrient_utils import cal_nutrient_range, get_min_max_range
 from diets.models import Diet, WeekDiet
+from foods.models import FoodCategory
 from meals.models import Meal
 
 

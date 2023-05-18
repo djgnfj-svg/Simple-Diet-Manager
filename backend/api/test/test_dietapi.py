@@ -13,6 +13,7 @@
 # Path: api\test\test_dietapi.py
 from rest_framework.test import APITestCase
 
+
 class DietAPITest(APITestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']
     

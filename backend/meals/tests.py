@@ -4,8 +4,10 @@
 '''
 
 from django.test import TestCase
+
 from foods.models import FoodCategory
 from meals.models import Meal
+
 
 class MealTest(TestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']

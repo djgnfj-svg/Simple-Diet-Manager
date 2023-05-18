@@ -10,9 +10,10 @@
 '''
 
 from rest_framework.test import APITestCase
-from foods.models import FoodCategory
 
+from foods.models import FoodCategory
 from meals.models import Meal
+
 
 class MealAPITest(APITestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']

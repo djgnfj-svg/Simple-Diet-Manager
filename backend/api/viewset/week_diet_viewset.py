@@ -7,6 +7,7 @@ from api.serializer.purchase_serializer import WeekDietPurchaseSerializer
 from common.message import error_msg
 from diets.models import WeekDiet
 
+
 class WeekDietViewSet(viewsets.ViewSet):
     serializer_class = WeekDietMakeSerializer
 

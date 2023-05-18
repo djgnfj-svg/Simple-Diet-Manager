@@ -1,5 +1,6 @@
 from config.meal_nutrient_ratio import CARBS_RATIO, FAT_RATIO, PROTEIN_RATIO
 
+
 def cal_range(value, range):
     return round(value * range)
 

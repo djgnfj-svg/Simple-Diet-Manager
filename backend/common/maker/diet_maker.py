@@ -1,11 +1,10 @@
 from django.db import transaction
-from core.nutrient_utils import cal_nutrient_range
 
 from common.geter.meal_getter import MealGetter
 from common.maker.base_maker import MakerBase
-from config.meal_nutrient_ratio import ONE_MEAL_NUTRIENT, THREE_MEAL_NUTRIENT, TWO_MEAL_NUTRIENT
-
-from core.nutrient_utils import add_nutrient, init_nutrient
+from config.meal_nutrient_ratio import (ONE_MEAL_NUTRIENT, THREE_MEAL_NUTRIENT,
+                                        TWO_MEAL_NUTRIENT)
+from core.nutrient_utils import add_nutrient, cal_nutrient_range, init_nutrient
 from meals.models import Meal
 
 

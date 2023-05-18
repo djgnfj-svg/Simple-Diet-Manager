@@ -11,6 +11,7 @@
 
 from rest_framework.test import APITestCase
 
+
 class FoodAPITest(APITestCase):
     fixtures = ['_Master_data/Food-Category.json', '_Master_data/Foods.json']
     

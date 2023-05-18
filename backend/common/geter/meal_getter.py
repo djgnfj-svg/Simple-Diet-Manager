@@ -1,6 +1,5 @@
 from common.geter.base_getter import GetterBase
 from common.maker.meal_maker import MealMaker
-
 from core.nutrient_utils import make_min_max_nutrient
 
 

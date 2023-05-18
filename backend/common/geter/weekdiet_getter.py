@@ -1,10 +1,9 @@
-from core.nutrient_utils import cal_nutrient_range
-from common.geter.base_getter import GetterBase
-
-from common.maker.weekdiet_maker import WeekDietMaker
-from diets.models import WeekDiet
-
 from django.db.models import Q
+
+from common.geter.base_getter import GetterBase
+from common.maker.weekdiet_maker import WeekDietMaker
+from core.nutrient_utils import cal_nutrient_range
+from diets.models import WeekDiet
 
 
 class WeekDietGetter(GetterBase):
