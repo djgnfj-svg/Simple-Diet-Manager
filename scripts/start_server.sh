@@ -42,6 +42,8 @@ cd ..
 sudo cp $PROJECT_PATH/web/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # 구니콘 실행
+sudo apt-get install supervisor
+pip install gunicorn django
 sudo mkdir /logs
 sudo supervisorctl reread
 sudo supervisorctl update
@@ -51,11 +53,10 @@ sudo supervisorctl start gunicorn
 sudo cp $PROJECT_PATH/web/robots.txt /etc/nginx/sites-available/
 sudo cp $PROJECT_PATH/web/sitemap.xml /etc/nginx/sites-available/
 
-# nginx 설정 이동
+# nginx
+sudo apt-get install nginx
 sudo cp $PROJECT_PATH/web/nginx.conf /etc/nginx/sites-available/
 
-# nginx 링크
 sudo ln /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
-# nginx 실행
 sudo service nginx restart
