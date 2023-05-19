@@ -54,7 +54,7 @@ sudo cp $PROJECT_PATH/web/robots.txt /etc/nginx/sites-available/
 sudo cp $PROJECT_PATH/web/sitemap.xml /etc/nginx/sites-available/
 
 # nginx
-sudo apt-get install nginx
+sudo apt-get install -y nginx 
 sudo cp $PROJECT_PATH/web/nginx.conf /etc/nginx/sites-available/
 
 sudo ln /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
