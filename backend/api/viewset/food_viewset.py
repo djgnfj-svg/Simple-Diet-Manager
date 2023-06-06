@@ -31,6 +31,16 @@ class FoodViewset(viewsets.ModelViewSet):
     queryset = Food.objects.order_by("-id")
 
     def list(self, request, *args, **kwargs):
+        a = Food.objects.all()[:3]
+
+        a = a.select_related("category")
+
+        temp = ""
+        for i in a:
+            temp += i.category.name
+        return Response( status=status.HTTP_200_OK)
+
+
         super().list(request, *args, **kwargs)
         search = request.query_params.get('search', '')
         filtered_foods = Food.objects.filter(name__icontains=search).order_by("-id")
