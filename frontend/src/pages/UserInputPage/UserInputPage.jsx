@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import UserInputCard from "../card/UserInputCard";
+
+import UserInputCard from './UserInputCard';
 
 const Wrapper = styled.div`
     padding: 16px;

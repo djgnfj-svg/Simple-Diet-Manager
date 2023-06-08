@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 
-import DietUserBodyInfoCard from "../card/DietUserBodyInfoCard";
-import DietCardList from "../list/DietCardList";
-
+import DietUserBodyInfoCard from "./DietUserBodyInfoCard";
+import DietCardList from '../../components/List/DietCardList';
 
 const Wrapper = styled.div`
     padding: 16px;

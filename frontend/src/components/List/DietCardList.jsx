@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import DietNutrientCard from "../card/DietNutrientCard";
-import DietMealCard from "../card/DietMealCard";
-import Button from "../ui/Button";
+
+import DietNutrientCard from "../Card/DietNutrientCard";
+import DietMealCard from "../Card/DietMealCard";
+import Button from '../Button/Button'
 
 import { useNavigate } from "react-router-dom";
+
 const Wrapper = styled.div`
     outline: 0px;
     display: inline-block;

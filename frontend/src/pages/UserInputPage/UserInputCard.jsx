@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from 'react-router';
+
 import UserBodyInfoCard from "./UserBodyInfoCard";
 import UserActivityInfoCard from "./UserActivityInfoCard";
 import DietCustomInfoCard from "./DietCustomInfoCard";

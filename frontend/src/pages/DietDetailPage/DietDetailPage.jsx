@@ -2,7 +2,8 @@ import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from "styled-components";
 import axios from "axios";
-import DietDetailCard from "../card/DietDetailCard";
+
+import DietDetailCard from "./DietDetailCard";
 
 const Wrapper = styled.div`
     padding: 16px;

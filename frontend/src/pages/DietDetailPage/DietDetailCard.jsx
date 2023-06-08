@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-import FoodDataList from "../list/FoodDataList";
+import FoodDataList from "../../components/List/FoodDataList";
 
 const Wrapper = styled.div`
     outline: 0px;

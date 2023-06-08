@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Input from "../ui/Input";
-import Button from "../ui/Button";
-import RadioButton from "../ui/RadioButton";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
+import RadioButton from "../../components/RadioButton/RadioButton";
 
 const Wrapper = styled.div`
     padding: 16px;

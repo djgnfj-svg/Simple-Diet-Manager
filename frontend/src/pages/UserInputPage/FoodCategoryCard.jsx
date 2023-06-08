@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Checkbox from "../ui/Checkbox";
-import Button from "../ui/Button";
+import Checkbox from "../../components/Checkbox/Checkbox";
+import Button from "../../components/Button/Button";
 
 const Wrapper = styled.form`
     padding: 16px;
