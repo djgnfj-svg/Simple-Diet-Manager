@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import datetime
 import json
 import os
 from pathlib import Path
@@ -31,6 +32,8 @@ SECRET_BASE_FILE = os.path.join(BASE_DIR, '.secrets.json')
 
 with open(SECRET_BASE_FILE, encoding="UTF-8") as f:
     secrets = json.loads(f.read())
+
+
 def get_secret(setting):
     """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
     try:
@@ -38,13 +41,15 @@ def get_secret(setting):
     except KeyError:
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = get_secret("SECRET_KEY")
 
 if get_secret("ENV") == "DEV":
     DEV = True
-    
-else :
+
+else:
     DEV = False
 
 if DEV:
@@ -53,14 +58,14 @@ if DEV:
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
     }
-    # INTERNAL_IPS = ['127.0.0.1'] 
+    # INTERNAL_IPS = ['127.0.0.1']
 else:
     DEBUG = False
     ALLOWED_HOSTS = ["simple-diet-manager.link"]
 
 
 # Application definition
-
+AUTH_USER_MODEL = 'accounts.User'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,15 +76,24 @@ INSTALLED_APPS = [
     'debug_toolbar',
 
     # library
-	'rest_framework',
-	'corsheaders',
+   	'rest_framework',
+   	'corsheaders',
 
     'foods',
     'meals',
     'diets',
     'accounts',
-    
+
+    # allauth + jwt
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    'allauth',
+    'allauth.account',
 ]
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -127,21 +141,21 @@ if get_secret("ENV") == "DEV":
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else :
+else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql', # engine: mysql
-            'NAME' : get_secret("DB_NAME"), # DB Nameget_secret("ENV")
-            'USER' : get_secret("DB_USER"), # DB User
-            'PASSWORD' : get_secret("DB_PASSWORD"), # Password
-            'HOST': get_secret("DB_HOST"), # 생성한 데이터베이스 엔드포인트
-            'PORT': get_secret("DB_PORT"), # 데이터베이스 포트
-            'OPTIONS':{
-                'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
+            'ENGINE': 'django.db.backends.mysql',  # engine: mysql
+            'NAME': get_secret("DB_NAME"),  # DB Nameget_secret("ENV")
+            'USER': get_secret("DB_USER"),  # DB User
+            'PASSWORD': get_secret("DB_PASSWORD"),  # Password
+            'HOST': get_secret("DB_HOST"),  # 생성한 데이터베이스 엔드포인트
+            'PORT': get_secret("DB_PORT"),  # 데이터베이스 포트
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }
         }
     }
-    
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -178,10 +192,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') #개발자가 관리하는 파일들 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 개발자가 관리하는 파일들
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #사용자가 업로드한 파일 관리
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 사용자가 업로드한 파일 관리
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -190,7 +204,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # throttle
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 
     'DEFAULT_THROTTLE_CLASSES': [
@@ -201,23 +215,38 @@ REST_FRAMEWORK = {
         'anon': '500/day',
         'user': '500/day'
     },
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
+# 추가적인 JWT_AUTH 설젇
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'access',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh'
+}
+SITE_ID = 1
+REST_USE_JWT = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # username 필드 사용 x
+ACCOUNT_EMAIL_REQUIRED = True            # email 필드 사용 o
+ACCOUNT_USERNAME_REQUIRED = False        # username 필드 사용 x
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # 회원가입 과정에서 이메일 인증 사용 X
 
-#CORS setting
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),
+}
+# CORS setting
 if DEV:
     CORS_ORIGIN_WHITELIST = [
         'http://localhost:3000',
         'http://127.0.0.1:8000',
     ]
     CORS_ALLOW_CREDENTIALS = True
-else :
+else:
     CORS_ORIGIN_WHITELIST = [
         'http://simple-diet-manager.link',
         'http://simple-diet-manager.link:8000',
     ]
-
