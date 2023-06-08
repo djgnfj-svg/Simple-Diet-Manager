@@ -53,7 +53,7 @@ if DEV:
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
     }
-    INTERNAL_IPS = ['127.0.0.1'] 
+    # INTERNAL_IPS = ['127.0.0.1'] 
 else:
     DEBUG = False
     ALLOWED_HOSTS = ["simple-diet-manager.link"]
