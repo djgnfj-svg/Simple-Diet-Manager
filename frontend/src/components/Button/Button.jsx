@@ -11,7 +11,6 @@ border: 2px solid #e74c3c;
 border-radius: 0.6em;
 color: #e74c3c;
 cursor: pointer;
-display: flex;
 align-self: center;
 font-size: 1rem;
 font-weight: 400;
@@ -40,21 +39,16 @@ const Wapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    // 오른쪽 정렬
-    & > * {
-        margin-left: auto;
-    }
+
 `;
 
 
 function Button(props) {
-    const { title, onClick, disabled, isLoading } = props;
+    const { title, onClick, disabled, isLoading, type } = props;
     return (
-        <Wapper>
-            <StyleButton onClick={onClick} disabled={disabled || isLoading} >
+            <StyleButton onClick={onClick} disabled={disabled || isLoading} type={type}>
                 {title || "button"}
             </StyleButton>
-        </Wapper>
     );
 }
 
