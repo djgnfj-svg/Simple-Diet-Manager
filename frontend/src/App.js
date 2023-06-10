@@ -9,6 +9,7 @@ import DietDetailPage from './pages/DietDetailPage/DietDetailPage';
 import FoodListPage from './pages/FoodListPage/FoodListPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Footer from './components/Footer/Footer';
 import My_Navbar from './components/Navbar/Navbar';
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/diets" element={<WeekDietOutputPage />} />
           <Route path="/diets/:id" element={<DietDetailPage />} />
           <Route path="/food-list" element={<FoodListPage />} />
+          <Route path="/profile" element={<ProfilePage />} /> {/* TODO: change to profile page */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
         </Routes>
