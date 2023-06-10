@@ -25,7 +25,6 @@ class BodyInfoRecord(models.Model):
 
 
 class UserManager(BaseUserManager):
-
     def create_user(self, email, password, **kwargs):
         if not email:
             raise ValueError('Users must have an email address')
