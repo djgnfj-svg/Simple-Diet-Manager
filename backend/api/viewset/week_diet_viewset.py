@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 from api.serializer.diet_serializer import WeekDietMakeSerializer
 from api.serializer.purchase_serializer import WeekDietPurchaseSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from common.message import error_msg
 from diets.models import WeekDiet
 
@@ -13,6 +14,11 @@ class WeekDietViewSet(viewsets.ViewSet):
 
     def create(self, request):
         serializer = WeekDietMakeSerializer(data=request.data)
+
+        # TODO : 유저에 따라서 거시기
+        if self.request.user.is_authenticated:
+            print(self.request.user)
+            # user = JWTAuthentication().authenticate(request)
         if serializer.is_valid():
             rtn = serializer.create(serializer.data)
             return Response(rtn, status=status.HTTP_201_CREATED)

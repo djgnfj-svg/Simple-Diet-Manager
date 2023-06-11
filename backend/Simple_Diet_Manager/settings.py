@@ -202,7 +202,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 사용자가 업로드한 파일
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# throttle
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
@@ -218,6 +217,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+
 }
 # 추가적인 JWT_AUTH 설젇
 REST_AUTH = {

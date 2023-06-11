@@ -79,6 +79,8 @@ class WeekDietMakeSerializer(serializers.Serializer):
     # 보여줄 데이터 생성
     def create(self, validated_data):
         #유저 데이터 생성
+        # 만약 기존 유저 데이터가 있었다면?
+        # 또는 
         userbodyinfo = UserBodyInfo.objects.create(
             age=validated_data['age'],
             weight=validated_data['weight'],
@@ -87,6 +89,7 @@ class WeekDietMakeSerializer(serializers.Serializer):
             general=validated_data['general_activity'],
             activity=validated_data['excise_activity'],
         )
+        
         #대사량 데이터 생성
         metabolic_manager = MetabolicManager()
         metabolic = metabolic_manager.make_metabolic_data(validated_data)

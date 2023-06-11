@@ -3,25 +3,6 @@ from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permi
 
 
 # Create your models here.    
-class UserBodyInfo(models.Model):
-    height = models.IntegerField()
-    weight = models.IntegerField()
-    age = models.IntegerField()
-    gender = models.CharField(max_length=50)
-    activity = models.CharField(max_length=50)
-    general = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-
-class BodyInfoRecord(models.Model):
-    user_body_info = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE, related_name="records")
-    height = models.IntegerField()
-    weight = models.IntegerField()
-    age = models.IntegerField()
-    gender = models.CharField(max_length=50)
-    activity = models.CharField(max_length=50)
-    general = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class UserManager(BaseUserManager):
@@ -60,3 +41,25 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class UserBodyInfo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_body_info")
+    height = models.IntegerField()
+    weight = models.IntegerField()
+    age = models.IntegerField()
+    gender = models.CharField(max_length=50)
+    activity = models.CharField(max_length=50)
+    general = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class BodyInfoRecord(models.Model):
+    user_body_info = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE, related_name="records")
+    height = models.IntegerField()
+    weight = models.IntegerField()
+    age = models.IntegerField()
+    gender = models.CharField(max_length=50)
+    activity = models.CharField(max_length=50)
+    general = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
