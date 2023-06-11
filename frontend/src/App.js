@@ -12,6 +12,7 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Footer from './components/Footer/Footer';
 import My_Navbar from './components/Navbar/Navbar';
+
 function App() {
   return (
       <BrowserRouter>
