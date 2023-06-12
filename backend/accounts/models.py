@@ -44,7 +44,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class UserBodyInfo(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_body_info")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name="user_body_info")
+    #TODO : max value, min value 정하기
     height = models.IntegerField()
     weight = models.IntegerField()
     age = models.IntegerField()
@@ -55,7 +56,7 @@ class UserBodyInfo(models.Model):
 
 
 class BodyInfoRecord(models.Model):
-    user_body_info = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE, related_name="records")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="body_info_record")
     height = models.IntegerField()
     weight = models.IntegerField()
     age = models.IntegerField()

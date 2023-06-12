@@ -1,10 +1,12 @@
 from rest_framework import serializers
 
-from accounts.models import UserBodyInfo
 from api.serializer.meal_serializer import MealSerializer
+from api.Utils.UserBodyUtils import save_userbody
+from api.Utils.MetabolicUtils import make_min_max_nutrient
+from api.Utils.week_diet_utils import make_week_diet
+
 from common.geter.weekdiet_getter import WeekDietGetter
-from core.metabolic_manager import MetabolicManager
-from core.nutrient_utils import cal_nutrient_range, get_min_max_range
+
 from diets.models import Diet, WeekDiet
 from foods.models import FoodCategory
 from meals.models import Meal
@@ -18,6 +20,7 @@ class DietSerializer(serializers.ModelSerializer):
     fat = serializers.IntegerField(read_only=True, default=0)
     carbs = serializers.IntegerField(read_only=True, default=0)
     meal_count = serializers.IntegerField(read_only=True, default=3)
+
     class Meta:
         model = Diet
         fields = ("id", "meals", "kcal",
@@ -67,44 +70,26 @@ class WeekDietMakeSerializer(serializers.Serializer):
         ('W', 'W'),
     )
     age = serializers.IntegerField(min_value=20, max_value=100)
-    weight = serializers.FloatField(min_value=50, max_value=150)
     height = serializers.FloatField(min_value=145, max_value=230)
+    weight = serializers.FloatField(min_value=50, max_value=150)
+
     gender = serializers.ChoiceField(GENDER_CHOICES)
     general_activity = serializers.FloatField(min_value=1.2, max_value=1.6)
     excise_activity = serializers.FloatField(min_value=0, max_value=0.3)
+    
     meal_count = serializers.IntegerField(min_value=1, max_value=3)
     diet_status = serializers.IntegerField(min_value=0, max_value=2)
     categories = serializers.PrimaryKeyRelatedField(many=True, queryset=FoodCategory.objects.all())
 
-    # 보여줄 데이터 생성
-    def create(self, validated_data):
-        #유저 데이터 생성
-        # 만약 기존 유저 데이터가 있었다면?
-        # 또는 
-        userbodyinfo = UserBodyInfo.objects.create(
-            age=validated_data['age'],
-            weight=validated_data['weight'],
-            height=validated_data['height'],
-            gender=validated_data['gender'],
-            general=validated_data['general_activity'],
-            activity=validated_data['excise_activity'],
-        )
-        
-        #대사량 데이터 생성
-        metabolic_manager = MetabolicManager()
-        metabolic = metabolic_manager.make_metabolic_data(validated_data)
-        min_range, max_range = get_min_max_range(validated_data['diet_status'])
+    def create(self, validated_data, user=None):
+        userbodyinfo = save_userbody(user, validated_data)
+
+        min_nutrient, max_nutrient = make_min_max_nutrient(validated_data['diet_status'])
+
+        week_diet = make_week_diet(userbodyinfo, validated_data, min_nutrient, max_nutrient)
 
 
-        #주간 식단 데이터 생성
-        week_diet_manager = WeekDietGetter()
-        min_nutrient = cal_nutrient_range(metabolic, min_range)
-        max_nutrient = cal_nutrient_range(metabolic, max_range)
-        categories = FoodCategory.objects.filter(id__in=validated_data["categories"])
-        week_diet = week_diet_manager.get_data(
-            validated_data["meal_count"], userbodyinfo, min_nutrient, max_nutrient, categories
-            )
-        #출력에 필요한 데이터 생성
+        #출력데이터 추가
         rtn = WeekDietSerializer(week_diet).data
         rtn["diet_status"] = validated_data["diet_status"]
         rtn["min_nutrient"] = min_nutrient
