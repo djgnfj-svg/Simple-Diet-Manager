@@ -74,7 +74,7 @@ function LoginPage() {
             });
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
-            navigate('/profile');
+            window.location.replace('/profile');
         } catch (error) {
             console.log(error.response.data.email)
             alert(error.response.data)

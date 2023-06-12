@@ -4,7 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 function My_Navbar() {
   const [auth, setAuth] = useState(false);
   const navigate = useNavigate();
@@ -20,14 +21,15 @@ function My_Navbar() {
   }, []);
 
   // 로그아웃함수
-  const logout = () => {
+  const logout = async () => {
+    alert("실행됨")
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    
+
     axios.get(`${process.env.REACT_APP_API}/dj-rest-auth/logout/`);
-    
+
     setAuth(false);
-    navigate('/')
+    navigate('/');
   }
 
   return (
@@ -38,34 +40,22 @@ function My_Navbar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/food-list">식품</Nav.Link>
-            {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
-            {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
           <Nav>
             {/* TODO : 로그인 여부에 따라서 바뀌는 로직 */}
             {auth ? (
               <>
-              <Nav.Link eventKey={2} href="/profile">
-                프로필
-              </Nav.Link>
-              <Nav.Link eventKey={3} onClick={logout()}>
-                로그아웃
-              </Nav.Link>
+                <Nav.Link eventKey={2} href="/profile">
+                  프로필
+                </Nav.Link>
+                <Nav.Link eventKey={3} onClick={logout}>
+                  로그아웃
+                </Nav.Link>
               </>
             ) : (
-            <Nav.Link eventKey={2} href="/login">
-              로그인
-            </Nav.Link>
+              <Nav.Link eventKey={2} href="/login">
+                로그인
+              </Nav.Link>
             )}
           </Nav>
         </Navbar.Collapse>
