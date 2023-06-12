@@ -84,7 +84,7 @@ class WeekDietMakeSerializer(serializers.Serializer):
     def create(self, validated_data, user=None):
         userbodyinfo = save_userbody(user, validated_data)
 
-        min_nutrient, max_nutrient = make_min_max_nutrient(validated_data['diet_status'])
+        min_nutrient, max_nutrient = make_min_max_nutrient(validated_data)
 
         week_diet = make_week_diet(userbodyinfo, validated_data, min_nutrient, max_nutrient)
 

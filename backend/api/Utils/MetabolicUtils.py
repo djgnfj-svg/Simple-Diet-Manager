@@ -10,3 +10,5 @@ def make_min_max_nutrient(validated_data):
     min_range, max_range = get_min_max_range(validated_data['diet_status'])
     min_nutrient = cal_nutrient_range(metabolic, min_range)
     max_nutrient = cal_nutrient_range(metabolic, max_range)
+
+    return min_nutrient, max_nutrient

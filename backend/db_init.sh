@@ -8,7 +8,7 @@ rm -rf foods/migrations
 rm -rf diets/migrations
 rm -rf meals/migrations
 
-python manage.py makemigrations account
+python manage.py makemigrations accounts
 python manage.py makemigrations foods
 python manage.py makemigrations meals
 python manage.py makemigrations diets
