@@ -15,9 +15,9 @@ import json
 import os
 from pathlib import Path
 
+import pymysql
 from django.core.exceptions import ImproperlyConfigured
 
-import pymysql
 pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,7 +35,6 @@ with open(SECRET_BASE_FILE, encoding="UTF-8") as f:
 
 
 def get_secret(setting):
-    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
     try:
         return secrets[setting]
     except KeyError:
@@ -58,7 +57,6 @@ if DEV:
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
     }
-    # INTERNAL_IPS = ['127.0.0.1']
 else:
     DEBUG = False
     ALLOWED_HOSTS = ["simple-diet-manager.link"]

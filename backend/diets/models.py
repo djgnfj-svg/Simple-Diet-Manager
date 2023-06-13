@@ -1,12 +1,9 @@
 from django.db import models
 
-from accounts.models import User
 from common.models import TimeStampedModel
+
 from foods.models import FoodCategory
 from meals.models import Meal
-
-# class DietManager(models.Manager):
-#     def diet_create(self, meals, )
 
 class Diet(TimeStampedModel):
     meals = models.ManyToManyField(Meal)
@@ -18,6 +15,7 @@ class Diet(TimeStampedModel):
     carbs = models.IntegerField(default=0)
 
     meal_count = models.IntegerField(default=0)
+
 
 class WeekDiet(TimeStampedModel):
     diets = models.ManyToManyField(Diet)

@@ -1,23 +1,25 @@
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from api.serializer.food_serializer import (FoodCategorySerializer,
-                                            FoodSerializer)
-from common.geter.meal_getter import MealGetter
+from api.serializer.food_serializer import FoodCategorySerializer, FoodSerializer
 from common.maker.meal_maker import MealMaker
+
 from foods.models import Food, FoodCategory
 from meals.models import Meal
 
 
 class FoodCategoryViewset(viewsets.ModelViewSet):
     serializer_class = FoodCategorySerializer
-    queryset = FoodCategory.objects.order_by("-id")
+
+    def get_queryset(self):
+        return FoodCategory.objects.order_by("-id").exclude(name="기타")
 
     @method_decorator(cache_page(60))
     def list(self, request, *args, **kwargs):
-        queryset = FoodCategory.objects.order_by("-id").exclude(name="기타")
+        queryset = self.get_queryset()
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
@@ -28,30 +30,19 @@ class FoodCategoryViewset(viewsets.ModelViewSet):
 
 class FoodViewset(viewsets.ModelViewSet):
     serializer_class = FoodSerializer
-    queryset = Food.objects.order_by("-id")
+    def get_queryset(self):
+        search = self.request.query_params.get('search', '')
+        return Food.objects.filter(name__icontains=search).order_by("-id")
 
     def list(self, request, *args, **kwargs):
-        a = Food.objects.all()[:3]
-
-        # a = a.select_related("category")
-
-        # temp = ""
-        # for i in a:
-        #     temp += i.category.name
-        # return Response(status=status.HTTP_200_OK)
-
-
-        super().list(request, *args, **kwargs)
-        search = request.query_params.get('search', '')
-        filtered_foods = Food.objects.filter(name__icontains=search).order_by("-id")
-
-        page = self.paginate_queryset(filtered_foods)
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(filtered_foods, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
     def create(self, request, *args, **kwargs):

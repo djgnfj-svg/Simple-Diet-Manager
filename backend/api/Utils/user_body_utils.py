@@ -14,7 +14,7 @@ def save_userbody(user_id, validated_data, week_diet):
         userbodyinfo.height=validated_data['height']
         userbodyinfo.gender=validated_data['gender']
         userbodyinfo.general=validated_data['general_activity']
-        userbodyinfo.activity=validated_data['excise_activity']
+        userbodyinfo.excise=validated_data['excise_activity']
 
         userbodyinfo.save()
     else:
@@ -25,7 +25,7 @@ def save_userbody(user_id, validated_data, week_diet):
             height=validated_data['height'],
             gender=validated_data['gender'],
             general=validated_data['general_activity'],
-            activity=validated_data['excise_activity'],
+            excise=validated_data['excise_activity'],
         )
 
     record = BodyInfoRecord.objects.create(

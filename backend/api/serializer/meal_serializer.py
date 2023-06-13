@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from api.serializer.food_serializer import FoodSerializer
-from foods.models import Food, FoodCategory
+
+from foods.models import Food
 from meals.models import Meal
 
 

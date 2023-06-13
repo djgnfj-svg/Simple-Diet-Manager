@@ -3,6 +3,7 @@ from rest_framework import serializers
 from diets.models import Diet
 from meals.models import Meal
 
+# TODO : 리팩토링 필요
 
 class MealPurchaseSerializer(serializers.Serializer):
     Food_Purchase_info = serializers.SerializerMethodField()
@@ -59,6 +60,8 @@ class DietPurchaseSerializer(serializers.Serializer):
                         temp["food_count"] = 1
                         rtn.append(temp)
         return rtn
+
+
 class WeekDietPurchaseSerializer(serializers.Serializer):
     Diet_Purchase_info = serializers.SerializerMethodField()
 

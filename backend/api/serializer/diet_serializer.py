@@ -1,15 +1,14 @@
 from rest_framework import serializers
 
 from api.serializer.meal_serializer import MealSerializer
-from api.Utils.UserBodyUtils import save_userbody
-from api.Utils.MetabolicUtils import make_min_max_nutrient
+from api.Utils.metabolic_utils import make_min_max_nutrient
+from api.Utils.user_body_utils import save_userbody
 from api.Utils.week_diet_utils import make_week_diet
-
-from common.geter.weekdiet_getter import WeekDietGetter
 
 from diets.models import Diet, WeekDiet
 from foods.models import FoodCategory
 from meals.models import Meal
+
 
 
 class DietSerializer(serializers.ModelSerializer):
@@ -28,27 +27,20 @@ class DietSerializer(serializers.ModelSerializer):
 
     def get_meals(self, obj) -> list:
         meals = {}
-        if obj.meal_count == 3:
-            meals_name_list = ['breakfast', 'lunch', 'dinner']
-        else:
-            meals_name_list = ['breakfast', 'lunch']
-
+        meals_name_list = ['breakfast', 'lunch', 'dinner'] if obj.meal_count == 3 else ['breakfast', 'lunch']
         if obj.meals.count() == 1:
             for i in meals_name_list:
                 meals[i] = MealSerializer(obj.meals.first()).data
-            return meals
         else:
             for meal, meal_name in zip(obj.meals.all(), meals_name_list):
-                
                 meals[meal_name] = MealSerializer(meal).data
-            return meals
+        return meals
     
     def to_representation(self, instance):
         rtn = super().to_representation(instance)
         rtn["meals"] = self.get_meals(instance)
         return rtn
 
-# TODO : 확장성 이 어마어마하게 쓰게기이다...
 class WeekDietSerializer(serializers.ModelSerializer):
     diets = serializers.SerializerMethodField()
 
@@ -70,8 +62,8 @@ class WeekDietMakeSerializer(serializers.Serializer):
         ('W', 'W'),
     )
     age = serializers.IntegerField(min_value=20, max_value=100)
-    height = serializers.FloatField(min_value=145, max_value=230)
-    weight = serializers.FloatField(min_value=50, max_value=150)
+    height = serializers.IntegerField(min_value=145, max_value=230)
+    weight = serializers.IntegerField(min_value=50, max_value=150)
     gender = serializers.ChoiceField(GENDER_CHOICES)
     general_activity = serializers.FloatField(min_value=1.2, max_value=1.6)
     excise_activity = serializers.FloatField(min_value=0, max_value=0.3)
@@ -81,17 +73,13 @@ class WeekDietMakeSerializer(serializers.Serializer):
     categories = serializers.PrimaryKeyRelatedField(many=True, queryset=FoodCategory.objects.all())
 
     def create(self, validated_data, user=None):
-
         min_nutrient, max_nutrient = make_min_max_nutrient(validated_data)
-
         week_diet = make_week_diet(validated_data, min_nutrient, max_nutrient)
         
         if user is not None:
             user = user[0].id
             save_userbody(user, validated_data, week_diet)
 
-
-        #출력데이터 추가
         rtn = WeekDietSerializer(week_diet).data
         rtn["diet_status"] = validated_data["diet_status"]
         rtn["min_nutrient"] = min_nutrient

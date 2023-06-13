@@ -1,6 +1,6 @@
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 from django.db import models
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, PermissionsMixin)
-
 
 # Create your models here.    
 
@@ -43,16 +43,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 class UserBodyInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name="user_body_info")
 
-    #TODO : max value, min value 정하기
-    age = models.IntegerField()
-    height = models.IntegerField()
-    weight = models.IntegerField()
-    gender = models.CharField(max_length=50)
-    activity = models.CharField(max_length=50)
-    general = models.CharField(max_length=50)
+    age = models.IntegerField(validators=[MinValueValidator(20), MaxValueValidator(120)])
+    height = models.IntegerField(validators=[MinValueValidator(145), MaxValueValidator(230)])
+    weight = models.IntegerField(validators=[MinValueValidator(50), MaxValueValidator(150)])
+    gender = models.CharField(max_length=2)
+    general = models.FloatField(validators=[MinValueValidator(1.2), MaxValueValidator(1.6)])
+    excise = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(0.3)])
+
     created_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -60,10 +62,11 @@ class BodyInfoRecord(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="body_info_record")
     
     week_diet = models.ForeignKey("diets.WeekDiet", on_delete=models.CASCADE, null=True, related_name="body_info_record")
-    age = models.IntegerField()
-    height = models.IntegerField()
-    weight = models.IntegerField()
-    gender = models.CharField(max_length=50)
-    activity = models.CharField(max_length=50)
-    general = models.CharField(max_length=50)
+    age = models.IntegerField(validators=[MinValueValidator(20), MaxValueValidator(120)])
+    height = models.IntegerField(validators=[MinValueValidator(145), MaxValueValidator(230)])
+    weight = models.IntegerField(validators=[MinValueValidator(50), MaxValueValidator(150)])
+    gender = models.CharField(max_length=2)
+    general = models.FloatField(validators=[MinValueValidator(1.2), MaxValueValidator(1.6)])
+    excise = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(0.3)])
+
     created_at = models.DateTimeField(auto_now_add=True)

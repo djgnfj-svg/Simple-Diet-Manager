@@ -3,7 +3,6 @@ from django.db import models
 from common.models import TimeStampedModel
 
 
-# Create your models here.
 class FoodCategory(TimeStampedModel):
     name = models.CharField(max_length=50, unique=True)
     image = models.ImageField(upload_to='food-category/%Y/%m/%d/', null=True, blank=True)
@@ -15,7 +14,6 @@ class FoodCategory(TimeStampedModel):
 class Food(TimeStampedModel):
     name = models.CharField(max_length=50)
     brand = models.CharField(max_length=50, null=True, blank=True)
-
 
     kcal = models.IntegerField(null=False, default=0)
     protein = models.IntegerField(null=False, default=0)

@@ -3,8 +3,8 @@ from rest_framework import routers
 from api.viewset.diet_viewset import DietViewset
 from api.viewset.food_viewset import FoodCategoryViewset, FoodViewset
 from api.viewset.meal_viewset import MealViewset
-from api.viewset.week_diet_viewset import WeekDietViewSet
 from api.viewset.userprofile_viewset import UserProfileView
+from api.viewset.week_diet_viewset import WeekDietViewSet
 
 router = routers.DefaultRouter()
 router.register(r'diets', DietViewset, basename="diets")
