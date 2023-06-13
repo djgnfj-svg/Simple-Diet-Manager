@@ -14,8 +14,6 @@ function My_Navbar() {
     const token = localStorage.getItem('access_token');
     // 현재는 토큰이 있다면 ~ 으로 되어있지만 추후 토큰이 유효한지 확인하는 로직을 넣어야함
     if (token !== null) {
-      console.log('토큰이 있습니다.');
-      console.log(token);
       setAuth(true);
     }
   }, []);

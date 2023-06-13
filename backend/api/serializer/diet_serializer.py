@@ -86,8 +86,9 @@ class WeekDietMakeSerializer(serializers.Serializer):
 
         week_diet = make_week_diet(validated_data, min_nutrient, max_nutrient)
         
-        user = user[0].id
-        save_userbody(user, validated_data, week_diet)
+        if user is not None:
+            user = user[0].id
+            save_userbody(user, validated_data, week_diet)
 
 
         #출력데이터 추가
