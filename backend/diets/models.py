@@ -1,6 +1,6 @@
 from django.db import models
 
-from accounts.models import UserBodyInfo
+from accounts.models import User
 from common.models import TimeStampedModel
 from foods.models import FoodCategory
 from meals.models import Meal
@@ -21,7 +21,6 @@ class Diet(TimeStampedModel):
 
 class WeekDiet(TimeStampedModel):
     diets = models.ManyToManyField(Diet)
-    bodyinfo = models.ForeignKey(UserBodyInfo, on_delete=models.CASCADE)
     categories = models.ManyToManyField(FoodCategory)
 
     kcal = models.IntegerField(default=0)
@@ -30,7 +29,3 @@ class WeekDiet(TimeStampedModel):
     carbs = models.IntegerField(default=0)
     
     meal_count = models.IntegerField(default=0)
-
-class MultiURL(models.Model):
-    url = models.CharField(max_length=200)
-    WeekDiet = models.ForeignKey(WeekDiet, on_delete=models.CASCADE)

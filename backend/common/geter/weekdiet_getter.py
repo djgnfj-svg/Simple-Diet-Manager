@@ -22,7 +22,7 @@ class WeekDietGetter(GetterBase):
         return model.objects.filter(q)
 
 
-    def get_data(self, meal_count, userbody, min_nutrient, max_nutrient, categories):
+    def get_data(self, meal_count, min_nutrient, max_nutrient, categories):
         week_min_nutrient = cal_nutrient_range(min_nutrient, 6)
         week_max_nutrient = cal_nutrient_range(max_nutrient, 6)
         
@@ -33,5 +33,5 @@ class WeekDietGetter(GetterBase):
             return week_diet[0] 
         else :
             week_maker = WeekDietMaker(WeekDiet)
-            return week_maker.make_instance(meal_count, min_nutrient, max_nutrient, userbody, categories)
+            return week_maker.make_instance(meal_count, min_nutrient, max_nutrient, categories)
 

@@ -11,7 +11,7 @@ class WeekDietMaker(MakerBase):
         super().__init__(model)
 
     @transaction.atomic
-    def make_instance(self, meal_count, min_nutrient, max_nutrient, userbody, categories):
+    def make_instance(self, meal_count, min_nutrient, max_nutrient, categories):
         week_nutrient_data = init_nutrient()
         diet_list = []
         
@@ -38,7 +38,6 @@ class WeekDietMaker(MakerBase):
             fat=week_nutrient_data["fat"],
             carbs=week_nutrient_data["carbs"],
             meal_count = meal_count,
-            bodyinfo=userbody,
         )
         week_diet.diets.set(diet_list)
 

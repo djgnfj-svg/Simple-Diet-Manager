@@ -3,7 +3,7 @@
 rm -rf db.sqlite3
 
 # delete migrations
-rm -rf account/migrations
+rm -rf accounts/migrations
 rm -rf foods/migrations
 rm -rf diets/migrations
 rm -rf meals/migrations

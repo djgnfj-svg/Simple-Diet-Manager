@@ -72,7 +72,6 @@ class WeekDietMakeSerializer(serializers.Serializer):
     age = serializers.IntegerField(min_value=20, max_value=100)
     height = serializers.FloatField(min_value=145, max_value=230)
     weight = serializers.FloatField(min_value=50, max_value=150)
-
     gender = serializers.ChoiceField(GENDER_CHOICES)
     general_activity = serializers.FloatField(min_value=1.2, max_value=1.6)
     excise_activity = serializers.FloatField(min_value=0, max_value=0.3)
@@ -82,11 +81,13 @@ class WeekDietMakeSerializer(serializers.Serializer):
     categories = serializers.PrimaryKeyRelatedField(many=True, queryset=FoodCategory.objects.all())
 
     def create(self, validated_data, user=None):
-        userbodyinfo = save_userbody(user, validated_data)
 
         min_nutrient, max_nutrient = make_min_max_nutrient(validated_data)
 
-        week_diet = make_week_diet(userbodyinfo, validated_data, min_nutrient, max_nutrient)
+        week_diet = make_week_diet(validated_data, min_nutrient, max_nutrient)
+        
+        user = user[0].id
+        save_userbody(user, validated_data, week_diet)
 
 
         #출력데이터 추가

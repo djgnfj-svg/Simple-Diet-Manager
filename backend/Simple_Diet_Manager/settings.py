@@ -238,7 +238,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # 회원가입 과정에서 이메일 인증 사용 X
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=2),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=4),
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),
 }
 # CORS setting
