@@ -77,6 +77,7 @@ function RegistrationPage() {
             localStorage.setItem('refresh_token', response.data.refresh);
             navigate('/profile');
         } catch (error) {
+            alert("회원가입에 실패했습니다.")
             console.log(error.response.data);
             alert(error.response.data);
         }

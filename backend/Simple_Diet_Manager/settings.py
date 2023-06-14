@@ -244,6 +244,8 @@ if DEV:
     CORS_ORIGIN_WHITELIST = [
         'http://localhost:3000',
         'http://127.0.0.1:8000',
+        'http://simple-diet-manager.link',
+        'http://simple-diet-manager.link:8000',
     ]
     CORS_ALLOW_CREDENTIALS = True
 else:

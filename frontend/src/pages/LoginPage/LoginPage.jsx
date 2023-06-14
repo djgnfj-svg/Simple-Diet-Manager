@@ -76,6 +76,7 @@ function LoginPage() {
             localStorage.setItem('refresh_token', response.data.refresh);
             window.location.replace('/profile');
         } catch (error) {
+            alert("로그인 실패하였습니다.")
             console.log(error.response.data.email)
         }
     };
