@@ -1,11 +1,12 @@
 
 
-from accounts.models import BodyInfoRecord, User, UserBodyInfo
+from accounts.models import User, BodyInfoRecord, UserBodyInfo
 
 
-def save_userbody(user_id, validated_data, week_diet):
-    is_record = BodyInfoRecord.objects.filter(user__id=user_id).all()
-    user = User.objects.filter(id=user_id).first()
+def save_userbody(user, validated_data, week_diet):
+    user = user[0]
+    user = User.objects.filter(id=user.id).first()
+    is_record = UserBodyInfo    .objects.filter(user=user).all()
 
     if len(is_record) > 0:
         userbodyinfo = UserBodyInfo.objects.filter(user=user).first()
@@ -35,7 +36,7 @@ def save_userbody(user_id, validated_data, week_diet):
         height=validated_data['height'],
         gender=validated_data['gender'],
         general=validated_data['general_activity'],
-        activity=validated_data['excise_activity'],
-        week_diet= week_diet.id
+        excise=validated_data['excise_activity'],
+        week_diet= week_diet
     )
     return userbodyinfo, record

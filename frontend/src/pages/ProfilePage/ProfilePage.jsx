@@ -59,22 +59,20 @@ const ProfilePage = () => {
         }));
         setData(updatedData);
 
-        // 식단 기록 상태 업데이트
         const weekdiets = responseData.map((item) => ({
           id: item.id,
           title: item.title,
         }));
+
         setWeekdiets(weekdiets);
       } else {
-        // If access token is not available, redirect to login
-        alert('유효하지 않은 토큰입니다.');
+        alert('유효하지 않은 토큰입니다.');  
         localStorage.removeItem('access_token');
         navigate('/login');
       }
     } catch (error) {
-      console.error('Error fetching profile:', error);
-      localStorage.removeItem('access_token');
-      navigate('/login');
+      alert('프로필에 기억할 것이 없으니 식단을 생성해 주세요');
+      window.location.replace('/');
     }
   };
 

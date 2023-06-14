@@ -73,9 +73,12 @@ function RegistrationPage() {
                 password1: password1,
                 password2: password2,
             });
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refresh_token', response.data.refresh);
             navigate('/profile');
         } catch (error) {
-            alert(error.response.data)
+            console.log(error.response.data);
+            alert(error.response.data);
         }
     };
 

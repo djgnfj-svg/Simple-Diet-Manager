@@ -17,7 +17,7 @@ class WeekDietViewSet(viewsets.ViewSet):
 
     def create(self, request):
         user = JWTAuthentication().authenticate(request)
-
+        print(user)
         serializer = WeekDietMakeSerializer(data=request.data)
         if serializer.is_valid():
             rtn = serializer.create(serializer.data, user)

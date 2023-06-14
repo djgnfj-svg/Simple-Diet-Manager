@@ -1,6 +1,6 @@
 from common.geter.base_getter import GetterBase
 from common.maker.diet_maker import DietMaker
-from core.nutrient_utils import cal_range
+
 from diets.models import Diet
 
 

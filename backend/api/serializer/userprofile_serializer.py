@@ -9,6 +9,7 @@ class UserProfileSerializer(serializers.Serializer):
     weight = serializers.FloatField()
     created_at = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     title = serializers.SerializerMethodField()
+
     def get_title(self, obj):
         dt = obj.created_at.date()
 

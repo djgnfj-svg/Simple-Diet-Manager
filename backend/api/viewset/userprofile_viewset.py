@@ -18,6 +18,7 @@ class UserProfileView(viewsets.ReadOnlyModelViewSet):
 
         queryset = BodyInfoRecord.objects.filter(user__id=user[0].id)
         if not queryset.exists():
+            print("프로필이 존재하지 않습니다.")
             return Response({"message": "프로필이 존재하지 않습니다."}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = self.serializer_class(queryset, many=True)

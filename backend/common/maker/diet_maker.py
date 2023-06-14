@@ -36,14 +36,13 @@ class DietMaker(MakerBase):
 
         if bulk:
             return diet_data
-        
-        # TODO : 추후 base class로 올려서 1큐로 해결하자
-
-        if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).exists() :
-            if self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category).count() > 0:
-                for diet in self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category):
-                    if len(diet.meals.all()) == len(meal_list):
-                        return diet
+                    
+        queryset = self.model.objects.filter(meals__in=meal_list, meal_count=meal_count, category=category)
+        if queryset.exists():
+            for diet in queryset:
+                if len(diet.meals.all()) == len(meal_list):
+                    return diet
+                
         diet = self.model.objects.create(
             kcal=diet_data["kcal"],
             protein=diet_data["protein"],

@@ -110,15 +110,34 @@ function UserInputCard() {
             diet_status : dietstatus,
             categories: foodCategory
         }
-        axios.post(process.env.REACT_APP_API + "/api/week-diets/", data)
+        
+        const accessToken = localStorage.getItem('access_token');
+
+        if (accessToken) {
+          axios.post(process.env.REACT_APP_API + "/api/week-diets/", data, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
             .then((res) => {
-                alert("성공")
-                navigate("/diets", { state: res.data });
-        })
-        .catch((err) => {
-            alert(err)
-            console.log(err)
-        })
+              alert("성공");
+              navigate("/diets", { state: res.data });
+            })
+            .catch((err) => {
+              alert(err);
+              console.log(err);
+            });
+        } else {
+          axios.post(process.env.REACT_APP_API + "/api/week-diets/", data)
+            .then((res) => {
+              alert("성공");
+              navigate("/diets", { state: res.data });
+            })
+            .catch((err) => {
+              alert(err);
+              console.log(err);
+            });
+        }
 }
 
 

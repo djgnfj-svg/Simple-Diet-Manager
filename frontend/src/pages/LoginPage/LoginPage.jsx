@@ -58,7 +58,7 @@ function LoginPage() {
     
     // 버튼눌리면 동작
     const handleLogin = () => {
-        alert("Ver 0.4때 구현할 예정입니다.")
+        alert("현재 V0.2로 구현 중입니다.")
     }
     // 로그인 버튼
     const [email, setEmail] = useState('');
@@ -77,7 +77,6 @@ function LoginPage() {
             window.location.replace('/profile');
         } catch (error) {
             console.log(error.response.data.email)
-            alert(error.response.data)
         }
     };
     

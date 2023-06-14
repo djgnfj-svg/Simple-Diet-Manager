@@ -20,11 +20,11 @@ function My_Navbar() {
 
   // 로그아웃함수
   const logout = async () => {
-    alert("실행됨")
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
 
-    axios.get(`${process.env.REACT_APP_API}/dj-rest-auth/logout/`);
+    axios.post(`${process.env.REACT_APP_API}/dj-rest-auth/logout/`,
+      {},);
 
     setAuth(false);
     navigate('/');
