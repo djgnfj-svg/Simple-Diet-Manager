@@ -57,6 +57,9 @@
 
     ![주간 식단계산](https://github.com/djgnfj-svg/Simple-Diet-Manager/assets/72533187/53046e97-ba1d-4dc3-8a32-f24bc95accdb)
 
-- ### 개인페이지
 - ### 로그인 & 회원가입
+    ![회원가입](https://github.com/djgnfj-svg/Simple-Diet-Manager/assets/72533187/fad9391c-2bbe-4a56-ac59-dcb6d18e4cf7)
+
+- ### 개인페이지
+    ![개인페이지](https://github.com/djgnfj-svg/Simple-Diet-Manager/assets/72533187/e9c82c0b-4199-4b64-b3b6-d13efd34f7a7)
 <br />

@@ -60,7 +60,7 @@ const ProfilePage = () => {
         setData(updatedData);
 
         const weekdiets = responseData.map((item) => ({
-          id: item.id,
+          id: item.week_diet,
           title: item.title,
         }));
 
@@ -71,14 +71,14 @@ const ProfilePage = () => {
         navigate('/login');
       }
     } catch (error) {
-      alert('프로필에 기억할 것이 없으니 식단을 생성해 주세요');
+      // alert('프로필에 기억할 것이 없으니 식단을 생성해 주세요');
       window.location.replace('/');
     }
   };
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [data, weekdiets]); // data와 weekdiets를 의존성 배열에 추가
 
   return (
     <Wrapper>

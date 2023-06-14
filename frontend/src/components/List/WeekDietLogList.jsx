@@ -28,6 +28,7 @@ function WeekDietLogList(props) {
         window.location.href = `${process.env.REACT_APP_API}/weekdiets/${id}`;
     }
     
+    console.log(weekdiets);
     return (
         <Wrapper>
             {weekdiets.map((weekdiet) => (
