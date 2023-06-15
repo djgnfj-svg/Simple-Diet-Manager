@@ -36,7 +36,7 @@
 
 ## 📕문서
 - [ERD](https://www.erdcloud.com/d/GmfhrsMQXPcgXhcai)
-- ![인프라](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f80d04ed-44f5-40c1-a31b-d9f11b279b2a/%EC%A0%9C%EB%AA%A9_%EC%97%86%EB%8A%94_%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.drawio_(3).png)
+- ![인프라](https://github.com/djgnfj-svg/Simple-Diet-Manager/assets/72533187/6df0275a-7829-4294-b206-e9fbe4efad99)
 <br>
 
 ---
