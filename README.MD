@@ -18,8 +18,6 @@
 1. Docker를 사용하여 배포 - [기록](https://velog.io/@jacha/Django-React-nginx-gunicorn-docker)
 2. JWT 로그인 - [기록](https://velog.io/@jacha/Django-React-JWT-%EB%A1%9C%EA%B7%B8%EC%9D%B8)
 3. 개인 페이지 - [기록](https://velog.io/@jacha/%EA%B0%84%EB%8B%A8%EC%8B%9D%EB%8B%A8-%EA%B0%9C%EC%9D%B8%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%AC%ED%98%84-%EB%82%B4%EC%9A%A9)
-4. OAuth (진행 중)
-5. PDF 제공 (진행 중)
 
 <br>
 
